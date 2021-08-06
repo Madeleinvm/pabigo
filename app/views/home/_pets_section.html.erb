@@ -1,0 +1,47 @@
+<pets>
+
+
+
+  <div id="journal">
+    <div class="container">
+      <div class="text-center">
+        <h3>Mascotas</h3>
+        <p>Lista de Mascotas de PABIGO<br></p>
+      </div>
+      <div class="row">
+          <!-- TABLA DE FECHAS AQUI -->
+          <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad Aproximada</th>
+        <th scope="col">Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tbody>
+        <% @pets.each do |pet| %>
+          <tr>
+            <td style="color:#000000 "><%= pet.name %></td>
+            <td style="color:#000000 "><%= pet.aprox_age %></td>
+            <td style="color:#000000 "><%= pet.description %></td>
+            <td style="color:#000000 "><%= link_to "Ver", pet, class: "btn btn-block" %></td>
+          </tr>
+
+
+        <% end %>
+
+      </tbody>
+
+    </tbody>
+  </table>
+  <!-- TABLA hasta aqui -->
+      </div>
+    </div>
+  </div>
+  <!--/#mascotas-->
+
+
+
+
+</pets>

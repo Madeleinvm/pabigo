@@ -1,0 +1,90 @@
+<style>
+
+
+  .tip-distance {
+    padding-top: 50px;
+    /*padding-bottom: 15px;*/
+  }
+
+
+  .tip-border {
+
+    border: #0f0f0f;
+    border-style: solid;
+    border-width: 1px;
+
+  }
+
+  .tip-title-container{
+    text-align: left;
+    padding-bottom: 10px;
+
+  }
+
+  .tip-ctr {
+    text-align: center;
+  }
+
+  .btn-container {
+    text-align: right;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
+  .tip-desc {
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+    width: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .tip-title {
+    margin-left: 10px;
+  }
+
+
+  .bottom-distance {
+    margin-bottom: 150px;
+  }
+
+
+
+
+</style>
+
+
+<!-- Vista para visualizar el listado de tips completos, divididos por tipo -->
+<%=render 'layouts/header' %>
+<% @tips = Tipe.all %>
+<% @tipos = TipType.all%>
+
+<div class= "container bottom-distance">
+  <% @tips.each do |tip| %>
+    <div class="card col-md-4 tip-distance">
+      <div class="card-body tip-border tip-ctr">
+
+        <div class="tip-title-container ">
+          <h4 class="card-title tip-title"><%= tip.name %></h4>
+          <h6 class="card-subtitle mb-2 text-muted"><%= %></h6>
+        </div>
+
+        <div class="tip-desc-container">
+          <p class="card-text tip-desc"><%= tip.description %></p>
+        </div>
+
+        <div class="btn-container">
+          <a href="#" class="btn btn-primary">Saber más</a>
+        </div>
+
+
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

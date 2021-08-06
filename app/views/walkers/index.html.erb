@@ -1,0 +1,148 @@
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    h1 {
+      text-align:center;
+    }
+    .row {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    p.resumen{
+        color:lightgrey;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 2000px;
+    }
+    .iconet{
+        margin-left: 10%;
+        margin-top: 15%;
+    }
+    .photo {
+      border-radius: 45px;
+      margin-right: 20px;
+      width: 90px;
+      height:90px
+    }
+    .form-control { 
+      width:100%;
+      display: inline-block;
+      margin-right:10px;
+    }
+    .name {
+      font-weight: 700;
+    }
+    .expertise-label {
+      display:block;
+      font-weight: 700;
+      margin-top:10px;
+    }
+    .btn-more {
+      margin-top:10px;
+      width: 100%
+    }
+    .btn-agregar {
+        background-color: #A7DBD8;
+    }
+    .label {
+      font-weight: normal;
+    }
+    
+    </style>
+    <title>PABIGO</title>
+
+    
+
+</head>
+<body>
+<div id="blue">
+<div class="container">
+  <div class="text-center">
+    <h3>Paseadores</h3>
+    <div class="col-lg-2">
+      <% if Walker.where(user_id: current_user).exists? %>
+        <%= link_to "Perfil", edit_walker_path(current_user.walker), class: "btn btn-default btn-agregar " %>
+      <% else %>
+        <%= link_to "Postularse", new_walker_path, class: "btn btn-default btn-agregar " %>
+      <% end %>
+    </div>
+    <div class="linea"></div>
+    <p>Los Paseadores de PABIGO, calificados y aprobados a continuación </p>
+    <%-# @q es basicamente el query de busqueda %>
+    <%= search_form_for @search, html: { class: "form_inline"} do |f| %>
+    
+    <%-#=  search_form_for(@q, format: :pdf) do |f| %>
+    <%-#= search_form_for(@q, format: :json) do |f| %>
+      <%= f.search_field :description_or_user_email_or_user_profile_name_cont, class:"form-control" %>
+      <%-#= f.text_field: price_gtec %>
+      <%-#= f.text_field: price_ltec %>
+      <!--th><%= sort_link @search, :name, "Nombre del producto" %></th-->
+    <%end %>
+  </div>
+  <% @walkers.each do |walker| %>
+  <div class="row">
+    <div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s"><div class="text-center">
+      <div class="col-md-8">
+        <% unless walker.images.empty? %>   
+          <% unless walker.images.first == nil %>
+            <a href="<%= walker_path(walker) %>"><img   src="<%= walker.images.first.picture.url %>" alt="" class="img-circle" width="300" height="300"></a>
+          <% else %>
+            <a href="<%= walker_path(walker) %>"><img   src="/images/ImageDefault.jpg" alt="" class="img-circle" width="300" height="300"  ></a>
+          <% end %>
+        <%else %>
+          <a href="<%= walker_path(walker) %>"><img   src="/images/ImageDefault.jpg" alt="" class="img-circle" width="300" height="300"  ></a>
+        <% end %>
+        <!--end of thumbnails-->
+      </div>  
+    </div>   
+    <div class="col-md-8">
+    <div class="text-center text-justify">    
+        <h2>Status: <%= walker.status %></h2>
+        <% if walker.user.profile.name != nil %>
+          <h4><%= walker.user.profile.name %> <%= walker.user.profile.last_name %></h4>
+        <% else %>
+          <h4><%= walker.user.email %></h4>
+        <% end %>
+        <p>Descripción: <%= raw(walker.description) %></p>
+        <h5>Calificaciones: 
+          <% (0..walker.calification.to_i-1).each do |i| %>
+            <img src="/images/dog-bone2.png" alt="">
+          <% end %>
+          <%= walker.calification %>
+        </h5>
+      </div>
+      </div>
+    </div>
+    <% end %>
+    </div>
+  </div>
+  <div>
+		<%= will_paginate @walkers, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+	</div>
+  <div class="row">
+    <div class="text-center">
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse">Mejores Paseadores</a>         
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <div class="container form-container-top_space">
+    <div class="row"> 
+      <div id="demo" class="collapse">
+        <%= render 'best_walters' %>
+        <!-- Info Box --> 
+      </div>                                            
+    </div>  
+  </div>
+  </body>

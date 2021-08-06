@@ -1,0 +1,184 @@
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Gamja+Flower|Indie+Flower');
+
+  .ubicacion{
+       margin: 0;
+       padding: 0;
+       font-family: 'Indie Flower', cursive;
+    }
+    
+    .hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  background: -webkit-linear-gradient(45deg, #ff89e9 0%, #05abe0 100%);
+  background: linear-gradient(45deg, #ff89e9 0%,#05abe0 100%);
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  padding: 3em;
+  text-align: left;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  max-width: none;
+  width: calc(100% + 60px);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+  transition: opacity 0.35s, transform 0.45s;
+  -webkit-transform: translate3d(-40px,0,0);
+  transform: translate3d(-40px,0,0);
+}
+
+.hovereffect h2 {
+  /*text-transform: uppercase;*/
+  color: black;
+  position: relative;
+  font-size: 17px;
+  background-color: transparent;
+  padding: 15% 0 10px 0;
+  text-align: left;
+}
+
+.hovereffect .overlay:before {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  border: 1px solid #fff;
+  content: '';
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+  transition: opacity 0.35s, transform 0.45s;
+  -webkit-transform: translate3d(-20px,0,0);
+  transform: translate3d(-20px,0,0);
+}
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+  transition: opacity 0.35s, transform 0.45s;
+  -webkit-transform: translate3d(-10px,0,0);
+  transform: translate3d(-10px,0,0);
+}
+
+.hovereffect:hover img {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect:hover .overlay:before,
+.hovereffect:hover a, .hovereffect:hover p {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+</style>
+
+<div class="col-lg-12 col-md-12 col-xs-12">
+  <div class="ubicacion">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+        <h3>
+            <strong>Detalle <%= @history.title %> </strong>
+        </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+        <h4>
+            <strong>Historia</strong>
+            <p>
+            <p align="justify"><%= @history.description %>.</p>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+        <h4>
+            <strong>Status</strong>
+            <p>
+            <p><%= @history.history_status %>.</p>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+        <h4>
+            <strong>Creador</strong>
+            <p>
+            <p><%= @user_email %></p>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+        <h4>
+            <strong>Fecha Creación</strong>
+            <p>
+            <p><%= (@history.created_at).to_time.strftime('%B %e at %l:%M %p') %>.</p>
+        </h4>
+      </div>
+    </div>
+
+    <% if @history.images != nil %>
+       <h4>Imágenes de <%= @history.title %> </h4>
+        <center>
+          <% @history.images.each_with_index do |image, index| %>
+            <% if image.picture_url %>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="hovereffect">
+                    <img src="<%= image.picture.url %>" width ="300px" height="300px">
+                    
+                    <div class="overlay">
+                      <h2>Img <%= index + 1%></h2>
+                      <p>
+                        <a href="<%= image.picture.url %>" target="_blank">Go</a>
+                      </p>
+                    </div>
+                  </div>
+              </div>
+            <% end %>
+          <% end %>
+          <!--end of thumbnails-->
+        </center>
+    <% else %>
+      <h4>No hay imágenes en la Historia <%= @history.title %> </h4>
+    <% end %>
+  <br>
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <br>
+    <center>
+      <%= link_to 'Cancel', url_for(:back), :class => 'btn btn-default' %>
+      
+      <% if can? :update, @history %>
+          <%= link_to "Edit", edit_history_path(@history), :class => 'btn btn-info'%>  
+      <% end %>
+
+      <p></p>
+    </center>
+  </div>
+</div>

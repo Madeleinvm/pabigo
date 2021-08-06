@@ -1,0 +1,77 @@
+
+<%= simple_form_for(@tipe) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <style media="screen">
+  body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  background-image: url(/assets/fondo_happy_pets.png) ;
+  background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+  </style>
+
+<br>
+
+<br>
+  <div class="unix-login">
+
+    <script type="text/javascript">
+
+        $(document).on("keydown", "#description", function () {
+            var caracteresRestantes = 500;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+        });
+
+    </script>
+
+<div class="container">
+      <div class="row">
+         <div class="col-md-4 col-md-offset-4">
+
+            <div class="login-content card">
+
+            <div class="well well-sm">
+               <div class="login-form">
+       <div class="form-inputs">
+          <%= f.input :name %>
+           <label>Descripcion: </label>
+          <%= f.text_area(:description, required:true, :rows => 4, style: 'width:100%;', id: 'description')%>
+                                    <span class="caracteres">500</span> caracteres restantes <br>
+          <label>Tipo de Tips: </label>
+          <br>
+          <%= f.association :category, :prompt => 'Seleccione un Tipo' %>
+
+        </div>
+
+                      <div class="row">
+                        <div class="col-sm-12" align="center" >
+                          <%= f.button :submit,"Aceptar", class: 'btn btn-primary'%>
+                          <br><br>
+                        </div>
+                        <div class="col-sm-12" align="center" >
+                          <%= link_to 'Cancelar', tipes_path, class: 'btn btn-danger'  %>
+
+                        </div>
+
+                      </div>
+              </div>
+            </div>
+            </div>
+          </div>
+      </div>
+</div>
+</div>
+
+
+<% end %>

@@ -1,0 +1,29 @@
+<div class="row">
+  <div align="center" class="col-xs-12">
+    <h4 id="complaints">Has sido testigo de algún maltrato animal de parte de alguna persona o institución?</h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @complaints.each do |complaint| %>
+      <div class="col-xs-4">
+        <div class="thumbnail" style="width: 300px;">
+          <%= image_tag complaint.image.picture.url, size: "300x200" %>
+          <div class="caption">
+            <h3>- En <%= complaint.place %> -</h3>
+            <hr>
+            <p><%= complaint.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div align="center" class="col-xs-12">
+      <h3>
+        No guardes silencio! Por favor visita nuestra sección de denuncia haciendo click <%= link_to "aquí", new_complaint_path %>
+      </h3>
+    </div>
+  </div>
+</div>

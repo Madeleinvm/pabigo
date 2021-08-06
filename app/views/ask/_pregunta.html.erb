@@ -1,0 +1,39 @@
+<% if can? :create, Ask %>
+  <div class="">
+
+    <%= simple_form_for :ask, url: ask_index_path,  validate: true do |f| %>
+     <div class="otro-campo">
+        <div class="campo-pregunta">
+            <%= f.input :tipo, as: :collection_select, collection: ['Perros','Gatos'], prompt: '- Seleccionar -', required: true %>
+          <%= f.input :campo, as: :text, placeholder: "Por favor, déjanos tu pregunta...",
+          label: ""%>
+          <%= f.submit value:"Publicar", class:"destruir", remote: true%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- <hr class="linea-pregunta"> -->
+<% end %>
+
+
+  <!-- Cuenta las preguntas en orden de llegada  -->
+  <!-- Se usa la pluralizacion en caso de que haya mas de una pregunta  -->
+  <!-- _pregunta.html.erb es una vista parcial que se renderiza en perros.html.erb -->
+  <!-- tambien tiene un contador tanto para gatos como para perros -->
+  <!-- en gatos seria la misma plantilla, ubicado en _preguntaGato.html.erb -->
+  <!-- ambas son vistas parciales para la renderizacion -->
+
+  <% @asks.reverse_each do |ask| %>
+    <% prueba = Ask.find(ask.id) %>
+    <% if ask.tipo == 'Perros' %>
+    <span><img id="cajita" src="https://image.flaticon.com/icons/svg/747/747314.svg" alt="" width="34px" height="34px"></span>
+    <% if Ask.where(:tipo => "Perros").count == 1 %>
+      <span class="letra-comment"><%= Ask.where(:tipo => "Perros").count %> Pregunta de Perro</span>
+    <%else%>
+      <span class="letra-comment"><%= Ask.where(:tipo => "Perros").count %> Preguntas de Perros</span>
+    <%end%>
+    <!-- <figure><img src="http://skogaras.leikskolinn.is/heilsuleiksk%C3%B3linn+h%C3%A1aleiti/fr%C3%A9ttamyndir/gamlar/obodinn-gestur.png" alt="" width="2px" height="2px"></figure> -->
+    <% break %>
+  <%end%>
+  <%end%>
+  <hr class="linea-pregunta">

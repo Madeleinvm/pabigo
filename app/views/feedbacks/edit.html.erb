@@ -1,0 +1,79 @@
+<style>
+    .user-row {
+      margin-top: 50px;
+    }
+</style>
+
+<center>
+  <h1>Calificación #
+    <%=@feedback.id%>
+  </h1>
+  <div class="row user-row">
+    <div class="col-md-6 ">
+      <% @trainer_details = TrainerDetail.find(@feedback.trainer_id)%>
+      <% unless @trainer_details.images.empty? %>
+        <ul class="list-inline">
+          <% @trainer_details.images.each_with_index do |image, index| %>
+            <% if image.picture_url %>
+              <% if index == 0 %>
+                <li data-toggle="modal" data-target="#myModal">
+                  <a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail img-circle" src="<%= image.picture.url %>" width ="300" height="300"><br><%= index + 1 %></a>
+                </li>
+              <% else %>
+                <li data-toggle="modal" data-target="#myModal">
+                  <a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="300" height="300"><br><%= index + 1 %></a>
+                </li>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+      <%else %>
+        <h4>No hay imágenes del entrenador </h4>
+      <% end %>
+      <% @usuario = User.find(@trainer_details.user_id) %>
+      <% @perfil = Profile.find(@usuario.id) %>
+      <h4>
+        <strong>Nombre:</strong> 
+        <%= @perfil.name %>
+        <%= @perfil.last_name %>
+      </h4>
+      <h4>
+        <strong>Email:</strong> 
+        <%= @usuario.email %>
+      </h4>
+      <h4>
+        <strong>Descripción:</strong> 
+        <%= @trainer_details.description %>
+      </h4>
+      <h4>
+        <strong>Calificación:</strong> 
+          <% (0..@trainer_details.qualification.to_i-1).each do |i| %>
+            <img src="/images/dog-bone2.png" alt="">
+          <% end %>
+          <%= @trainer_details.qualification %>
+      </h4>
+    </div>
+    <div class="col-md-6 ">
+      <%= simple_form_for [@feedback], url: feedback_path(@feedback) do |f| %>
+        <div class="form-group col-md-2">
+          <%= f.input :points, 
+            label: "Puntuación:",
+            collection: [1, 2, 3, 4, 5],
+            required: true,
+            class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-11">
+          <label>Comentario</label>
+          <%= f.cktext_area :comment, 
+            required: true,
+            size: "4x6",
+            class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.button :submit, "Guardar", class:"btn btn-default" %>
+          <%= link_to 'Atras', trainerushow_path(@trainer_details.id), :class => 'btn btn-default' %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</center>

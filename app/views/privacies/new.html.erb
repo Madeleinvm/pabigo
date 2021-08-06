@@ -1,0 +1,6 @@
+<% provide(:title, "Agregar Ajustes de Privacidad") %>
+<%= render "shared/admin/page_title" %>
+
+<%= simple_form_for @privacy, url: privacy_path do |f| %>
+  <%= render "form", f: f %>
+<% end %>

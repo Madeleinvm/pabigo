@@ -1,0 +1,50 @@
+<trainers>
+  <div id="trainer">
+    <div class="container">
+      <div class="text-center">
+        <h3>Mejores Entrenadores</h3>
+      </div>
+      <div class="row">
+          <% @besttrainer = 0 %>        
+          <% @trainer_details.each do |trainer1| %>
+            <% if (@prueba = trainer1.qualification) >= 0 &&  (@prueba = trainer1.qualification) >= @besttrainer %>
+              <%@besttrainer = @prueba%> 
+            <% end %> 
+          <% end %>
+
+        <% @trainer_details.each do |trainer| %>
+            <div class="col-lg-4 info_box_col">
+                <% if (@a = trainer.qualification) == @besttrainer %>
+                  <% unless trainer.images.empty? %>   
+                    <% unless trainer.images.first == nil %>
+                      <a href="<%= trainershow_path(trainer) %>"><img   src="<%= trainer.images.first.picture.url %>" alt="" class="img-circle" width="200" height="200"></a>
+                    <% else %>
+                      <a href="<%= trainershow_path(trainer) %>"><img   src="/images/ImageDefault.jpg" alt="" class="img-circle" width="200" height="200"  ></a>
+                    <% end %>
+                  <%else %>
+                    <a href="<%= trainershow_path(trainer) %>"><img   src="/images/ImageDefault.jpg" alt="" class="img-circle" width="200" height="200"  ></a>
+                  <% end %>
+                  <% @usuario = User.find(trainer.user_id) %>
+                  <% @perfil = Profile.find(@usuario.id) %>                    
+                  <h4><%= @perfil.name %> <%= @perfil.last_name %></h4>
+                  <strong>Calificación:</strong> 
+                    <% (0..trainer.qualification.to_i-1).each do |i| %>
+                      <img src="/images/dog-bone2.png" alt="">
+                    <% end %>
+                    <%= trainer.qualification %>
+                <% end %>     
+            </div> 
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+      <div class="row">
+          <%= link_to "Ver todos los Entrenadores", trainer_details_path, class: "tn btn-primary btn-lg" %> 
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</trainers>

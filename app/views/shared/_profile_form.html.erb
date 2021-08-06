@@ -1,0 +1,13 @@
+<%= f.simple_fields_for :profile do |profile_form| %>
+  <%= profile_form.input :name,
+                         label: 'Nombre',
+                         required: true %>
+  <%= profile_form.input :last_name,
+                         label: 'Apellido',
+                         required: true %>
+  <%= profile_form.input :male,
+                         label: 'Género',
+                         as: :select,
+                         collection: [['Masculino', true], ['Femenino', false]],
+                         required: true %>
+<% end %>

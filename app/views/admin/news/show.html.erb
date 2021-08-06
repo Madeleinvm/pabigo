@@ -1,0 +1,107 @@
+<head>
+<style>
+       
+        .user-row {
+        margin-bottom: 14px;
+    }
+    
+    a.backg{
+        background-color: #69D2E7
+    }
+    .user-row:last-child {
+        margin-bottom: 0;
+    }
+    
+    .dropdown-user {
+        margin: 13px 0;
+        padding: 5px;
+        height: 100%;
+    }
+    
+    .dropdown-user:hover {
+        cursor: pointer;
+    }
+    
+    .table-user-information > tbody > tr {
+        border-top: 1px solid rgb(221, 221, 221);
+    }
+    
+    .table-user-information > tbody > tr:first-child {
+        border-top: 0;
+    }
+    .img-responsive{
+        border-radius: 2%;
+        margin-top: 25px;
+        width: 600px;
+        height: 300px;
+    }
+    img.img-circle2 {
+        border-radius: 30%;
+        margin-top: 25px;
+        width: 300px;
+        height: 300px;
+    }
+    h3.headerclass {
+        color:#69D2E7
+    }
+    .table-user-information > tbody > tr > td {
+        border-top: 0;
+    }
+    .toppad
+    {margin-top:20px;
+    }
+    p.ex1 {
+        max-width: 1500px;
+        }
+</style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <div class="section ex1">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- Post content -->
+                        
+                        <div class="col-md-8">
+                            <div class="section-row sticky-container">
+                                <div class="main-post">
+                                    <h3><%= @new.title %></h3>
+                                    <%= content_tag(:p, @new.content1,class:"ex1") %>
+                                    <figure class="figure-img">
+                                        <img class="img-responsive" src="<%= @new.image.picture.url %>" alt="">
+                                    </figure>
+                                    <p><%= @new.content2 %></p>
+                                </div>
+                                <div class="post-shares sticky-shares">
+                                    <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Post content -->
+                        
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /container -->
+        </div>
+            <!-- /section -->
+    
+        <!-- Page Content -->
+       
+    </div>
+
+    
+
+</body>
+
+</html>

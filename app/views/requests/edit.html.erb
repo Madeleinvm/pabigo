@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag "requests-edit"%>
+    <%= stylesheet_link_tag "requests"%>
+    <title></title>
+  </head>
+
+  <body>
+
+
+    <div class="contenido principal">
+      <!-- <figure><img src="https://gnwebprensalibrerootwest.s3.us-west-2.amazonaws.com/mmediafiles/pl/2f/2f3ddfe9-b614-45be-badb-412cf7201a47_749_499.jpg" alt="" width="419px" height="250px"></figure> -->
+      <div class="sub-header">
+        <strong class="titulo-d ee">Querido Usuario, Edite su Solicitud</strong><br>
+      </div>
+      <!-- <img src="Descargas/como_es_el_apareamiento_de_perros.jpg" alt=""> -->
+    </div>
+    <div class="envoltorio-2">
+      <%= simple_form_for @request, url: request_path(@request) do |f| %>
+
+
+        <% @request.errors.each do |attr, msg| %>
+          <% @prueba = "#{msg}" if @request.errors[attr].first == msg %>
+
+
+        <% end %>
+
+          <div class="envoltorio">
+
+            <p class="bold">Tipo de solicitud:</p> <span><%= f.input :tipo, as: :collection_select, collection: ['Monetario','Comida','Medicina','Accesorios','Otros'], :label => false, include_blank: false, include_hidden: false %></span>
+    <!-- Imagen -->
+            <p class="bold">Descripción de la solicitud: </p><span><%= f.input :descripcion, as: :text, placeholder: "Sea lo mas detallista posible indicando la cantidad que necesita su mascota..."%></span>
+            <section id="caja"> <p class="bold">Dirección de su mascota: <span><%= f.input :direccion, as: :text, placeholder: "Indique el lugar donde reside su mascota..."%></p></span></section>
+
+                <!-- Recuerda agregar la cuenta -->
+              <span>
+                <%= f.fields_for :images_attributes do |images_fields| %>
+                    Imagen <%= images_fields.file_field :image, :multiple => true,name: "images_attributes[image][]", :class => 'btn btn-info' %>
+                <% end %>
+              </span>
+              <div class="boton">
+                <%= f.submit value:"Modificar Solicitud", class:"destruir", remote: true%>
+              </div>
+          </div>
+          <span >
+            <p class="clasica"><%= @prueba  %></p>
+          </span>
+      <% end %>
+      </div>
+    <div class="positioi">
+      <footer class="nana">
+        <div class="titulo-f sasa">Click para regresar al Menu Principal </div>
+          <div class="boton-ff">
+          <a class="pe-ga" href="../"><img src="https://image.flaticon.com/icons/svg/489/489399.svg" width="52" height="56"  alt="Gato" class="gatocorazon"></a>
+        </div>
+      </footer>
+    </div>
+
+
+
+
+
+  </body>
+</html>

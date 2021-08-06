@@ -1,0 +1,320 @@
+// Place all the styles related to the requests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+
+  color: #333;
+  background-image: url(/assets/wallhaven-358106.jpg) ;
+  background-color: gray;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+h1{
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  border-bottom: 2px solid #888888;
+  border-right: 2px solid #888888;
+  text-align: center;
+  box-shadow: 4px 4px 5px #888888;
+  margin-left: 350px;
+  margin-right: 350px;
+
+}
+
+.formulario{
+
+}
+
+.display{
+}
+
+.datos-solicitante{
+  color: #945922;
+}
+
+
+.boldo{
+  color: black;
+
+}
+
+abbr[title]{display:none!important;border-bottom:none!important;text-decoration:none!important;cursor:inherit!important}label{display:none}
+
+form {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  // background: #f4f7f8;
+  background: white;
+  // border-radius: 40px;
+}
+
+form.simple_form.request{
+  margin-top: 0;
+  max-width: 500px;
+  margin-bottom: 5;
+  background-color: #9179714d;
+}
+
+section#caja{
+  margin-top: 15px;
+}
+
+h3{
+  background: #646572;
+  color: white;
+  text-align: center;
+  margin: 10px auto;
+  max-width: 500px;
+  padding: 10px 8px;
+  margin-bottom: 0;
+  margin-top: 25px;
+}
+
+.linea-solicitud{
+  display: flex;
+  justify-content: center;
+}
+
+.linea-solicitud h3
+{
+  width: 43%;
+}
+
+// botones
+
+input.destruir, input.destruir:visited{
+  border: 0;
+  background: #646572 url(overlay.png) repeat-x;
+    text-decoration: none;
+}
+
+.btn-info{
+  background-color: #646572;
+  border-color: #646572;
+}
+
+.destruir , .destruir:visited {
+margin-left: 7px;
+margin-right: 0;
+margin-bottom: 0px;
+background: #646572 url(overlay.png) repeat-x;
+display: inline-block;
+padding: 4px 4px 6px;
+color: #fff;
+text-decoration: none;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-moz-box-shadow: 0 1px 3px rgba(13, 235, 228, 0.25);
+-webkit-box-shadow: 0 1px 3px rgba(13, 235, 228, 0.25);
+text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.41);
+border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+position: relative;
+cursor: pointer;
+font-weight: bold;
+text-decoration: none;
+}
+
+.boton{
+  display: flex;
+  justify-content: flex-end;
+}
+
+a{
+  color: white;
+}
+div.boton-ff{
+
+    display: flex;
+    justify-content: center;
+
+}
+div.titulo-f.sasa{
+
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    color: white;
+
+}
+
+a:link
+{
+text-decoration:none;
+}
+
+.mensaje-error{
+  color: #cb2d28;
+  // font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-right:160px;
+}
+
+.bold{
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.form-group.collection_select.required.request_tipo{
+  width: 456px;
+  display: -webkit-inline-box;
+  margin-bottom: 15px;
+  // display: -webkit-inline-box;
+}
+
+p{
+  margin: 0;
+}
+
+div.form-group.text.required.request_direccion{
+  margin-bottom: 0;
+
+    border-top-width: 0px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    width: 466px;
+
+
+}
+
+textarea#request_direccion.form-control.is-invalid.text.required{
+  width: 466px;
+}
+
+textarea#request_descripcion.form-control.is-invalid.text.required{
+  width: 466px;
+}
+
+.clasica{
+  color: red;
+  margin-top: 10px;
+
+}
+
+.ee{
+    margin-top: 11px;
+}
+
+form#edit_request_1.simple_form.edit_request{
+  background: #d5d5d5;
+}
+
+
+footer.nana{
+
+  margin-top: 41px;
+  width: 573px;
+  background: #646572;
+
+
+}
+
+footer{
+  margin-top: 24px;
+  background: #646572;
+  height: 86px;
+  -webkit-border-radius: 98px 98px 98px 98px;
+    margin-bottom: 28px;
+    padding-bottom: 0px;
+
+    width: 877px;
+    height: 89px;
+
+}
+
+footer.f-principal{
+  background: #646572;
+}
+
+.footer-2{
+  display: flex;
+  justify-content: center;
+}
+
+.positioi{
+
+    display: flex;
+    justify-content: center;
+
+}
+
+
+figure {
+ margin: 0;
+}
+
+// Index
+
+h3.event-detail{
+  padding: 6px 8px;
+  margin-top: 21px;
+}
+
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.event-list-title {
+  margin-left: 20px;
+}
+
+.event img {
+  width: 480px;
+  height: 200px;
+}
+
+.event-detail {
+  margin: 20px 40px;
+  margin-top: -40px;
+  background-color: white;
+  position: relative;
+  padding: 20px;
+  padding-top: 1px;
+  text-align: center;
+  width: 393px;
+
+}
+.event-description {
+  text-align: left;
+  margin-top: 8px;
+  margin-bottom: 9px;
+
+}
+
+.event-url {
+  color: #056fff;
+  border: 1px solid;
+  padding: 5px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+
+
+.titulo-index{
+
+  margin-bottom: 40px;
+  margin-right: 350px;
+  margin-left: 0px;
+  width: 596px;
+
+}
+
+
+/////////////////////////////////////////////////////////
+
+// Edit
+
+.container-index{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

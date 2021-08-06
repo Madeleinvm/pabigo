@@ -1,0 +1,124 @@
+<head>
+  <title>Mascotas</title>
+  <style>
+    div.ex1 {
+        margin-top: 150px;
+    }
+    .user-row {
+    margin-bottom: 14px;
+    }
+
+    a.backg{
+        background-color: #69D2E7
+    }
+    .user-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .dropdown-user {
+        margin: 13px 0;
+        padding: 5px;
+        height: 100%;
+    }
+
+    .dropdown-user:hover {
+        cursor: pointer;
+    }
+
+    .table-user-information > tbody > tr {
+        border-top: 1px solid rgb(221, 221, 221);
+    }
+
+    .table-user-information > tbody > tr:first-child {
+        border-top: 0;
+    }
+
+    img.img-circle2 {
+    border-radius: 30%;
+    margin-top: 25px;
+    width: 300px;
+    height: 300px;
+    }
+
+    .table-user-information > tbody > tr > td {
+        border-top: 0;
+    }
+    .toppad
+    {margin-top:20px;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="ex1">
+    <div class="container">
+      <div class="card">
+        <div class="container">
+            <div class="row">
+              <div class="col-xs-14 col-sm-14 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad" >
+         
+         
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= @pet.name %></h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                    <% @pet.images.limit(1).each do |image| %>
+                      <div class="col-md-6 col-lg-6 " align="center"> <img alt="User Pic" src="<%= image.picture.url %>" class="img-circle2"> </div>
+                    <% end %>  
+                      <div class=" col-md-9 col-lg-6 "> 
+                        <table class="table table-user-information">
+                          <tbody>
+                            <tr>
+                              <td>Estado:</td>
+                              <td>Con su familia</td>
+                            </tr>
+                            <tr>
+                              <td>edad:</td>
+                              <td><%= @pet.aprox_age %></td>
+                            </tr>
+                            <tr>
+                              <td>Fecha Adopcion</td>
+                              <td><% @pet.created_at.strftime("%B %d, %Y") %></td>
+                            </tr>
+                         
+                            <tr>
+                              <td>Genero</td>
+                              <td>Masculino</td>
+                            </tr>
+                              
+                            </tr>
+                              <td>Es un:</td>
+                              <td><%= @pet.species %></td>
+                            </tr>
+                              <td>Descripcion:</td>
+                              <td><%= @pet.description %><br>
+                              </td>
+                                 
+                            </tr>
+                           
+                          </tbody>
+                        </table>
+                        
+                    
+                      </div>
+                    </div>
+                  </div>
+                       <div class="panel-footer">
+                              <h3 class="panel-title">Quieres decirnos algo de la mascota?</h3>
+                              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary backg"><i class="glyphicon glyphicon-envelope"></i></a>
+                              <span class="pull-right">
+                                    <li><a href="#" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                              </span>
+                          </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>

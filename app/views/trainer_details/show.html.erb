@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>
+      <center>  
+          <% unless @trainer_details.images.empty? %>
+            <ul class="list-inline">
+              <% @trainer_details.images.each_with_index do |image, index| %>
+                <% if image.picture_url %>
+                  <% if index == 0 %>
+                    <li data-toggle="modal" data-target="#myModal"><a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail img-circle" src="<%= image.picture.url %>" width ="400" height="400"><br><%= index + 1 %></a>
+                    </li>
+                  <% else %>
+                    <li data-toggle="modal" data-target="#myModal"><a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="400" height="400"><br><%= index + 1 %></a>
+                    </li>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </ul>
+          <%else %>
+            <h4>No hay imágenes del entrenador </h4>
+          <% end %>
+    </h4>
+  </div>
+</div>
+<center>
+   <% @usuario = User.find(@trainer_details.user_id) %>
+   <% @perfil = Profile.find(@usuario.id) %>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Nombre:</strong> 
+        <%= @perfil.name %>
+        <%= @perfil.last_name %>
+      </h4>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Email:</strong> 
+        <%= @usuario.email %>
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Status:</strong> 
+        <%= @trainer_details.status %>
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Descripción:</strong> 
+        <%= @trainer_details.description %>
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Calificación:</strong> 
+        <% (0..@trainer_details.qualification.to_i-1).each do |i| %>
+          <img src="/images/dog-bone2.png" alt="">
+        <% end %>
+        <a href="<%= feedbacks_path("id_trainer": @trainer_details.id) %>">
+        <%= @trainer_details.qualification %></a>
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-md-12 ">
+        <h4>
+          <%= link_to 'Calificar', new_feedback_path( "id": @trainer_details.id ), :class => 'btn btn-default' %>
+          <%= link_to 'Atras', trainer_details_path, :class => 'btn btn-default' %>
+        </h4>
+      </div>
+    </div>
+  </div>
+</center>

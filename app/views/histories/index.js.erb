@@ -1,0 +1,6 @@
+$('#histories').append('<%= j render @histories %>')
+	<% if @histories.next_page %>
+	    $('.pagination').replaceWith('<% j will_paginate @histories %>')
+	<% else %>
+	    $('.pagination').remove();
+	<% end %>

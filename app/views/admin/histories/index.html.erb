@@ -1,0 +1,92 @@
+<% provide(:title, "Todas las Historias " + (@histories.first.nil? ? '' : @histories.first.history_status == 'en revision' ? 'en revision' : @histories.first.history_status+'s') ) %>
+<%= render "shared/admin/page_title" %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-users fa-fw"> </i> Historias
+        		<%= @histories.first.nil? ? 'no encontradas' : @histories.first.history_status == 'en revision' ? 'en revision' : @histories.first.history_status+'s' %>
+        <div class="pull-right">
+          <%= link_to "Crear Historia", new_admin_history_path, class: "btn btn-default btn-xs" %>
+        </div>
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover table-striped" id="histories">
+                <thead>
+                  <tr>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Status</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody> 
+                  <% @histories.each do |history| %>
+	                    <tr>
+			                <td><%= truncate(history.title, :length => 35) %></td>
+			                <td><%= truncate(history.description , :length => 10) %></td>
+			                <td><%= history.history_status %></td>
+		                    <td style="text-align: center;">
+		                      		<% if history.history_status == "publicada" %>
+
+			          					<a href="<%= admin_history_path(history)%>"><button class="btn btn-primary btn-xs" title="Ver Historia"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>            		
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_rechazar_historia_path(history) %>"><button class="btn btn-warning btn-xs" title="Rechazar Historia"><i class="fa fa-times" aria-hidden="true"></i></button></a>
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_inactivar_historia_path(history) %>"><button class="btn btn-danger btn-xs" title="Eliminar Historia"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
+
+			                      	<% elsif history.history_status == "en revision" %>
+
+			                      		<a href="<%= admin_history_path(history)%>"><button class="btn btn-primary btn-xs" title="Ver Historia"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>  
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_publicar_historia_path(history) %>"><button class="btn btn-success btn-xs" title="Publicar Historia"><i class="fa fa-upload" aria-hidden="true"></i></button></a>
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_rechazar_historia_path(history) %>"><button class="btn btn-warning btn-xs" title="Rechazar Historia"><i class="fa fa-times" aria-hidden="true"></i></button></a>
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_inactivar_historia_path(history) %>"><button class="btn btn-danger btn-xs" title="Eliminar Historia"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
+
+
+
+			                      	<% elsif history.history_status == "rechazada" %>
+
+			                      		<a href="<%= admin_history_path(history)%>"><button class="btn btn-primary btn-xs" title="Ver Historia"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>  
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_publicar_historia_path(history) %>"><button class="btn btn-success btn-xs" title="Publicar Historia"><i class="fa fa-upload" aria-hidden="true"></i></button></a>
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_inactivar_historia_path(history) %>"><button class="btn btn-danger btn-xs" title="Eliminar Historia"><i class="fa fa-ban" aria-hidden="true"></i></button></a>
+
+			                      	<% elsif history.history_status == "inactiva" %>
+
+			                      		<a href="<%= admin_history_path(history)%>"><button class="btn btn-primary btn-xs" title="Ver Historia"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>  
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_publicar_historia_path(history) %>"><button class="btn btn-success btn-xs" title="Publicar Historia"><i class="fa fa-upload" aria-hidden="true"></i></button></a>
+
+			                      		<a title=" <%= history.title %>" description="<%= history.description %>" data-confirm="Are you sure?" rel="nofollow" data-method="patch" href="<%= admin_rechazar_historia_path(history) %>"><button class="btn btn-warning btn-xs" title="Rechazar Historia"><i class="fa fa-times" aria-hidden="true"></i></button></a>
+			                      	<% end %>		
+		                  	</td>
+	                    </tr>
+	            <% end %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.col-xs-12 (nested) -->
+          <div class="col-lg-12 col-md-12 col-xs-12">
+          		
+          		<%= will_paginate @histories, renderer: BootstrapPagination::Rails %>
+
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<header id="header">
+  <nav class="navbar navbar-fixed-top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to image_tag("PaBigo-Logo.png", size: "107x103", class: "pabigo-logo"), root_path %>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav header-puppy">
+          <!--<li class="active"><a href="#header">Inicio</a></li>-->
+          <li class="active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mascotas <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+              <li><%= link_to "En Adopción", "#" %></li>
+              <li><%= link_to "Felices", happy_pets_path %></li>
+              <li><%= link_to "Historias", histories_path %></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Servicios <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+              <li><%= link_to "Solicitud de donacion", requests_path %></li>
+              <li><%= link_to "Pensiones", pensions_path %></li>
+              <li><%= link_to "Instituciones", institutions_path %></li>
+              <li><%= link_to "Clínicas", "#" %></li>
+              <li><%= link_to "Paseadores", walkers_path %></li>
+              <li><%= link_to "Entrenadores", trainer_details_path %></li>
+              <li><%= link_to "Productos Donados", products_path %></li>
+              <li><%= link_to "Donaciones Solicitadas", donations_index_path %></li>
+              <li><%= link_to "Hogares Temporales",  temporal_homes_path %></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entérate <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+              <li><%=link_to "Noticias", users_news_index_path %></li>
+              <li><%=link_to "Denuncias", "#complaints" %></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Aprende <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tips</a>
+                <ul class="dropdown-menu">
+
+                  <li><%= link_to "Salud", "salud" %></li>
+
+                  <li><%= link_to "Alimentación", "alimentacion" %></li>
+                  <li><%= link_to "Cuidado", "listadotips_cuidado" %></li>
+                  <li><%= link_to "Adiestramiento", "listadotips_adiestramiento" %></li>
+                  <li><%= link_to "Cuidado de Cachorro", "listadotips_cuidado_cachorros" %></li>
+                  <li><%= link_to "Prevención", "prevencion" %></li>
+                  <li><%= link_to "Todos", "tipes" %></li>
+                </ul>
+              </li>
+              <li><%= link_to "Razas", races_path %></li>
+              <li><%= link_to "Reflexiones", reflections_path %></li>
+              <% if can? :create, Ask %>
+                <li><%= link_to "Preguntale al veterinario", new_ask_url %></li>
+              <%end%>
+                <li><%= link_to "Preguntas y Respuestas de Perros(FAQ)", ask_perros_path %></li>
+                <li><%= link_to "Preguntas y Respuestas de Gatos(FAQ)", ask_gatos_path %></li>
+
+                <!-- <li class="dropdown-submenu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pregúntale al Veterinario</a>
+                  <ul class="dropdown-menu">
+                  <li><%= link_to "Perros", ask_perros_path %></li>
+                  <li><%= link_to "Gatos", ask_gatos_path %></li>
+                </ul>
+              </li> -->
+            </ul>
+          </li>
+          <li><a href="/journals">Jornadas</a></li>
+          <!-- <li><a href="#subscription">Suscripciones</a></li>
+          <li><a href="/institutions">Instituciones</a></li> -->
+          <!-- <li><a href="/ask">Preguntale al veterinario</a></li> -->
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="dropdown">
+              <%= link_to current_user.profile.full_name ? raw(current_user.profile.full_name + (tag.span class: "caret")) : raw(current_user.email + (tag.span class: "caret")), "#", class: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": true, "aria-expanded": false %>
+              <ul class="dropdown-menu">
+                <% if current_user.is_admin? %>
+                  <li><%= link_to "Admin", admin_dashboard_path %></li>
+                <% end %>
+                <li><%= link_to "Perfil", profile_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to "Iniciar Sesión", new_user_session_path %></li>
+            <li><%= link_to "¡Regístrate!", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div><!--/.container-->
+  </nav><!--/nav-->
+</header><!--/header-->

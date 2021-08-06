@@ -1,0 +1,15 @@
+<% provide(:title, "Rol de #{@role.name}") %>
+<%= render "shared/admin/page_title" %>
+
+<div class="row">
+  <div class="col-xs-6">
+    <%= simple_form_for [:admin, @role] do |f| %>
+      <%= f.input :permission_ids,
+                  label: "Permisos",
+                  collection: @permissions,
+                  as: :check_boxes %>
+
+      <%= f.button :submit, "Modificar Permisos", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

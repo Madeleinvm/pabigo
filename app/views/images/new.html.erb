@@ -1,0 +1,15 @@
+<% provide(:title, "Subir Imagen") %>
+<%= render "shared/admin/page_title" %>
+
+<%= simple_form_for @image do |f| %>
+  <div class="row">
+    <div class="col-xs-4">
+      <%= f.input :picture,
+                  label: "Selecciona una Imagen" %>
+      <%= f.input :name,
+                  label: "Nombre de la Imagen" %>
+
+      <%= f.button :submit, yield(:title) %>
+    </div>
+  </div>
+<% end %>

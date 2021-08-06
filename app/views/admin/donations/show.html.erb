@@ -1,0 +1,109 @@
+<div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Donaciones </h2>
+                            <p class="pageheader-text">Descripción detallada de las solicitudes de donaciones realizadas por el administrador.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="javascript:history.back()" >Volver</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Detalle de la donación</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- basic table -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <center>
+                                <h4 class="card-header">Detalles</h4>
+                                </center>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <th scope="row">Nombre: </th>
+                                                <td><%= @donation.name %></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <th scope="row">Tipo: </th>
+                                                <td><%= @donation.dontype %></td>
+                                            </tr>
+                                             <tr>
+                                                <td>3</td>
+                                                <th scope="row">Descripción: </th>
+                                                <td><%= @donation.description %></td>
+                                            </tr>
+                                             <tr>
+                                                <td>4</td>
+                                                <th scope="row">Beneficiado: </th>
+                                                <td><%= @donation.benefited %></td>
+                                            </tr>
+                                             <tr>
+                                                <td>5</td>
+                                                <th scope="row">Cantidad: </th>
+                                                <td><%= @donation.quantity %></td>
+                                            </tr>
+                                             <tr>
+                                                <td>6</td>
+                                                <th scope="row">Enviar a: </th>
+                                                <td><%= @donation.shipping %></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end basic table -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Inicio de la imagen-->
+                        <!-- ============================================================== -->
+                <center>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h4 class="card-header">Imagen asociada</h4>
+                <% unless @donation.images.empty? %>
+                    <% @donation.images.each_with_index do |image, index| %>
+                
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                        <img  class="img-thumbnail" src="<%= image.picture.url %>" width="400"  ></a>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <% if @donation.benefited == 'Perro' %>
+                        <img  src="/images/perro1.png" width="200"  "></a>
+                    <% else %>
+                        <% if @donation.benefited == 'Gato' %>
+                            <img  src="/images/gato1.png" width="200"  "></a> 
+                        <% else %>   
+                            <img  src="/images/perro_gato1.jpg" width="200"  "></a>                        
+                        <% end %>
+                    <% end %>
+                <% end %>
+                </center>
+                                    
+                        <!-- ============================================================== -->
+                        <!-- Fin de la imagen-->
+                        <!-- ============================================================== -->
+                    </div>
+            </div>

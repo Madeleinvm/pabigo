@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag "requests-index"%>
+    <title></title>
+  </head>
+
+
+    <body index-body>
+
+
+      <!-- titulo del index -->
+        <h1 class="titulo-index">Solicitudes de donación</h1>
+
+       <!-- muestra todos los elementos -->
+
+        <div class="milagro">
+
+           <% @requests.reverse_each do |request| %>
+
+           <section class="event-list">
+             <div class="contenedor">
+               <article class="event">
+                 <figure class="event-imageContainer">
+                   <div class="imagen-show">
+                      <% unless request.images.empty? %>
+                        <% request.images.each_with_index do |image, index| %>
+                          <% if image.picture_url %>
+                            <a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="event-image" src="<%= image.picture.url %>" width ="500px" height="500px"></a>
+                            <%break%>
+                          <% end %>
+                        <% end %>
+                      <%else %>
+                        <a><img class="event-image no-available" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMS0U84PRinPr5VuDBwd-nmkU-x9E5suEssBJeumNR5i0oWC2vGg" width ="60px" height="100px"></a>
+                      <% end %>
+                    </div>
+                   <!-- <img class="event-image" src="https://www.lawebdelprogramador.com/usr/36000/36045/55dd4d0377eee-php-texto-sobre-imagen.jpg" width="500" /> -->
+                 </figure>
+                 <div class="event-detail">
+                   <h3 class="event-title"><%= request.tipo %></h3>
+                   <p class="event-description"><%=request.descripcion%></p>
+                   <!-- <p class="event-description"><%=request.email%></p> -->
+                   <% if request.user_id % 3 != 0 && request.user_id % 2 == 1%>
+                     <p class="event-description">Calificación: <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                       <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                       <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                       <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                       <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     </p>
+                   <% elsif request.user_id % 4 != 0 && request.user_id % 2 == 0 %>
+                   <p class="event-description">Calificación: <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                   </p>
+                   <% elsif request.user_id % 3 == 0 && request.user_id % 2 == 1%>
+                   <p class="event-description">Calificación: <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                   </p>
+                   <% else  %>
+                   <p class="event-description">Calificación: <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                     <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                   </p>
+                   <% end  %>
+
+                   <hr>
+                   <a class="linke3"><%= link_to "Más información", request, class:"linke" %> </a>
+
+
+                   <% if current_user != nil %>
+                     <% if request.user_id == current_user.id %>
+                       <div class="acomodar">
+                         <p class="acomo2"><%= link_to "Modificar", edit_request_path(request), class: "acomo3" %></p>
+                         <p class="acomo2"><%= link_to "Eliminar", request_path(request), method: :delete, data: { confirm: 'Are you sure?' }, class: "acomo3" %></p>
+                       </div>
+                     <% end %>
+                   <% else %>
+                    <h1>devieñve</h1>
+                   <%end%>
+
+                 </div>
+               </article>
+           </section>
+           <%end%>
+        </div>
+        <div class="pagi-requ"><%= will_paginate @requests,:previous_label => 'Anterior', :next_label => 'Siguiente', renderer: BootstrapPagination::Rails %>  </div>
+
+          <div class="footer-2">
+            <footer class="f-principal">
+              <div class="titulo-f">Click abajo para crear su nueva solicitud: </div>
+                <div class="boton-f">
+                <a class="pe-ga" href="../requests/new"><img src="https://image.flaticon.com/icons/svg/489/489399.svg" width="52" height="56"  alt="Gato" class="gatocorazon"></a>
+              </div>
+            </footer>
+          </div>
+
+        </body>
+
+    </html>
+</html>

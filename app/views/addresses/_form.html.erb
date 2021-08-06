@@ -1,0 +1,41 @@
+<%= simple_form_for @address, html: { class: "address-form" } do |f| %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.error_notification %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :line1, label: "Dirección 1" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :line2, label: "Segunda línea (opcional)" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <%= f.input :zip_code, label: "Código Postal" %>
+    </div>
+    <div class="col-xs-4">
+      <label for="states">Estado</label>
+      <select class="form-control" id="states">
+        <% @states.each do |state| %>
+          <option><%= state.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="col-xs-5">
+      <div id="cities-div">
+        <%= render "cities", cities: @cities, f: f %>
+      </div>
+      <%#= f.input :city_id,
+                  as: :grouped_select,
+                  label: "Ciudad",
+                  collection: @cities,
+                  input_html: { id: "cities" },
+                  :group_method => :first %>
+    </div>
+  </div>
+
+  <%= f.submit yield(:title), class: "btn btn-primary" %>
+<% end %>

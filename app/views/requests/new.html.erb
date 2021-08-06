@@ -1,0 +1,75 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag "requests"%>
+    <title></title>
+  </head>
+
+  <body class="back2">
+
+      <div class="contenedor">
+        <h1>Solicitud de donación</h1>
+
+<!-- Captura el error (si existe) y lo almacena en la variable probando para... -->
+<!-- ... posteriormente mostrarlo en el formulario -->
+        <div class="linea-solicitud">
+          <h3>
+            <img src="https://image.flaticon.com/icons/png/128/1152/1152766.png" width="32" height="36"  alt="Dog">
+            <img src="https://image.flaticon.com/icons/png/128/1152/1152481.png" width="32" height="36"  alt="Cat">
+            <img src="https://image.flaticon.com/icons/png/128/1152/1152779.png" width="32" height="36"  alt="Dog">
+            <img src="https://image.flaticon.com/icons/png/128/1152/1152471.png" width="32" height="36"  alt="Cat">
+            <img src="https://image.flaticon.com/icons/png/128/1152/1152771.png" width="32" height="36"  alt="Dog">
+            <img src="https://www.flaticon.com/premium-icon/icons/svg/1292/1292675.svg" width="32" height="36"  alt="Cat">
+            <img src="https://image.flaticon.com/icons/png/128/1279/1279402.png" width="32" height="36"  alt="Dog">
+            <img src="https://image.flaticon.com/icons/svg/1279/1279272.svg" width="32" height="36"  alt="Cat">
+          </h3>
+        </div>
+        <%= simple_form_for :request, url: requests_path,  validate: true do |f| %>
+          <% @request.errors.each do |attr, msg| %>
+            <% @probando = "#{msg}" if @request.errors[attr].first == msg %>
+            <% @probando%>
+          <% end %>
+<!-- ///////////////////////////////////////////////////////////////////////////- -->
+
+
+<!-- Formulario de solicitud donde el usuario tendrá la posibilidad de llenar datos de acuerdo a sus necesidades -->
+          <div class="envoltorio">
+
+            <p class="bold">Tipo de solicitud:</p> <span><%= f.input :tipo, as: :collection_select, collection: ['Monetario','Comida','Medicina','Accesorios','Otros'], :label => false, include_blank: false, include_hidden: false %></span>
+<!-- Imagen -->
+            <p class="bold">Descripción de la solicitud: </p><span><%= f.input :descripcion, as: :text, placeholder: "Indique para que mascota va la solicitud y proporcione detalles de lo que necesite..."%></span>
+            <section id="caja"> <p class="bold">Dirección de su mascota: <span><%= f.input :direccion, as: :text, placeholder: "Indique el lugar donde reside su mascota..."%></p></span></section>
+
+
+                <!-- Recuerda agregar la cuenta -->
+              <span>
+                <%= f.fields_for :images_attributes do |images_fields| %>
+                  <%= images_fields.file_field :image, :multiple => true,name: "images_attributes[image][]", :class => 'btn btn-info' %>
+                <% end %>
+              </span>
+              <div class="boton">
+                <span class="destruir"><%= link_to 'Regresar', requests_path %></span>
+                <%= f.submit value:"Publicar", class:"destruir", remote: true%>
+              </div>
+
+
+        <% end %>
+        </div>
+        <span class="mensaje-error">
+          <%= @probando  %>
+        </span>
+
+      </div>
+
+    <div class="positioi">
+      <footer class="nana">
+        <div class="titulo-f sasa"> Menu Principal </div>
+          <div class="boton-ff">
+          <a class="pe-ga" href="../requests"><img src="https://image.flaticon.com/icons/svg/489/489399.svg" width="52" height="56"  alt="Gato" class="gatocorazon"></a>
+        </div>
+      </footer>
+    </div>
+
+  </body>
+
+</html>

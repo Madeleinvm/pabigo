@@ -1,0 +1,113 @@
+<% provide(:title, "Denuncias de Usuarios") %>
+<%= render "shared/admin/page_title" %>
+
+<h3>Denuncias por procesar</h3>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Abusivo</th>
+      <th>Institución Involucrada</th>
+      <th>Descripción</th>
+      <th>Lugar de los Hechos</th>
+      <th style="text-align: center;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @unprocessed_complaints.each do |complaint| %>
+      <tr>
+        <td><%= complaint.abusive_name %></td>
+        <td><%= complaint.institution.name if complaint.institution %></td>
+        <td><%= complaint.description %></td>
+        <td><%= complaint.place %></td>
+        <td style="text-align: center;">
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to (tag.i class: "fa fa-eye"), admin_complaint_path(complaint), class: "btn btn-xs btn-primary" %>
+            <%= link_to (tag.i class: "fa fa-check"), "#", class: "btn btn-xs btn-success", onclick: "document.getElementById('approve1').click()" %>
+            <%= link_to (tag.i class: "fa fa-times"), "#", class: "btn btn-xs btn-danger", onclick: "document.getElementById('deny1').click()" %>
+          </div>
+          <%= simple_form_for [:admin, complaint] do |f| %>
+            <div class="btn-group" role="group" style="float: right; display: none;">
+              <%= f.submit "Publicar", class: "btn btn-xs btn-warning", id: "approve1" %>
+              <%= f.submit "Rechazar", class: "btn btn-xs btn-danger", id: "deny1" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Denuncias Publicadas</h3>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Abusivo</th>
+      <th>Institución Involucrada</th>
+      <th>Lugar de los Hechos</th>
+      <th style="text-align: center;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @approved_complaints.each do |complaint| %>
+      <tr>
+        <td><%= complaint.abusive_name %></td>
+        <td><%= complaint.institution.name if complaint.institution %></td>
+        <td><%= complaint.place %></td>
+        <td style="text-align: center;">
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to (tag.i class: "fa fa-eye"), admin_complaint_path(complaint), class: "btn btn-xs btn-primary" %>
+            <%= link_to (tag.i class: "fa fa-check"), "#", class: "btn btn-xs btn-success", onclick: "document.getElementById('approve2').click()" %>
+            <%= link_to (tag.i class: "fa fa-times"), "#", class: "btn btn-xs btn-danger", onclick: "document.getElementById('deny2').click()" %>
+          </div>
+          <%= simple_form_for [:admin, complaint] do |f| %>
+            <div class="btn-group" role="group" style="float: right; display: none;">
+              <%= f.submit "Publicar", class: "btn btn-xs btn-warning", id: "approve2" %>
+              <%= f.submit "Rechazar", class: "btn btn-xs btn-danger", id: "deny2" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Denuncias Rechazadas</h3>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Abusivo</th>
+      <th>Institución Involucrada</th>
+      <th>Lugar de los Hechos</th>
+      <th style="text-align: center;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @denied_complaints.each do |complaint| %>
+      <tr>
+        <td><%= complaint.abusive_name %></td>
+        <td><%= complaint.institution.name if complaint.institution %></td>
+        <td><%= complaint.place %></td>
+        <td style="text-align: center;">
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to (tag.i class: "fa fa-eye"), admin_complaint_path(complaint), class: "btn btn-xs btn-primary" %>
+            <%= link_to (tag.i class: "fa fa-check"), "#", class: "btn btn-xs btn-success", onclick: "document.getElementById('approve3').click()" %>
+            <%= link_to (tag.i class: "fa fa-times"), "#", class: "btn btn-xs btn-danger", onclick: "document.getElementById('deny3').click()" %>
+          </div>
+          <%= simple_form_for [:admin, complaint] do |f| %>
+            <div class="btn-group" role="group" style="float: right; display: none;">
+              <%= f.submit "Publicar", class: "btn btn-xs btn-warning", id: "approve3" %>
+              <%= f.submit "Rechazar", class: "btn btn-xs btn-danger", id: "deny3" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  document.getElementById('approve').
+</script>

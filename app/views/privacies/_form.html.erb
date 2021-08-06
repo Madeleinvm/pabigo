@@ -1,0 +1,46 @@
+<%#= simple_form_for @privacy do |f| %>
+  <div class="row">
+    <div class="col-xs-4">
+      <%= f.input :show_full_name,
+                  label: "Mostrar Nombre Completo",
+                  as: :radio_buttons,
+                  required: true %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input :show_email,
+                  label: "Mostrar Correo",
+                  as: :radio_buttons,
+                  required: true %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input :show_profile_picture,
+                  label: "Mostrar Foto de Perfil",
+                  as: :radio_buttons,
+                  required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <%= f.input :show_phones,
+                  label: "Mostrar Teléfonos",
+                  as: :radio_buttons,
+                  required: true %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input :show_address,
+                  label: "Mostrar Dirección",
+                  as: :radio_buttons,
+                  required: true %>
+    </div>
+    <div class="col-xs-4">
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <div align="center" class="col-xs-4 col-xs-offset-8">
+      <%= f.submit yield(:title), class: "btn btn-primary" %>
+    </div>
+  </div>
+<%# end %>

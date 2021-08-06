@@ -1,0 +1,98 @@
+<style type="text/css">
+
+</style>
+
+<style type="text/css">
+    
+    #imaginary_container{
+        margin-top:20%; /* Don't copy this */
+    }
+    .stylish-input-group .input-group-addon{
+        background: white !important; 
+    }
+    .stylish-input-group .form-control{
+        border-right:0; 
+        box-shadow:0 0 0; 
+        border-color:#ccc;
+    }
+    .stylish-input-group button{
+        border:0;
+        background:transparent;
+    }
+</style>
+
+
+
+<div class="col-lg-12 col-md-12 col-xs-12">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+                <center>
+                    <h1> Historias <%= ((@histories.first.nil? ? '' : @histories.first.history_status == 'en revision' ? 'en revision' : @histories.first.history_status+'s') ) %> </h1>
+                    <hr>
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <%= form_tag histories_path, :method => 'get' do %>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="col-lg-2 col-md-2 col-xs-12">
+                        <center>
+                            <div class="input-group stylish-input-group">
+                                <%= text_field_tag :search, params[:search], :class => 'form-control', :placeholder => "Titulo de la Historia"%>
+                                <span class="input-group-addon">
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>  
+                                </span>
+                            </div>
+                        </center>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 col-xs-12">
+                        <center>
+                            <div class="input-group stylish-input-group" id="colocacion">
+                                
+                                <%= text_field_tag :search2, params[:search2], :class => 'form-control', :placeholder => "Fecha de Publicación", :type => "date", :style => "padding-top: 0;" %>
+                                <span class="input-group-addon">
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>  
+                                </span>
+                            </div>
+                        </center>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    <% end %>
+   
+   <div class="col-lg-12 col-md-12 col-xs-12" id="histories">
+        <br>
+        <%= render @histories %>        
+    </div>
+
+    <div class="row" hidden>
+        <%= will_paginate @histories %>                
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">  
+            <center>
+            <hr>
+            </center>      
+            <div class="col-log-4 col-md-4 col-xs-12">
+                   
+                <% if can? :create, History %>
+                  <%= link_to "Nueva Historia", new_history_path, :class => 'btn btn-info' %>
+                <% end %>
+
+                <%= link_to 'Atras', url_for(:back), :class => 'btn btn-default' %>
+            </div>
+        </div>
+    </div>
+</div>

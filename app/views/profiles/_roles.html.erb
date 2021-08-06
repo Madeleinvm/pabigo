@@ -1,0 +1,32 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Roles Ejercidos
+    <div class="pull-right">
+      <%= link_to "Solicitar un Rol", "#", class: "btn btn-primary btn-xs" unless current_user.is_admin? %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="list-group">
+          <% current_user.roles.each do |role| %>
+            <button type="button" class="list-group-item list-group-item-success" style="text-align: center;"><%= role.name %></button>
+          <% end %>
+        </div>
+
+        <% if current_user.is_admin? %>
+          <hr>
+          <h4>Todos los Roles</h4>
+          <div class="list-group">
+            <% Role.all.each do |role| %>
+              <button type="button" class="list-group-item">
+                <span class="badge"><%= role.users.count %></span>
+                <%= role.name %>
+              </button>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

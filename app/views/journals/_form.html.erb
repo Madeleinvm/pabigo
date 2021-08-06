@@ -1,0 +1,58 @@
+<%- if @journal.errors.any? %>
+		<div class="alert alert-danger">
+			<h4 class="alert-heading">Error</h4>
+			<p>No debe haber campos vacios!</p>
+		</div>
+<% end %> 
+
+<div class="form-group">
+	<%= form_for @journal do |f|  %>
+
+		<%= f.label :'Tipo'%><br>
+		<%= f.text_field :tipe_journal %>
+		  <%- if @journal.errors[:tipe_journal].any? %>
+			<span class="badge badge-pill badge-danger">
+			 	<%= @journal.errors[:tipe_journal].first %>
+			</span>
+		  <%end%>
+		<br>
+
+		<%= f.label :'Lugar'%><br>
+		<%= f.text_field :place_journal %>
+		<%- if @journal.errors[:place_journal].any? %>
+			<span class="badge badge-pill badge-danger">
+			 	<%= @journal.errors[:place_journal].first %>
+			</span>
+		  <%end%>
+			
+		<br>
+		<%= f.label :'Hora'%><br>
+		<%= f.time_select :time_journal %>
+		<%- if @journal.errors[:time_journal].any? %>
+			<span class="badge badge-pill badge-danger">
+			 	<%= @journal.errors[:time_journal].first %>
+			</span>
+		  <%end%>
+		
+		<br>
+		<%= f.label :'Fecha'%><br>
+		<%= f.date_select :date_journal %>
+		<%- if @journal.errors[:date_journal].any? %>
+			<span class="badge badge-pill badge-danger">
+			 	<%= @journal.errors[:date_journal].first %>
+			</span>
+		  <%end%>
+		
+		<br>
+		<%= f.label :'Descripcion'%><br>
+		<%= f.text_field :description_journal %>
+		<%- if @journal.errors[:description_journal].any? %>
+			<span class="badge badge-pill badge-danger">
+			 	<%= @journal.errors[:description_journal].first %>
+			</span>
+		  <%end%>
+			
+		<br>
+		<%= f.submit "Enviar", :class => 'btn' %>
+	<% end %>
+</div>

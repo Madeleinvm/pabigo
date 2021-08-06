@@ -1,0 +1,34 @@
+<% provide(:title, "Crear Usuario") %>
+<%= render "shared/admin/page_title" %>
+
+<%= simple_form_for [:admin, @user] do |f| %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :email, label: "Correo", required: true, autofocus: true %>
+      <%= f.input :password,
+                  label: "Contraseña",
+                  required: true,
+                  hint: ("#{@minimum_password_length} caracteres mínimo" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  label: "Confirmación de Contraseña",
+                  required: true,
+                  input_html: { autocomplete: "new-password" } %>
+
+      <br><br>
+
+      <div class="alert alert-info" role="alert">
+        Tanto usted como el usuario podrán modificar su perfil después.
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <%= render 'roles', f: f %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.button :submit, yield(:title) %>
+    </div>
+  </div>
+<% end %>

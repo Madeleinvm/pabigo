@@ -1,0 +1,72 @@
+<div class="text-center">
+<h1>Editing Pet</h1>
+</div>
+
+<%= simple_form_for(@pet) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="nombre-input">
+          <%= f.input :name , label: 'Nombre o apodo'%>
+        </div>
+      </div>
+    </div>
+
+         <div class= "row">
+            <div class="col-md-1">
+              <div clas="peso">
+                <%= f.input :weight, label: 'Peso', input_html: {min: '0', step: 'any'} %>
+              </div>
+            </div>
+             <div class="col-md-1">
+              <div clas="peso">
+                 <%= f.input :aprox_age, label: 'Edad', input_html: {min: '0', step: 'any'} %>
+              </div>
+            </div>
+
+
+            <div class="col-md-2">
+                <div class="raza">
+                 <%= f.input :races_id, collection: @races, label: 'Raza'%>
+                </div>
+            </div>
+            <div class="col-md-2">
+                        <%= f.input :species, collection: [['Perro', 'Perro'], ['Gato', 'Gato']], label_method: :second, value_method: :first, label: 'Especie' %>
+            </div>
+         </div>
+
+         <div class= "row">
+            <div class= "col-md-2">
+             <%= f.input :dewormed, label: 'Desparasitado'  %>
+            </div>
+            <div class= "col-md-2">
+              <%= f.input :neutered, label: 'Esterilizado'  %>
+            </div>
+            <div class= "col-md-4">
+              <%= f.input :special_needs, label: 'Posee necesidades especiales'  %>
+            </div>
+         </div>
+        <div class= "row">
+          <div class="col-md-8 descripcion">
+            <%= f.input :description, label: 'Descripción'  %>
+          </div>
+        </div>
+
+        <div class = "row">
+          <div class="col-md-2">
+            <div class="form-actions">
+            <%= f.button :submit, 'Modificar Mascota'%>
+            </div>
+          </div>
+          <div class="col-md-2 offset-md-8">
+            <button type="button" class="btn btn-info"><a href="/pets">Regresar</a></button>
+          </div>
+          <div class="col-md-2 offset-md-8">
+            <button type="button" class="btn btn-info"><a href="/pets">Eliminar</a></button>
+          </div>
+        </div>
+   </div>
+<% end %>

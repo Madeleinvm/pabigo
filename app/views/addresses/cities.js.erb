@@ -1,0 +1,4 @@
+'<%= simple_form_for @address, html: { class: "address-form" } do |f| %>'
+  $('#cities-div').html("<%= j (render 'cities', cities: @cities, f: f) %>");
+  $('#cities-div').show();
+'<% end %>'

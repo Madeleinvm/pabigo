@@ -1,0 +1,18 @@
+<div class="panel panel-info">
+  <div class="panel-heading" role="tab" id="headingOne">
+    <h4 class="panel-title">
+      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Teléfonos
+      </a>
+      <div class="pull-right">
+        <%= link_to "Agregar", new_phone_path, remote: true, class: "btn btn-primary btn-xs" %>
+      </div>
+    </h4>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div class="panel-body">
+      <div id="phones"><%= render 'phones/phones' %></div>
+      <div id="phone-form" style="display: none;"></div>
+    </div>
+  </div>
+</div>

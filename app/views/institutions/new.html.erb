@@ -1,0 +1,30 @@
+<% if current_user %>
+
+<h1 align="center" style="color:#000000 ">Agregar Institución</h1>
+
+<%= render 'form', institution: @institution %>
+  <% else %>
+
+<style media="screen">
+body {
+background-image: url(https://superpet.pe/blog/wp-content/uploads/2017/05/PERRITOpaginas-1-750x450.jpg) ;
+background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+</style>
+
+    <h1 align="center" style="color:#000000 ">Usuario No Registrado</h1>
+
+    <div class="col-sm-12" align="center" >
+      <%= link_to 'Volver', institutions_path, class: 'btn btn-info' %>
+    </div>
+
+
+
+
+  <% end %>

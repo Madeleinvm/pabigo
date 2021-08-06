@@ -1,0 +1,76 @@
+<% provide(:title, "Solicitud para ser Hogar Temporal") %>
+<%= render "shared/admin/page_title" %>
+
+<%= simple_form_for @temporal_home do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :id_card,
+                  label: "Cédula de Identidad",
+                  required: true,
+                  autofocus: true %>
+      <%= f.input :dog,
+                   label: "Especie de la mascota que recibe",
+                   as: :select,
+                   collection: [["Canina", true], ["Felina", false]],
+                   required: true %>
+      <%= f.input :home_type,
+                   label: "Díganos cómo es el espacio donde va a permanecer la mascota",
+                   as: :select,
+                   collection: [["Apartamento", "Apartamento"],
+                               ["Casa", "Casa"],
+                               ["Terreno", "Terreno"]],
+                   required: true %>
+      <%= f.input :kind_of_help,
+                  label: "Díganos de qué forma puede ayudar a esta mascota",
+                  as: :select,
+                  collection: [["Hospedaje, comida y medicinas", "Hospedaje, comida y medicinas"],
+                               ["Hospedaje y comida", "Hospedaje y comida"]] %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :pet_characteristics, label: "Características de la mascota que quiere adoptar" %>
+      <%= f.input :existing_pets, label: "Tiene otras mascotas? Especifique especie, sexo, edad y carácter" %>
+      <label style="text-align: justify;">
+        Por cuánto tiempo puede recibir en hogar temporal a la mascota? Esta respuesta es sumamente importante, ya que si deja de ser hogar temporal antes de que el animal sea adoptado, no tenemos lugar seguro donde acoger al animal
+        <%= f.date_field :protection_duration %>
+      </label>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Referencias Personales</h3>
+  <p>
+    Coloque una persona allegada sin vínculo familiar con usted.
+  </p>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <%= f.input :reference_id_card,
+                  label: "Cédula de Identidad",
+                  required: true %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input :reference_full_name,
+                  label: "Nombre Completo",
+                  required: true %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input :reference_phone,
+                  label: "Número de Contacto",
+                  required: true %>
+    </div>
+  </div>
+
+  <%= f.button :submit, "Enviar Solicitud", class: "btn btn-primary" %>
+<% end %>
+
+<br>
+
+<style type="text/css">
+  .invalid-feedback {
+    color: red;
+  }
+</style>

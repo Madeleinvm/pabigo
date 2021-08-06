@@ -1,0 +1,76 @@
+<% provide(:title, "Solicitud de #{@temporal_home.user.profile.full_name}") %>
+<%= render "shared/admin/page_title" %>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th colspan="2">
+        Solicitud de Hogar Temporal
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Cedula</th>
+      <td><%= @temporal_home.id_card %></td>
+    </tr>
+    <tr>
+      <th>Mascota</th>
+      <td><%= if @temporal_home.dog then "Perro" else "Gato" end %></td>
+    </tr>
+    <tr>
+      <th>Caracteristicas</th>
+      <td><%= @temporal_home.pet_characteristics %></td>
+    </tr>
+
+    <tr>
+      <th>Tipo de Hogar</th>
+      <td><%= @temporal_home.home_type %></td>
+    </tr>
+    <tr>
+      <th>Mascotas Actuales</th>
+      <td><%= @temporal_home.existing_pets %></td>
+    </tr>
+    <tr>
+      <th>Ayudas que Ofrece</th>
+      <td><%= @temporal_home.kind_of_help %></td>
+    </tr>
+    <tr>
+      <th>Disponible Hasta</th>
+      <td><%= @temporal_home.protection_duration.strftime("%d/%m/%Y") %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th colspan="3">Datos de Referencia</th>  
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @temporal_home.reference_full_name %></td>
+      <td><%= @temporal_home.reference_phone %></td>
+      <td><%= @temporal_home.reference_id_card || "No indicado" %></td>  
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <th colspan="1">Estatus de Solicitud</th>  
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= if @temporal_home.approved then "Aprobada" elsif !@temporal_home.approved then "Rechazada" else "Pendiente" end %></td>
+    </tr>  
+  </tbody>
+</table>
+
+<%= simple_form_for @temporal_home, url: admin_request_notification_path do |f| %>
+  <div class="btn-group" role="group" style="float: right;">
+    <%= f.submit "Aprobar", class: "btn btn-xs btn-success" %>
+    <%= f.submit "Rechazar", class: "btn btn-xs btn-danger" %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<%= simple_form_for [:admin, @reflection] do |f| %>
+  <%= f.input :description, label: "Descripción" %>
+
+  <%= f.simple_fields_for :image do |image_form| %>
+    <%= image_form.input :picture %>
+    <%= image_form.input :name, label: "nombre de la imagen" %>
+  <% end %>
+
+  <%= f.submit yield(:title) %>
+<% end %>

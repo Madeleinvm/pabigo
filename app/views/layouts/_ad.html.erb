@@ -1,0 +1,33 @@
+<style>
+.ads {
+  margin-left: 10cm;
+}
+</style>
+ <div id="w">
+    <div id="topad" style="padding-top: 1cm">
+     <a href=""><img class= "ads" src="<%= %>" alt="advertisement" width="728" height="90"></a> 
+    </div><!-- @end #topad -->
+  </div><!-- @end #w -->
+
+ <script type = "text/javascript">
+  
+  $(function(){
+  var adBanners = [<% @ads.each do |ad| %>"<%=ad.image.picture.url%>",<% end %>];
+
+  var bannerLinks = [
+      <% @ads.each do |ad| %>"<%=ad.image.name%>",  <% end %>  
+  ];
+  
+  
+  var randNum     = Math.floor(Math.random() * 7 ); 
+  var topAdBanner = $('#topad > a > img');
+  
+  var newBannerImg  =  adBanners[randNum];
+  var newBannerLink = bannerLinks[randNum];
+  
+  // update new img src and link HREF value
+  $(topAdBanner).attr('src',newBannerImg);
+  $('#topad > a').attr('href',newBannerLink);
+  });
+
+</script>

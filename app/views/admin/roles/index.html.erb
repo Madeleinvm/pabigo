@@ -1,0 +1,53 @@
+<% provide(:title, "Todos los Roles") %>
+<%= render "shared/admin/page_title" %>
+
+<div class="row">
+  <div class="col-xs-3">
+    <ul class="list-group">
+      <li href="#" class="list-group-item list-group-item-info">
+        <h4 class="list-group-item-heading">Roles</h4>
+        <p class="list-group-item-text">Permisos</p>
+      </li>
+    </ul>
+  </div>
+  <div class="col-xs-5">
+    <div class="list-group">
+      <% @roles.each do |role| %>
+        <% if role.name == "Admin" %>
+          <a href="#" class="list-group-item list-group-item-success">
+            <h4 class="list-group-item-heading">
+              <%= role.name %>
+              (Este rol posee todos los permisos)
+            </h4>
+          </a>
+        <% else %>
+          <%= link_to [:admin, role], class: "list-group-item" do %>
+            <h4 class="list-group-item-heading">
+              <%= role.name %>
+              <i class="fa fa-pencil fa-fw"></i>
+            </h4>
+            <% role.permissions.each do |permission| %>
+              <p class="list-group-item-text"><%= permission.name %></p>
+            <% end unless role.permissions.empty? %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Permisos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @permissions.each do |permission| %>
+          <tr>
+            <td><%= permission.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

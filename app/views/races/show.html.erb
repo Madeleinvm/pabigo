@@ -1,0 +1,190 @@
+<head>
+  <style>
+    div.ex1 {
+    margin-top: 150px;
+  }
+
+  .user-row {
+    margin-bottom: 14px;
+  }
+
+  a.backg{
+    background-color: #69D2E7
+  }
+  
+  .user-row:last-child {
+    margin-bottom: 0;
+  }
+       
+  .dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+  }
+       
+  .dropdown-user:hover {
+    cursor: pointer;
+  }
+       
+  .table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+  }
+        
+  .table-user-information > tbody > tr:first-child {
+    border-top: 0;
+  }
+      
+  img.img-circle2 {
+    border-radius: 30%;
+    margin-top: 25px;
+    width: 300px;
+    height: 300px;
+  }
+  
+  h3.headerclass {
+    color:#69D2E7
+  }
+  
+  .table-user-information > tbody > tr > td {
+    border-top: 0;
+  }
+  
+  .toppad{
+    margin-top:20px;
+  }
+        
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= raw(@race.name) %></h1>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-14 col-sm-14 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad" >
+      <div class="panel panel-info">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 " align="center"> 
+                  <img src="<%= @race.image.picture.url %>" alt="User Pic" class="img-responsive">
+                </div>
+                  <div class=" col-md-9 col-lg-6 "> 
+                    <table class="table table-user-information">
+                      <tbody>
+                        <tr>
+                          <td>Afectivo</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.affectivity %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Docil</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.docility %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Juguetón</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.playful %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Activo</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.bustling %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Higiene</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.grooming %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Suelta Pelo</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.hair_loosner %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Trato con los niños</td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= @race.kids %>0%">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Especie</td>
+                          <td><%= raw(@race.species) %></td>
+                        </tr>
+                        <tr>
+                          <td>Tamaño (m)</td>
+                          <td><%= raw(@race.height) %></td>
+                        </tr>
+                        <tr>
+                          <td>Peso (kg)</td>
+                          <td><%= raw(@race.weight) %></td>
+                        </tr>
+                        <tr>  
+                          <td>Pelaje</td>
+                          <td><%= raw(@race.fur) %></td>
+                        </tr>
+                      <tr>
+                        <td>Fisico</td>
+                        <td><%= raw(@race.physical_details) %></td>
+                      </tr>
+                      <tr>
+                        <td>Color</td>
+                        <td><%= raw(@race.color) %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <h3 class="headerclass">Historia</h3>
+              <h3 class="panel-title"><%= raw(@race.story) %></h3>
+            </div>
+            <div class="panel-footer">
+              <h3 id ="header" class="headerclass">Carácter</h3>
+              <h3 class="panel-title"><%= raw(@race.character) %></h3>
+            </div>
+            <div class="panel-footer">
+              <h3 id ="header" class="headerclass">Cuidado</h3>
+              <h3 class="panel-title"><%= raw(@race.care) %></h3>
+            </div>
+            <div class="panel-footer">
+              <h3 id ="header" class="headerclass">Salud</h3>
+              <h3 class="panel-title"><%= raw(@race.health) %></h3>
+            </div>                  
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+

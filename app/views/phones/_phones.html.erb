@@ -1,0 +1,16 @@
+<% current_user.phones.each do |phone| %>
+  <div class="row" style="margin-top: 3px;">
+    <div class="col-xs-5">
+      <%= phone.number %>
+    </div>
+    <div align="right" class="col-xs-4">
+      (<%= phone.phone_type.name if phone.phone_type %>)
+    </div>
+    <div align="right" class="col-xs-3">
+      <div class="btn-group" role="group" aria-label="...">
+        <%= link_to (tag.i class: "fa fa-pencil"), edit_phone_path(phone), remote: true, class: "btn btn-xs btn-warning" %>
+        <%= link_to (tag.i class: "fa fa-trash"), phone, remote: true, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este número telefónico?" }, class: "btn btn-xs btn-danger" %>
+      </div>
+    </div>
+  </div>
+<% end %>

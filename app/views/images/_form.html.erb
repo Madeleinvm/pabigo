@@ -1,0 +1,13 @@
+<% provide(:title, "Subir Imagen") %>
+
+<%= simple_form_for @image do |f| %>
+
+  <%= image_tag @image.picture.url, :style => "width: 300px; height: 250px;"%>
+
+  <%= f.input :picture,
+              label: "Selecciona una Imagen" %>
+  <%= f.input :name,
+              label: "Nombre de la Imagen" %>
+
+  <%= f.button :submit, yield(:title) %>
+<% end %>

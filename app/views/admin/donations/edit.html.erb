@@ -1,0 +1,89 @@
+<div id="blue">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Donaciones solicitadas</h1>
+    </div>
+<div id="blue">
+    <div class="container">
+        <div class="row">
+            <div id="modificar">
+                <div class="row">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h4>Modifique los datos</h4>
+                        </header>
+<center>
+                        <%= simple_form_for [:admin, @donation], url: admin_donationupdate_path(@donation) do |f| %> 
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                            <%= f.input :dontype, 
+                                        label: "Tipo de donación",
+                                        collection: ["Monetaria", "Producto"],
+                                        required: true, autofocus: true, class: 'form-control' %>
+                            </div>
+                            <div class="col-xs-4">
+                                <%= f.input :name, label: "Nombre", required: true %>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <%= f.input :benefited, 
+                                        label: "Beneficiado",
+                                        :collection => %w[Perro Gato Ambos],
+                                        required: true,
+                                        class: 'form-control' %>
+                            </div>
+                        </div> 
+                        
+                        
+                        <div class="row">
+                            <div class="col-xs-10 ">
+                                <%= f.input  :description, label: "Descripción", required: true %>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <%= f.input :quantity, label: "Cantidad", required: true  %>
+                            </div>
+                            <div class="col-xs-4">
+                                <%= f.fields_for :images_attributes do |images_fields| %>
+                                    Imagen <%= images_fields.file_field :image, :multiple => true,name: "images_attributes[image][]", :class => 'btn btn-info' %>
+                                <% end %>
+                            </div>
+                            <div class="col-xs-3">
+                                <%= f.input :shipping, label: "Enviar a", required: true  %>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                        <center>
+                            <% unless @donation.images.empty? %>
+                                <% @donation.images.each_with_index do |image, index| %>
+                                    <div class="card-body">
+                                        <table class="table table-hover">
+                                            <img  class="img-thumbnail" src="<%= image.picture.url %>" width="250"  ></a>
+                                            <%= link_to "Eliminar Imagen", image_path(image.id), :class => 'btn btn-danger', :method => :delete, data: { confirm: "Estas seguro que deseas eliminar la imagen?" } %>
+                                        </table>
+                                    </div>
+                                <% end %>
+                            <% end %>
+                        </center>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <%= f.submit 'Aceptar', :class => 'btn btn-primary' %>    
+                                <%= link_to  admin_donations_path do %>
+                                    <%= button_tag t('button.Cancelar'), name: "Cancelar", class:"btn btn-default", value: true %>  
+                                <%end%>
+                            </div>
+                        </div>
+                        <% end %>
+</center>
+                    </section>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>

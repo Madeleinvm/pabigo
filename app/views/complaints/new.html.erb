@@ -1,0 +1,37 @@
+<div class="container">
+  <h3>Denuncia</h3>
+  <%= simple_form_for @complaint do  |f| %>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= f.input :abusive_name,
+                    label: "Nombre del Abusivo",
+                    autofocus: true %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.input :institution_id,
+                    label: "Institución Involucrada",
+                    collection: @institutions %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.input :place,
+                    label: "Indique el lugar del suceso" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4">
+        <%= f.simple_fields_for :image do |image_form| %>
+          <%= image_form.input :picture,
+                               label: "Sube alguna imagen captada" %>
+        <% end %>
+      </div>
+      <div class="col-xs-8">
+        <%= f.input :description,
+                    label: "Indique los motivos de su denuncia",
+                    required: true %>
+
+        <%= f.submit "Enviar Denuncia", class: "btn btn-warning" %>
+      </div>
+    </div>
+  <% end %>
+</div>

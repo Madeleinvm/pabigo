@@ -1,0 +1,166 @@
+<style>
+
+  .form-container-top_space {
+    padding-top: 40px;
+  }
+
+</style>
+
+<div class='text-center'>
+  <h1>Mascota Registrada</h1>
+</div>
+
+
+
+<%= simple_form_for(@pet) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+  <div class="container form-container-top_space">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="login-panel panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                        <!-- Inicio de la imagen-->
+                            <center>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="card">
+                                            <% unless @pet.images.first == nil %>
+                                                        <div class="card-body">
+                                                            <table class="table table-hover">
+                                                                <img  class="img-thumbnail" src="<%= @pet.images.first.picture.url %>" width="400"  ></a>
+                                                            </table>
+                                                        </div>
+                                            <% else %>
+                                                        <div class="card-body">
+                                                            <table class="table table-hover">
+                                                                <img  class="img-thumbnail" src="/images/productomascota.jpg" width="400"  ></a>
+                                                            </table>
+                                                        </div>
+                                            <% end %>  
+                                        </div>
+                                    </div> 
+                            </center>
+                        <!-- Fin de la imagen-->
+                <div class="col-md-8">
+                  <div class="nombre-input">
+                    <b>Nombre o Apodo:</b> <%= @pet.name %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <div class="col-md-4">
+                  <div class="peso">
+                      <br>
+                    <b> Peso: </b> <%= @pet.weight %>Kg(s).
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="peso">
+                    <b> Edad Aproximada: </b> <%= @pet.aprox_age %>
+                  </div>
+                </div>
+
+                 <% @adopcion = Adoption.find(@pet.adoptions_id)%>
+                <div class="col-md-4">
+                  <div class="peso">
+                    <b> Fecha de puesta en adopcion: </b> <%= @adopcion.adoption_date %>
+                  </div>
+                </div>                            
+
+                <% @razas = Race.find_by_id(@pet.races_id) %>
+                <div class="col-md-4">
+                  <div class="raza">
+                    <b> Raza: </b> <%= @razas.name %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class = "peso">
+                  <b> Especie: </b><%= @pet.species %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="col-xs-12">
+                <div class="col-md-3">
+                  <% if @pet.dewormed == false %>
+                    <b>Desparasitado: </b><span class="glyphicon glyphicon-remove"></span>
+                  <% end %>
+                  <% if @pet.dewormed == true %>
+                    <b>Desparasitado: </b><span class="glyphicon glyphicon-ok"></span>
+                  <% end %>
+                </div>
+                <div class="col-md-3">
+                  <% if @pet.neutered == false %>
+                    <b>Esterilizado: </b><span class="glyphicon glyphicon-remove"></span>
+                  <% end %>
+                  <% if @pet.neutered == true %>
+                    <b>Esterilizado: </b><span class="glyphicon glyphicon-ok"></span>
+                  <% end %>
+                </div>
+                <div class="col-md-5">
+                  <% if @pet.special_needs == false %>
+                    <b>Necesidades Especiales:</b> <span class="glyphicon glyphicon-remove"></span>
+                  <% end %>
+                  <% if @pet.special_needs == true %>
+                    <b>Necesidades Especiales:</b> <span class="glyphicon glyphicon-ok"></span>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-xs-12 ">
+                <div class="col-md-8">
+                    <br>
+                    <b> Descripcion: </b> <%= @pet.description %>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-sm-4 ">
+              <div class="col-md-4 offset-md-2 regresar form-container-top_space">
+                <!--button type="button" class="btn btn-info"><a href="/pets">Regresar</a></button-->
+                <%= link_to "Regresar",  admin_pets_path, class: "btn"%>
+              </div>
+            </div> 
+          </div>
+        </div>        
+      </div>
+     </div>        
+  </div> 
+        <div class="container form-container-top_space">
+          <div class="row"> 
+            <div class="col-md-8 col-md-offset-2"> 
+              <div class="login-panel panel panel-default">      
+                <div id="demo" class="collapse">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="col-md-8">
+                        <h3>Contacto</h3>
+                          <% @usuario = User.find_by_email(current_user.email) %>
+                            <div class="peso">
+                              <b> email: </b> <%= @usuario.email %>
+                            </div>                          
+                            <% current_user.phones.each do |phone| %>
+                            <div class="peso">
+                              <b> Telefono: </b> <%= phone.number %>
+                            </div>
+                          <% end %>                                                 
+                      </div>
+                    </div> 
+                  </div> 
+              </div>  
+           </div> 
+         </div> 
+      </div>  
+  </div>
+<% end %>
+
+<%= simple_form_for(@pet) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+<% end %>

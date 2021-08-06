@@ -1,0 +1,238 @@
+.otro-campo{
+  display: flex;
+  justify-content: center;
+}
+
+/* Corresponde al campo de la edicion de comentarios para el veterinario */
+
+.campo-pregunta{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.boton-pregunta{
+    margin-top: 0;
+}
+
+/* Arreglando el boton de la entrada de datos */
+
+input[type=div] {
+  margin: 0;
+}
+
+.form-control.is-valid.text.required{
+
+    width: 463px;
+
+}
+
+a.acomo3{
+  padding: 7px;
+}
+
+form.simple_form.edit_request{
+  background-color: #6a3d2d4d;
+
+}
+
+div.sub-header{
+  display: flex;
+  justify-content: center;
+  font-size: 31px;
+  font-weight: 700;
+}
+
+figure{
+  display: flex;
+  justify-content: center;
+}
+
+textarea.form-control{
+  width: 814px;
+  height: 101px;
+}
+
+/* Eliminando el problema de los atributos de los campos */
+
+abbr[title] {
+  display: none !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  cursor: inherit !important;
+  }
+
+  /* el label resuelve problemas de diseno con respecto al atributo a ocultar */
+
+  label{
+
+    display: none;
+  }
+
+.titulo-d{
+  font-size: 23px;
+  margin-bottom: 0;
+
+}
+
+.botones{
+  display: flex;
+  flex-direction: row-reverse;
+  background: rgba(0,0,0,0);
+  color: #3a7999;
+  margin-top: 0px;
+
+}
+
+.invalid-feedback{
+  display: none;
+}
+
+  /* css por defecto, no se definio en los tag de html */
+
+.form-group.text.required.ask_answer.form-group-valid{
+  margin: 0;
+
+}
+
+.form-group.text.required.ask_answer{
+  margin: 0;
+}
+
+input.destruir, input.destruir:visited{
+  border: 0;
+  background: #0BA9F9 url(overlay.png) repeat-x;
+      width: auto;
+}
+
+#eliminar{
+    padding-left: 15px;
+}
+
+/* destruir comprende varios estilo a diferentes botones */
+/* con la finalidad de que tengan el mismo color , borde, entre otros */
+
+.destruir  {
+margin-left: 17px;
+margin-right: 0;
+margin-bottom: 0px;
+background: #0BA9F9 url(overlay.png) repeat-x;
+display: inline-block;
+padding: 5px 10px 6px;
+color: #fff;
+text-decoration: none;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-moz-box-shadow: 0 1px 3px rgba(13, 235, 228, 0.25);
+-webkit-box-shadow: 0 1px 3px rgba(13, 235, 228, 0.25);
+text-shadow: 0 -1px 1px rgba(13, 235, 228, 0.25);
+border-bottom: 1px solid rgba(13, 235, 228, 0.25);
+position: relative;
+cursor: pointer;
+font-weight: bold;
+height: 31px;
+width: 72px;
+
+}
+
+
+  .prueba-22{
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+
+
+  }
+
+  .question{
+    margin-left: 213px;
+    margin-right: 200px;
+  }
+
+  .pregunta-por-responder{
+
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 200px;
+    margin-right: 137px;
+
+
+  }
+
+  .p{
+
+    margin-left: 13px;
+    margin-top: 6px;
+    font-size: 16px;
+
+  }
+
+  a{
+    color: white;
+    text-decoration: none;
+  }
+
+p.destruir{
+
+}
+
+#destruir{
+  margin-left: 90px;
+}
+
+figure{
+    margin-top: 14px;
+}
+
+a:link
+{
+text-decoration:none;
+}
+
+a{
+
+    margin-left: 5px;
+
+}
+
+footer{
+  margin-top: 24px;
+  background: #d0a779;
+  height: 86px;
+  -webkit-border-radius: 98px 98px 98px 98px;
+
+    width: 928px;
+    height: 79px;
+    margin-bottom: 28px;
+    padding-bottom: 0px;
+
+
+}
+
+.titulo-f{
+  text-align: -webkit-center;
+  font-size: large;
+  color: #1a1c27bf;
+  font-weight: bold;
+}
+
+.boton-f{
+  text-align: -webkit-center;
+  margin-top: 10px;
+  font-size: xx-large;
+  margin-right: 93px;
+
+
+}
+
+#positione{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+
+}
+
+.myfooter{
+  display: flex;
+  justify-content: center;
+}

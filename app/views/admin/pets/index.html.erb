@@ -1,0 +1,83 @@
+        <div id="blue">
+        <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Registro de Mascotas en Adopcion</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                    <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                    <header class="panel-heading">
+                    <div class="container-fluid">
+                        <div class="nav row" id="top_menu">
+                            
+                            <div class="col-md-4"><h4>Mascotas existentes</h4></div>
+
+                            <div class="col-md-6">
+                                    <div class="col-lg-6">
+                                       <div class="col-md-4"><h4>Adopcion</h4></div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                       <div class="col-md-4"><h4>Adopcion</h4></div>
+                                    </div> 
+                            </div>
+
+                            <div class="col-md-2">
+                                <a class="btn btn-info" href="<%= new_admin_pet_path %>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                            </div>   
+                        </div>
+                        </div>
+                    </header>
+
+                        <table class="table table-striped table-advance table-hover">
+                            <tbody>
+                                <tr>
+                                    <th><i class="fa fa-photo blue"></i> Foto del Producto</th>
+                                    <th><i class="fa fa-user blue"></i> Nombre</th>
+                                    <th><i class="fa fa-file-text blue"></i> Descripcion</th>
+                                    <th><i class="fa fa-hand-o-up blue "></i> Peso aproximado</th>
+                                    <th><i class="fa fa-hand-o-up blue "></i> Edad aproximada</th>
+                                    <th><i class="fa fa-hand-o-up blue "></i> Raza</th>
+                                    <th><i class="fa fa-hand-o-up blue "></i> Dia puesta en adoption</th>
+                                </tr>
+                                <% @pets.each do |pet| %>
+                                <tr>
+                                    <td>
+                                    
+                                            <ul class="list-inline">
+                                                <% unless pet.images.first == nil %>
+                                                    <img  src="<%= pet.images.first.picture.url %>" width="150" height="110" >
+                                                <% else %>
+                                                    <img  src="/images/productomascota.jpg" width="150" height="110">
+                                                <% end %>
+                                                
+                                            </ul>
+                                    </td>
+                                    <td><%= pet.name %></td>
+                                    <td><%= pet.description %></td>
+                                    <td><%= pet.weight %></td>
+                                    <td><%= pet.aprox_age%></td>
+                                     <% razas = Race.find_by_id(pet.races_id) %>
+                                     <td><%= razas.name %></td>
+                                    <% adopcion = Adoption.find(pet.adoptions_id)%>
+                                    <td><%= adopcion.adoption_date %></td>
+                                    <td>
+                                        <div>
+                                            <a class="btn btn-warning" href="<%= admin_petshow_path(pet) %>"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            <a href="<%= admin_petsedit_path(pet)%>"><button class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a> 
+                                            <%= link_to '', admin_petsdeletes_path(pet), method: :delete, class:"fa fa-trash-o btn btn-danger", data: { confirm: "¿Esta seguro que desea eliminar la donación?"}  %> 
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>      
+                    
+                    </section>
+                </div>
+                </div>
+            </div>
+        </div>

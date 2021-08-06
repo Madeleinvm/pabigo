@@ -1,0 +1,64 @@
+<!-- La respuesta corresponden tanto a la de los gatos y perros -->
+<!-- Se hizo de esta manera usando render tanto en gatos.html.erb como en perros.html.erb -->
+
+
+<h1>ejemplo</h1>
+<% @asks.reverse_each do |ask| %>
+  <div class="prueba-22">
+  <% prueba = Ask.find(ask.id) %>
+
+
+<!-- El campo respuesta answer generalmente tiene el valor de "primera vez" -->
+<!-- debido a que pasen las validaciones la primera vez cuando se crea la pregunta -->
+<!-- ya que la entidad ask corresponde a preguntas y respuesta -->
+<!-- por lo tanto en el sql se tienen los campos de answer y campo, valga la redundancia -->
+<!-- Se usa el ability para que solo el doctor pueda responder -->
+<!-- tambien con la condicion de que si un doctor responde, los demas no puedan responder -->
+<!-- comparando el usuario registrado contra el usuario que pregunto y respondio con el ID actual -->
+
+    <div class="preguntas-respuestas">
+      <div class="question">
+        <p class="fuente-letra">& <%= prueba.campo %></p>
+        <span class="ubica"><%= prueba.id%></span>
+      </div>
+      <hr>
+      <div class="colocacion">
+        <%= simple_form_for prueba, url: ask_path(prueba) do |f| %>
+          <% if prueba.answer != nil %>
+          <div class="respuesta-dadas">
+            <% if prueba.answer != 'primera vez' %>
+              <p class="p-respuesta"><%=  prueba.answer %>  </p>
+            <% end %>
+            <div class="botones">
+              <% if can? :update, Ask %>
+                <% if prueba.user_id == current_user.id || prueba.answer == 'primera vez' %>
+                  <p class="destruir"><%= link_to 'Eliminar', ask_path(prueba),
+                                method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                <% end %>
+              <% end %>
+
+
+              <!-- <% if prueba.user_id == 1 %> -->
+              <!-- <% end %> -->
+
+
+              <% if can? :update, Ask %>
+                <% if prueba.user_id == current_user.id %>
+                  <% if prueba.answer != 'primera vez' %>
+                    <p class="destruir"><%= link_to 'Editar', edit_ask_path(prueba) %></p>
+                  <% end %>
+                <% end %>
+                <% if prueba.answer == 'primera vez' %>
+                  <p class="destruir"><%= link_to 'Responder', edit_ask_path(prueba) %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <% end %>
+        <% end %>
+      </div>
+      <hr>
+  </div>
+  </div>
+<% end %>

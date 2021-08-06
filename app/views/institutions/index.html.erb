@@ -1,0 +1,138 @@
+<p id="notice"><%= notice %></p>
+
+<style media="screen">
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+color: #333;
+background-image: url(/assets/fondo_happy_pets.png) ;
+background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+table {
+text-align: center;
+line-height: 40px;
+border-collapse: separate;
+border-spacing: 0;
+border: 2px solid #FA6900;
+width: 1000px;
+margin: 50px auto;
+border-radius: .25rem;
+}
+
+th:first-child,
+td:first-child {
+padding: 0 15px 0 20px;
+}
+
+th {
+font-weight: 500;
+}
+
+thead tr:last-child th {
+border-bottom: 3px solid #ddd;
+}
+
+tbody tr:hover {
+background-color: #69D2E7;
+cursor: default;
+}
+
+tbody tr:last-child td {
+border: none;
+}
+
+tbody td {
+border-bottom: 5px solid #ddd;
+}
+
+td:last-child {
+text-align: right;
+padding-right: 10px;
+}
+
+
+
+</style>
+
+<h1 align="center" style="color:#000000 ">Instituciones de Cuidado y Adopción Animal</h1>
+
+
+
+                        <div class="row justify-content-center">
+                             <div class="col-sm-11" align="right" >
+                              <% if current_user %>
+
+                                   <%= link_to 'Agregar Institution', new_institution_path, class: 'btn btn-info' %>
+
+                               <% end %>
+                             </div>
+                         </div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="color:#FFFFFF ; background-color:#FA6900 ; text-align: center"> Nombre</th>
+      <th style="color:#FFFFFF ; background-color:#FA6900; text-align: center;">Número de Contacto</th>
+      <th style="color:#FFFFFF ; background-color:#FA6900; text-align: center;">Sitio Web</th>
+      <th style="color:#FFFFFF ; background-color:#FA6900; text-align: center;"></th>
+      <th style="color:#FFFFFF ; background-color:#FA6900; text-align: center;"></th>
+      <th style="color:#FFFFFF ; background-color:#FA6900; text-align: center;"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @institutions.each do |institution| %>
+      <tr>
+        <td style="color:#000000 "><%= institution.name %></td>
+        <td style="color:#000000 "><%= institution.phone %></td>
+        <td style="color:#000000 "><%= institution.web %></td>
+
+        <td style="text-align: center;">
+              <%= link_to institution do%>
+                  <i class="glyphicon glyphicon-eye-open" style="color:#FA6900"></i>
+                  <%end%>
+        </td>
+
+        <td style="text-align: center;">
+          <% if current_user %>
+
+                    <%= link_to edit_institution_path(institution) do%>
+                        <i class="glyphicon glyphicon-pencil" style="color:#FA6900"></i>
+
+            <%end%>
+          <%end%>
+        </td>
+
+        <td style="text-align: center;">
+          <% if current_user %>
+
+                    <%= link_to institution, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar la institución?' } do%>
+                        <i class="glyphicon glyphicon-remove" style="color:#FA6900"></i>
+                    <%end%>
+            
+          <%end%>
+        </td>
+
+
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+
+
+<br>

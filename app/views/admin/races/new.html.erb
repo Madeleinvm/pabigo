@@ -1,0 +1,152 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Nueva Raza</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <%= simple_form_for [:admin, @race], url: admin_races_path([:admin, @race]) do |f| %>
+                        <div class="form-group col-md-12">
+                            <%= f.input :name,
+                                        label: "Nombre", 
+                                        required: true, 
+                                        autofocus: true %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :species, 
+                                        label: "Tipo de animal",
+                                        :collection => %w[Perro Gato],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :affectivity, 
+                                        label: "Afectividad",
+                                        collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :docility, 
+                                        label: "Docilidad",
+                                        collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :bustling,
+                                        label: "Activo", 
+                                        collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :playful,
+                                        label: "Juguetón", 
+                                        collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :grooming, 
+                                        label: "Higiene",
+                                        collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :hair_loosner,
+                                        label: "Suelta Pelaje",
+                                        collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <%= f.input :kids, 
+                                        label: "Trato con los niños",
+                                        :collection => %w[1 2 3 4 5 6 7 8 9 10],
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <%= f.input :fur,
+                                        label: "Pelaje",
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <%= f.input :color,
+                                        label: "Color",
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <%= f.input :height,
+                                        label: "Tamaño (m)",
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <%= f.input :weight,
+                                        label: "Peso (kg)",
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <%= f.input :physical_details,
+                                        label: "Físico",
+                                        required: true,
+                                        class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Historia</label>
+                            <%= f.cktext_area :story, 
+                                            required: true,
+                                            size: "4x4",
+                                            class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Carácter</label>
+                            <%= f.cktext_area :character,
+                                            required: true,
+                                            size: "4x4",
+                                            class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Cuidado</label>
+                            <%= f.cktext_area :care, 
+                                            required: true,
+                                            size: "4x4",
+                                            class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Salud</label>
+                            <%= f.cktext_area :health,
+                                            required: true,
+                                            size: "4x4",
+                                            class: 'form-control' %>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <%= f.simple_fields_for :image do |image_form| %>
+                                <%= image_form.input :picture,
+                                                    label: "Foto de la raza",
+                                                    required: true %>
+                                <%= image_form.input :name, 
+                                                    label: "Nombre de la Foto",
+                                                    required: true %>
+                            <% end %>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <%= f.button :submit, "Aceptar", class:"btn btn-primary" %>
+                            <%= button_tag t('buttons.cancel'), type: "submit", name: "cancel", class:"btn btn-default", value: true %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

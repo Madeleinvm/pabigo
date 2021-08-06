@@ -1,0 +1,76 @@
+<% provide(:title, "Usuarios de PABIgo") %>
+<%= render "shared/admin/page_title" %>
+
+
+
+<div class="row">
+  
+  <div class="col-xs-12">
+
+    <div class="panel panel-default">
+      <div class="panel-heading" style="color:#FFFFFF ; background-color:#3349ff ;">
+        <i class="fa fa-users fa-fw"></i> Usuarios
+        <div class="pull-right">
+          <%= link_to "Crear Usuario", new_admin_user_path, class: "btn btn-default btn-xs" %>
+        </div>
+
+        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th style="color:#FFFFFF ; background-color:#FA6900 ; text-align: center">Correo</th>
+                    <th style="color:#FFFFFF ; background-color:#FA6900 ; text-align: center">Nombre</th>
+                    <th style="color:#FFFFFF ; background-color:#FA6900 ; text-align: center">Apellido</th>
+                    <th style="color:#FFFFFF ; background-color:#FA6900 ; text-align: center">Género</th>
+                    <th style="color:#FFFFFF ; background-color:#FA6900 ; text-align: center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% undefined = "No definido" %>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td><%= user.email %></td>
+                      <td><%= user.profile.name || undefined %></td>
+                      <td><%= user.profile.last_name || undefined %></td>
+                      <td>
+                        <% if user.profile.male %>
+                          Masculino
+                        <% elsif user.profile.male == false %>
+                          Femenino
+                        <% else %>
+                          <%= undefined %>
+                        <% end %>
+                      </td>
+                      <td style="text-align: center;">
+                        <div class="btn-group" role="group" aria-label="...">
+                          <%#= link_to (tag.i class: "fa fa-eye"), "#", class: "btn btn-xs btn-primary" %>
+                          <%= link_to (tag.i class: "fa fa-pencil"), user == current_user ? edit_user_registration_path : edit_admin_user_path(user), class: "btn btn-xs btn-warning" %>
+                          <%= link_to (tag.i class: "fa fa-trash"), admin_user_path(user), method: :delete, data: { confirm: "¿Seguro que quieres eliminar a este usuario?" }, class: "btn btn-xs btn-danger" unless current_user == user %>
+                        </div>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.col-xs-12 (nested) -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+
+    <div>
+      <%= will_paginate @users, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

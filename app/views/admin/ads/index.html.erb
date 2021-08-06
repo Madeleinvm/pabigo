@@ -1,0 +1,115 @@
+<style>
+.modal-dialog{
+    position: relative;
+    display: table; /* <-- This makes the trick */
+    overflow-y: auto;    
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;   
+}
+</style>
+
+<%if @ads.empty?%>
+
+  <div class="row">
+
+     <%= link_to new_admin_ad_path do %>
+        <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nuevo Articulo
+      <%end%>
+      
+  </div>
+<%else%>
+<br />
+
+<!-- Ads datatable-->
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <strong><h4>Publicidades</h4></strong>
+      </div>
+      <div class="panel-body">
+        <div class="panel panel-default">
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th><center>Titulo</center></th>
+                    <th><center>Descripcion</scenter></th>
+                    <th><center>Mostrar</center></th>
+                    <th><center>Editar</center></th>                    
+                    <th><center>Eliminar</center></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% i = 0 %>
+                <% @ads.each do |ad| %>    
+                    <tr>
+                      <td><center><%= ad.title %></center></td>
+                      <td><center><%= ad.descripcion %></center></td>
+                      <% unless ad.image.nil? %>  
+                            <td>
+                            <center>  
+                            <span class="fa fa-fw fa-search" data-toggle="modal" data-target="#imageModal<%=i%>"></span>
+                              <!-- Modal -->
+                            <div class="modal fade" id="imageModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header" >
+                                    <span type="button" class="close" data-dismiss="modal" aria-label="Close"></span>                                    </button>
+                                  </div>
+                                  <% if ad.image.picture_url %>
+                                  <div class="modal-body">
+                                    <%= link_to image_tag(ad.image.picture.url) %>
+                                  </div>
+                                  <% end %>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                            
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- End Modal--> 
+                            </center>  
+                            </td>
+                       <% i+=1 %>                              
+                      <% else %>
+                        					Vacio
+                      <% end %>
+                       <td>
+                      <center>
+                          <%= link_to edit_admin_ad_path(ad), title: "Editar Banner" do %> 
+                                <span class="fa fa-fw fa-edit"></span>
+                          <%end%>
+                      </center>
+                      </td>
+                      <td>
+                      <center>
+                          <%= link_to [:admin, ad], title: "Eliminar Banner", method: :delete, data: { confirm: "Estas seguro de eliminar el banner: #{ad.title}" } do %> 
+                                <span class="fa fa-fw fa-trash-o"></span>
+                          <%end%>
+                      </center>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.panel-body -->
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= link_to "Crear Banner", new_admin_ad_path, class: "btn btn-default btn-xs" %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  
+  </row>
+  </div>
+</div>

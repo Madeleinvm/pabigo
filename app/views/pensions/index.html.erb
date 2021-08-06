@@ -1,0 +1,88 @@
+<body>
+<div id="blue">
+     <div class="row">
+      <div class="text-center">
+        <h3>PENSIONES</h3>
+         <div class="linea"></div>
+         <div class="col-md-4"></div>
+         <div class="col-md-4"><p class="text-center">Pensiones certificadas para el cuidado de perros y gatos, con años de experiencia en darle afecto a tu mascota, mientras te encuentras de viaje o se te hace difícil cuidarla en ciertos momentos, acá te mostramos distintas pensiones que le daran a tu mascota una estadia feliz durante su permanencia en la pensión</p></div>
+         <div class="col-md-4"></div></div></div>
+
+      <div class="info">
+      <div class="container">
+			<div class="row row-eq-height">
+        <!-- Info Box -->
+        <% @pensions.each do |pension| %>
+    				<div class="col-lg-4 info_box_col">
+              <div class="info_box">
+              <% unless pension.images.empty? %>
+                 <% unless pension.images.first == nil %>
+                    <a href="<%= pensionshow_path(pension) %>"><img   src="<%= pension.images.first.picture.url %>" width="360" height="350"></a>
+                 <% else %>
+                    <a href="<%= pensionshow_path(pension) %>"><img   src="/images/ImageDefault.jpg" width="360" height="350"  ></a>
+                 <% end %>
+                <%else %>
+                    <a href="<%= pensionshow_path(pension) %>"><img   src="/images/ImageDefault.jpg" width="360" height="350"  ></a>
+                <% end %>
+                <!--end of thumbnails-->
+
+    						<div class="info_content">
+    							<div class="info_title"><h2><%= pension.nombre %></h2></div>
+      							<div class="info_text">
+                      <div class="text-center text-justify">
+                        <h4>Pensión certificada</h4>
+                        <p>Descripción: <%= pension.description %></p>
+                        <h5>Instagram: <%= pension.red_social %></h5>
+                        <h5>Calificacion:  
+                            <% (0..pension.qualification.to_i-1).each do |i| %>
+                              <img src="/images/dog-bone2.png" alt="">
+                            <% end %>
+                          <%= pension.qualification %>
+                        </h5>
+                      </div>
+                    </div>
+    						</div>
+    					</div>
+    				</div> 
+        <% end %>
+				<!-- Info Box -->
+          
+			</div>
+      </div>
+      </div>		
+         <!--PAGINADORES-->
+    
+  <div class="row">
+    <div class="text-center">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item "> <!--disabled-->
+            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item ">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse">Mejores Pensiones</a>         
+      </div>
+    </div>
+     <!--PAGINADORES-->
+  </div>
+
+  <div class="container form-container-top_space">
+    <div class="row"> 
+      <div id="demo" class="collapse">
+        <%= render 'bestpensions' %>
+        <!-- Info Box --> 
+      </div>                                            
+    </div>  
+  </div>
+</body>
+

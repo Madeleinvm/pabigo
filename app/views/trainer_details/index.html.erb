@@ -1,0 +1,64 @@
+<div id="blue">
+  <div class="container">
+    <div class="text-center">
+      <h3>Entrenadores</h3>
+       <div class="linea"></div>
+      <p>Entrenadores con certificaciones y amplia experiencia en diferentes razas de perros, pertenecientes al equipo de PABIGO</p>
+    </div>
+    <% @trainer_details.each do |trainer| %>
+      <div class="row">
+        <div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
+          <div class="text-center">
+            <div class="col-md-8">
+              <% unless trainer.images.empty? %>   
+                <% unless trainer.images.first == nil %>
+                  <a href="<%= trainershow_path(trainer) %>"><img   src="<%= trainer.images.first.picture.url %>" alt="" class="img-circle" width="300" height="300"></a>
+                <% else %>
+                  <a href="<%= trainershow_path(trainer) %>"><img   src="/images/ImageDefault.jpg" alt="" class="img-circle" width="300" height="300"  ></a>
+                <% end %>
+              <%else %>
+                <a href="<%= trainershow_path(trainer) %>"><img   src="/images/ImageDefault.jpg" alt="" class="img-circle" width="300" height="300"  ></a>
+              <% end %>
+              <!--end of thumbnails-->
+            </div>  
+          </div>   
+          <div class="col-md-8">
+            <div class="text-center text-justify">    
+              <h2>Status: <%= trainer.status %></h2>
+              <h4>Entrenador certificado</h4>
+              <p>Descripción: <%= trainer.description %></p>
+              <h5>Calificaciones: 
+                <% (0..trainer.qualification.to_i-1).each do |i| %>
+                  <img src="/images/dog-bone2.png" alt="">
+                <% end %>
+                <%= trainer.qualification %>
+              </h5>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  </div>
+
+ 
+  <!--PAGINADORES-->
+  <div class="row">
+    <div class="text-center">
+      <div>
+        <%= will_paginate @trainer_details, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+      </div>
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse">Mejores Entrenadores</a>         
+      </div>
+    </div>
+     <!--PAGINADORES-->
+
+    <div class="container form-container-top_space">
+      <div class="row"> 
+        <div id="demo" class="collapse">
+          <%= render 'best_trainer_details' %>
+        </div>                                            
+      </div>  
+    </div>
+  </div>
+</div>

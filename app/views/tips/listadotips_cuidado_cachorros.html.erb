@@ -1,0 +1,234 @@
+<style media="screen">
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+color: #333;
+background-image: url(/assets/fondo_happy_pets.png) ;
+background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+</style>
+
+<style class="cp-pen-styles">
+
+    body { 
+      overflow-y: scroll;
+    }
+    .tipsTitle h2 {
+        font-family: PuppyBellies !important;
+        font-size: 50px;
+        color: #0BA9F9 !important;
+    }
+
+    .accordion-panel {
+      font-family: Helvetica, Arial, sans-serif;
+        margin-top: -10px;
+        margin-right: auto;
+        margin-bottom: 50px;
+        margin-left: auto;
+      max-width: 560px;
+    }
+    .accordion-panel .accordion {
+      padding-top: 30px;
+    }
+    .accordion-panel .accordion dt {
+      display: block;
+      padding: 25px;
+      background: #E3E1E2;
+      color: #555;
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+    }
+    .accordion-panel .accordion dd {
+      height: 0;
+      overflow: hidden;
+      transition: height .35s ease-out;
+      margin-left: 0;
+      margin-bottom: -30px;
+      background: #F4F4F4;
+    }
+    .accordion-panel .accordion .content {
+      padding: 25px;
+      overflow: auto;
+    }
+    .accordion-panel .plus-icon {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      transition: transform 0.35s ease-out;
+      position: absolute;
+      right: 35px;
+      top: 50%;
+      margin-top: -12px;
+    }
+    .accordion-panel .plus-icon:before,
+    .accordion-panel .plus-icon:after {
+      content: '';
+      background: #6bbf49;
+      position: absolute;
+    }
+    .accordion-panel .plus-icon:before {
+      width: 2px;
+      height: 15px;
+      margin-left: -0.5px;
+      left: 50%;
+    }
+    .accordion-panel .plus-icon:after {
+      width: 15px;
+      height: 2px;
+      margin-top: -0.5px;
+      top: 50%;
+      opacity: 1;
+      transition: opacity 0.35s ease-out;
+    }
+    .accordion-panel .is-open .plus-icon {
+      transform: rotate(90deg);
+    }
+    .accordion-panel .is-open .plus-icon:after {
+      opacity: 0;
+    }
+    .accordion-panel .hidden {
+      display: none;
+    }
+    .accordion-panel .open-btn,
+    .accordion-panel .close-btn {
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      width: 90px;
+    }
+    .accordion-panel .buttons-wrapper {
+      position: relative;
+    }
+    .accordion-panel .buttons-wrapper .plus-icon {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+    }
+
+</style>
+
+<div id="tips">
+    <div class="container">
+        <div class="text-center tipsTitle">
+            <h2> Tips de Cuidado de Cachorros </h2> 
+            <p>recomendaciones para mejorar la vida y confor de tus mascotas</p>
+        </div>
+    </div>
+    <div class="accordion-panel">
+        <div class="buttons-wrapper">
+            <i class="plus-icon"></i>
+            <div class="open-btn">
+            Open all
+            </div>
+            <div class="close-btn hidden">
+            Close all
+            </div>
+        </div>
+        <% @tips = Tipe.where(category_id: 6) %>
+        <% @tips.each do |tip| %>
+        <dl class="accordion">
+            <dt><%= tip.name %><i class="plus-icon"></i></dt>
+            <dd>
+            <div class="content">
+                <p><%= tip.description %></p>
+            </div>
+            </dd>
+            </dd>
+        </dl>
+        <% end %>
+    </div>
+</div><!--/#tips-->
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+<script >
+    $(document).ready(function() {
+
+        var bodyEl = $('body'),
+            accordionDT = $('.accordion').find('dt'),
+            accordionDD = accordionDT.next('dd'),
+            parentHeight = accordionDD.height(),
+            childHeight = accordionDD.children('.content').outerHeight(true),
+            newHeight = parentHeight > 0 ? 0 : childHeight,
+            accordionPanel = $('.accordion-panel'),
+            buttonsWrapper = accordionPanel.find('.buttons-wrapper'),
+            openBtn = accordionPanel.find('.open-btn'),
+            closeBtn = accordionPanel.find('.close-btn');
+
+        bodyEl.on('click', function(argument) {
+            var totalItems = $('.accordion').children('dt').length;
+            var totalItemsOpen = $('.accordion').children('dt.is-open').length;
+
+            if (totalItems == totalItemsOpen) {
+            openBtn.addClass('hidden');
+            closeBtn.removeClass('hidden');
+            buttonsWrapper.addClass('is-open');
+            } else {
+            openBtn.removeClass('hidden');
+            closeBtn.addClass('hidden');
+            buttonsWrapper.removeClass('is-open');
+            }
+        });
+
+        function openAll() {
+
+            openBtn.on('click', function(argument) {
+
+            accordionDD.each(function(argument) {
+                var eachNewHeight = $(this).children('.content').outerHeight(true);
+                $(this).css({
+                height: eachNewHeight
+                });
+            });
+            accordionDT.addClass('is-open');
+            });
+        }
+
+        function closeAll() {
+
+            closeBtn.on('click', function(argument) {
+            accordionDD.css({
+                height: 0
+            });
+            accordionDT.removeClass('is-open');
+            });
+        }
+
+        function openCloseItem() {
+            accordionDT.on('click', function() {
+
+            var el = $(this),
+                target = el.next('dd'),
+                parentHeight = target.height(),
+                childHeight = target.children('.content').outerHeight(true),
+                newHeight = parentHeight > 0 ? 0 : childHeight;
+
+            // animate to new height
+            target.css({
+                height: newHeight
+            });
+
+            // remove existing classes & add class to clicked target
+            if (!el.hasClass('is-open')) {
+                el.addClass('is-open');
+            }
+
+            // if we are on clicked target then remove the class
+            else {
+                el.removeClass('is-open');
+            }
+            });
+        }
+
+        openAll();
+        closeAll();
+        openCloseItem();
+    });
+</script>

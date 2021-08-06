@@ -1,0 +1,45 @@
+<style type="text/css">
+    
+    .img {
+      position: relative;
+      float: left;
+      width:  100px;
+      height: 100px;
+      background-position: 50% 50%;
+      background-repeat:   no-repeat;
+      background-size:     cover;
+    }
+
+</style>
+
+<div id="gallery">
+    <div class="text-center">
+      <h3>Historias</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit<br> Más Historias <%= link_to "Aqui", histories_path %></p>
+    </div>
+  <% @histories = History.order("RANDOM()").limit(4).where(history_status: 'publicada') %>
+    <div class="container">
+      <div class="row">
+        <% unless @histories == nil %> 
+          <% @histories.each_with_index do |history, index| %>
+            <% if index <= 3 %>
+                <figure class="effect-chico">
+                  <div class="col-md-3 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
+                    <a href="<%= history_path(history) %>" class="flipLightBox">
+                      <% unless history.images.first == nil %>
+                        <img src="<%= history.images.first.picture.url %>" class="img-responsive" width="150" height="150" >
+                      <% else %>
+                        <img src="/images/defaultImageHistories.jpg" class="img-responsive" width="150" height="150" >
+                      <% end %>
+                    </a>
+                    <!--</a>-->
+                  </div>
+                </figure>
+            <% end %>
+          <%end%>
+        <% else %>
+          <p>Sin Historias Registradas en la BD</p>
+        <% end %>
+      </div>
+    </div>
+</div>

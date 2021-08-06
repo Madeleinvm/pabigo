@@ -1,0 +1,26 @@
+<% provide(:title, "Editar Categoria") %>
+<%= render "shared/admin/page_title" %>
+
+<%= simple_form_for [:admin, @category] do |f| %>
+  <div class="row">
+    <div class="col-xs-5">
+      
+    <%= f.simple_fields_for :category do |profile_form| %>
+		<%= f.input :name, 
+					label: "Nombre", 
+					required: true, 
+					autofocus: true %>
+		<%= f.input :description,
+		            label: "Description",
+		            required: true%>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.button :submit, yield(:title) %>
+    </div>
+  </div>
+<% end %>
+

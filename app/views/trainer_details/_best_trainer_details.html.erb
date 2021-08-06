@@ -1,0 +1,48 @@
+<trainer>
+  <div id="trainer">
+    <div class="container">
+      <div class="text-center">
+        <h3>Entrenadores</h3>
+        <p>Lista de Mejores Entrenadores de PABIGO<br></p>
+      </div>
+      <div class="row">
+          <% @besttrainer = 0 %>        
+          <% @trainer_details.each do |trainer1| %>
+            <% if (@prueba = trainer1.qualification) >= 0 &&  (@prueba = trainer1.qualification) >= @besttrainer %>
+              <%@besttrainer = @prueba%> 
+            <% end %> 
+          <% end %>
+          <!-- TABLA DE MEJORES ENTRENADORES AQUI -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombre del Entrenador</th>
+              <th scope="col">Apellido del Entrenador</th>
+              <th scope="col">Descripción del Entrenador</th>
+              <th scope="col">Status del Entrenador</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tbody>
+
+              <% @trainer_details.each do |trainer| %>
+                <tr>
+                  <% @usuario = User.find(trainer.user_id) %>
+                  <% @perfil = Profile.find(@usuario.id) %>
+                  <% if (@a = trainer.qualification) == @besttrainer %>
+                    <td style="color:#000000 "><%= @perfil.name %></td>
+                    <td style="color:#000000 "><%= @perfil.last_name %></td>
+                    <td style="color:#000000 "><%= trainer.description %></td>
+                    <td style="color:#000000 "><%= trainer.status %></td>
+                    <td style="color:#000000 "><%= link_to "Ver Entrenador", trainer, :class => 'btn btn-info' %></td>
+                  <% end %> 
+                </tr>
+              <% end %>
+            </tbody>
+          </tbody>
+        </table>
+        <!-- TABLA hasta aqui -->
+      </div>
+    </div>
+  </div>
+</trainer>

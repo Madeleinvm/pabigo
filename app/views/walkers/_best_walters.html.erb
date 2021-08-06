@@ -1,0 +1,48 @@
+<walter>
+  <div id="paseadores">
+    <div class="container">
+      <div class="text-center">
+        <h3>Paseadores</h3>
+        <p>Lista de Mejores Paseadores de PABIGO<br></p>
+      </div>
+      <div class="row">
+          <% @bestwalker = 0 %>      
+          <% @walkers.each do |walker1| %>
+            <% if (@prueba = walker1.calification) >= 0 && (@prueba = walker1.calification) >= @bestwalker %>
+              <%@bestwalker = @prueba%> 
+            <% end %> 
+          <% end %>
+          <!-- TABLA DE MEJORES PASEADORES AQUI -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombre del Paseador</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Ciudad del paseador</th>
+              <th scope="col">Status del Paseador</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tbody>
+
+              <% @walkers.each do |walker| %>
+                <tr>
+                  <% @usuario = User.find(walker.user_id) %>
+                  <% @perfil = Profile.find(@usuario.id) %>
+                  <% if (@a = walker.calification) == @bestwalker %>
+                    <td style="color:#000000 "><%= @perfil.name %></td>
+                    <td style="color:#000000 "><%= @perfil.last_name %></td>
+                    <td style="color:#000000 "><%= walker.city %></td>
+                    <td style="color:#000000 "><%= walker.status %></td>
+                    <td style="color:#000000 "><%= link_to "Ver Paseador", walker, :class => 'btn btn-info' %></td>
+                  <% end %> 
+                </tr>
+              <% end %>
+            </tbody>
+          </tbody>
+        </table>
+  <!-- TABLA hasta aqui -->
+      </div>
+    </div>
+  </div>
+</walter>

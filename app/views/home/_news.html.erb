@@ -1,0 +1,53 @@
+<div class="text-center imageback">
+    <h3>Noticias Recientes</h3>
+</div>
+<head>
+    <style>
+        #gallery {
+	        padding-top:70px;
+	        padding-bottom:70px;
+	        background:#f4f4f4;
+        }
+        #gallery img {
+            border-radius:8px;
+            height:200px;
+            width:250px;
+        }
+
+        .gallery {
+            margin-top:60px;
+            margin-bottom:30px;
+        }
+
+        #gallery .text-center {
+            padding-top:20px;
+            margin-bottom:50px;
+            padding-bottom:20px;
+        }
+
+    </style> 
+</head>
+<body>
+<div id="gallery">
+    <div class="container">
+        <div class="row">
+            <% @news.limit(4).each do |new| %>
+                <figure class="effect-chico">
+                <div class="col-md-3 wow post" data-wow-offset="0" data-wow-delay="0.3s">
+                    <a href="<%= users_news_path("id":new.id)%>" >
+                    <img src=<%= new.image.picture.url if new.image %> class="img-responsive imglist" alt="">
+
+                    </a>
+                    <div class="post-body">
+                        <div class="post-meta">
+                            <a class="post-category cat-1" href="<%= users_news_path("id":new.id)%>"><%= new.title %></a>
+                        </div>   
+                    </div>
+                </div>
+                </figure>
+            <% end %>
+            <%= link_to "Ver todas las noticias", users_news_index_path, class: "btn btn-default btn-xs" %>   
+        </div>
+    </div>
+</div>
+<body>

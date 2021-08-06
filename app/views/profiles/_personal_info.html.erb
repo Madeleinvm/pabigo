@@ -1,0 +1,23 @@
+<div class="panel panel-info">
+  <div class="panel-heading">Datos Personales</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        Nombre:<br>
+        Apellido:<br>
+        Género:
+      </div>
+      <div align="right" class="col-xs-6">
+        <%= current_user.profile.name || "Sin indicar" %><br>
+        <%= current_user.profile.last_name || "Sin indicar" %><br>
+        <% if current_user.profile.male %>
+          Masculino
+        <% elsif current_user.profile.male == false %>
+          Femenino
+        <% else %>
+          Sin indicar
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

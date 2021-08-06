@@ -1,0 +1,50 @@
+<%= form_for @subscripcion do |f| %>
+  <% if @subscripcion.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@subscripcion.errors.count, "error") %> prohibited
+      this article from being saved:</h2>
+    <ul>
+    <% @subscripcion.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.input :campo %><br>
+    <%= f.imput :campo %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+<!--
+  <form action="" method="post" role="form" class="contactForm">
+    <div class="form-group">
+      <input type="email" class="form-control" name="email" id="email" placeholder="Tu email" data-rule="minlen:4" data-msg="Please enter a valid email" required />
+      <div class="validation"></div>
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" name="confimemail" id="email" placeholder="Confirmación de tu Email" data-rule="email" data-msg="Please enter a valid email" required />
+      <div class="validation"></div>
+    </div>
+
+
+     <div class="form-group">
+      <label for="sel1">Seleccione cada cuanto desea las notificaciones:</label>
+      <select class="form-control" id="sel1">
+        <option>Diariamente</option>
+        <option>Semanalmente</option>
+        <option>Mensualmente</option>
+        <option>Anualmente</option>
+      </select>
+    </div> 
+
+    <div>
+      <button type="submit" class="btn btn-theme pull-left" style="text-align: center;">Suscribirme</button>
+    </div>
+  </form>
+-->

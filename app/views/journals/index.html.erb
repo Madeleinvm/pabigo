@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="text-center">
+<% if user_signed_in? %>
+	<h1>Bienvenido <%= current_user.profile.name %> </h1>
+<% else %>
+	<h1>Bienvenido</h1>
+<%end%>
+
+<h1>Eventos y Jornadas Especiales</h1>
+	<p><strong><%= @journals.count %></strong> Eventos programados actualmente</p>
+     </div>
+	<table class="table table-hover table-striped">
+			  <thead>
+			    <tr>
+			    <th scope="col">fecha</th>
+            	<th scope="col">Jornada</th>
+            	<th scope="col">lugar</th>
+           		<th scope="col">Hora</th>
+           		<th scope="col">Descripcion</th>
+			    </tr>
+			  </thead>
+			  	<tbody>
+			  		<%- @journals.each do |journal| %>
+			    	<tr>
+			      		 <td><%= journal.date_journal  %></td>
+					     <td><%= journal.tipe_journal  %></td>
+					     <td><%= journal.place_journal %></td>
+					     <td><%= journal.time_journal.strftime('%H:%M') %></td>
+					     <td><%= journal.description_journal  %></td>
+			     		 <td>
+						    <% if user_signed_in? and current_user.is_admin? %>
+						 <%= link_to 'Editar', edit_journal_path(journal) %>
+						 <%= link_to 'Borrar', journal, method: :delete, data: {confirm: 'Esta Seguro?'}  %>
+					     <%end%>
+					     </td>
+				    </tr>
+				    <%end%>
+			    </tbody>
+	</table>
+<br>
+<% if user_signed_in? and current_user.is_admin?%>
+	<%= link_to 'Nueva jornada', new_journal_path ,:class => 'btn'%>
+<%end%>
+<br>
+
+<br>
+<%= link_to 'Volver',root_path , :class => 'btn'%>
+<p>  </p>
+
+</div>

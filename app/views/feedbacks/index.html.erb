@@ -1,0 +1,109 @@
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
+
+<center>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 page-header">
+                <h2 class="">Feedbacks del entrenador/a
+                    <%= @perfil_calificado.name %>
+                    <%= @perfil_calificado.last_name %>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <% unless @entidad_calificada.images.empty? %>
+                    <ul class="list-inline">
+                        <% @entidad_calificada.images.each_with_index do |image, index| %>
+                            <% if image.picture_url %>
+                                <% if index == 0 %>
+                                    <li data-toggle="modal" data-target="#myModal">
+                                    <a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail img-circle" src="<%= image.picture.url %>" width ="300" height="300"><br><%= index + 1 %></a>
+                                    </li>
+                                <% else %>
+                                    <li data-toggle="modal" data-target="#myModal">
+                                    <a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="300" height="300"><br><%= index + 1 %></a>
+                                    </li>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                <%else %>
+                    <h4>No hay imágenes del entrenador </h4>
+                <% end %>
+                <h4>
+                    <strong>Nombre:</strong> 
+                    <%= @perfil_calificado.name %>
+                    <%= @perfil_calificado.last_name %>
+                </h4>
+                <h4>
+                    <strong>Email:</strong> 
+                    <%= @usuario_calificado.email %>
+                </h4>
+                <h4>
+                    <strong>Descripción:</strong> 
+                    <%= @entidad_calificada.description %>
+                </h4>
+                <h4>
+                    <% if params["id_walker"]!= nil %>
+                        <strong>Calificación:</strong> 
+                        <% (0..@entidad_calificada.calification.to_i-1).each do |i| %>
+                            <img src="/images/dog-bone2.png" alt="">
+                        <% end %>
+                        <%= @entidad_calificada.calification %>
+                    <% else %>
+                        <strong>Calificación:</strong> 
+                        <% (0..@entidad_calificada.qualification.to_i-1).each do |i| %>
+                            <img src="/images/dog-bone2.png" alt="">
+                        <% end %>
+                        <%= @entidad_calificada.qualification %>
+                    <% end %>
+                </h4>
+            </div>
+            <div class="col-md-5">
+                <ul class="list-group ">
+                    <% undefined = "No definido" %>
+                    <% if @feedbacks.size == 0  %>
+                        <h4 class="list-group-item-heading name">No se encontraron feedbacks</h4>
+                    <% end %>
+                    <% @feedbacks.each do |feedback| %>
+                        <div class="row">
+                            <div class="list-group-item ">
+                                <% @usuario_calificador = User.find(feedback.user_id) %>
+                                <% @perfil_calificador = Profile.where(user_id:@usuario_calificador.id).take %>
+                                <h4>
+                                    <strong>Usuario:</strong>
+                                    <%= @perfil_calificador.name %>
+                                    <%= @perfil_calificador.last_name %>
+                                </h4>
+                                <h4>
+                                    <strong>Puntuación:</strong> 
+                                    <% (0..feedback.points-1).each do |i| %>
+                                        <img src="/images/dog-bone2.png" alt="">
+                                    <% end %>
+                                    (<%= feedback.points%>)
+                                </h4>
+                                <h4>
+                                    <%= raw(feedback.comment)%>
+                                </h4>
+                                <%= link_to 'Ver', feedback_path("id": feedback.id), :class => 'btn btn-default' %>
+                                
+                                <%if current_user.id == @usuario_calificador.id %>
+                                    <%= link_to 'Modificar', edit_feedback_path("id": feedback.id), :class => 'btn btn-default' %>
+                                    <%= link_to 'Eliminar', feedback_path("id": feedback.id), method: :delete, data: { confirm: "¿Seguro que quiere eliminar a esta calificación?"}, :class => 'btn btn-default' %>
+                                <% end %>
+                            </div>
+                        </div>
+                    <%end%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div>
+            <%= will_paginate @feedbacks, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+        </div>
+    </div>
+</center>

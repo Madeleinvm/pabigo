@@ -1,0 +1,51 @@
+<pensions>
+  <div id="pensions">
+    <div class="container">
+      <div class="text-center">
+        <h3>Mejores Pensiones</h3>
+      </div>
+      <div class="row">
+        <% @bestpension = 0 %>        
+        <% @pensions.each do |pension1| %>
+          <% if (@prueba = pension1.qualification) >= 0 &&  (@prueba = pension1.qualification) >= @bestpension %>
+            <%@bestpension = @prueba%> 
+          <% end %> 
+        <% end %>
+
+        <% @pensions.each do |pension| %>
+            <div class="col-lg-4 info_box_col">
+              <div class="text-center">
+                <% if (@a = pension.qualification) == @bestpension %>
+                  <% unless pension.images.empty? %>   
+                    <% unless pension.images.first == nil %>
+                      <a href="<%= pensionshow_path(pension) %>"><img src="<%= pension.images.first.picture.url %>" alt="" class="img-circle" width="200" height="200"></a>
+                    <% else %>
+                      <a href="<%= pensionshow_path(pension) %>"><img src="/images/ImageDefault.jpg" alt="" class="img-circle" width="200" height="200"  ></a>
+                    <% end %>
+                  <%else %>
+                    <a href="<%= pensionshow_path(pension) %>"><img src="/images/ImageDefault.jpg" alt="" class="img-circle" width="200" height="200"  ></a>
+                  <% end %>
+
+                  <h4><%= pension.nombre %></h4>
+                    <strong>Calificación:</strong> 
+                      <% (0..pension.qualification.to_i-1).each do |i| %>
+                        <img src="/images/dog-bone2.png" alt="">
+                      <% end %>
+                      <%= pension.qualification %>
+                <% end %>     
+              </div>
+            </div> 
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+      <div class="row">
+          <%= link_to "Ver todas las pensiones", pensions_path, class: "tn btn-primary btn-lg" %> 
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</pensions>

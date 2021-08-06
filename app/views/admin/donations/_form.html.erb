@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+        .clean-gray{
+            border:solid 1px #DEDEDE;
+            background:#bdecb6;
+            color:#222222;
+            padding:4px;
+            text-align:center;
+            margin-bottom: 18px;
+        }
+
+        .mensaje-error{
+            color: #cb2d28;
+            // font-weight: bold;
+            display: flex;
+            justify-content: center;
+            margin-right:160px;
+            }
+    </style>    
+
+<style type="text/css">
+  .invalid-feedback {
+    color: red;
+  }
+</style>
+
+<div id="blue">
+    <div class="container">
+        <div class="row">
+            <div id="modificar">
+                <div class="row">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h4>Seleccione el tipo de donación</h4>
+                        </header>
+<center>
+                        <%= simple_form_for [:admin, @donation], :url => { :action => :create } do |f| %> 
+                            
+  			                <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <%= f.input :dontype, 
+                                        label: "Tipo de donación",
+                                        collection: ["Monetaria", "Producto"],
+                                        required: true, autofocus: true, class: 'form-control' %>
+                            </div>
+                            <div class="col-xs-4">
+                                <%= f.input :name, label: "Nombre", required: true %>
+                            </div>
+
+   
+
+                            <div class="form-group col-md-3">
+                                <%= f.input :benefited, 
+                                        label: "Beneficiado",
+                                        :collection => %w[Perro Gato Ambos],
+                                        required: true,
+                                        class: 'form-control' %>
+                            </div>
+
+                        </div> 
+                        
+                        
+                        <div class="row">
+                            <div class="col-xs-10 ">
+                                <%= f.input  :description, label: "Descripción", required: true %>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <%= f.input :quantity, label: "Cantidad", required: true %>
+                            </div>
+                            <div class="col-xs-4">
+                                <%= f.fields_for :images_attributes do |images_fields| %>
+                                    Imagen <%= images_fields.file_field :image, :multiple => true,name: "images_attributes[image][]", :class => 'btn btn-info' %>
+                                <% end %>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                        <div class="col-xs-10">
+                            <div class="clean-gray">
+                                Si el tipo de donación es monetaria, se toma en cuenta como bolívares.<br>
+                                Al seleccionarla se guardará la Cuenta Bancaria, de lo contrario se guardará la dirección de envío. <br>
+                                Cuenta Bancaria: Cuenta: 020399288290922, Banco: Provincial, Rif: 3424553, Cuenta Corriente, Nombre: Pabigo.<br>
+                                Dirección: Caracas, Montalban III, Ave. Teheran, Universidad Católica Andrés Bello.<br>
+                            </div>
+                        </div> 
+                        </div>
+
+                        
+
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <%= f.submit 'Aceptar', :class => 'btn btn-primary' %>    
+                                <%= link_to  admin_donations_path do %>
+                                    <%= button_tag t('button.Cancelar'), name: "Cancelar", class:"btn btn-default", value: true %>  
+                                <%end%>
+                            </div>
+                        </div>
+                        <% end %>
+</center>
+                    </section>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+<center>
+
+

@@ -1,0 +1,38 @@
+<%= simple_form_for [:admin, @user] do |f| %>
+  <%= f.input :email, label: "Correo", required: true, autofocus: true %>
+
+  <% unless @user.new_record? %>
+    <%= f.simple_fields_for :profile do |profile_form| %>
+      <%= profile_form.input :name,
+                             label: "Nombre",
+                             required: true %>
+      <%= profile_form.input :last_name,
+                             label: "Apellido",
+                             required: true %>
+      <%= profile_form.input :male,
+                             label: "Género",
+                             as: :select,
+                             collection: [["Masculino", true], ["Femenino", false]],
+                             required: true %>
+    <% end %>
+  <% end %>
+
+  <% if @user.new_record? %>
+    <%= f.input :password,
+                label: "Contraseña",
+                required: true,
+                hint: ("#{@minimum_password_length} caracteres mínimo" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                label: "Confirmación de Contraseña",
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+  <% end %>
+
+  <%= f.input :role_ids,
+              label: "Roles",
+              collection: @roles,
+              as: :check_boxes %>
+
+  <%= f.button :submit, yield(:title) %>
+<% end %>

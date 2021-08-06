@@ -1,0 +1,316 @@
+<% if can? :update, Ask %>
+<!-- CORREGIR LAS PREGUNTAS DE ACUERDO CON LAS VALIDACIONES -->
+
+
+<!-- CSS puro sin usar boostrap (solo en la parte de la paginacion) -->
+
+<style media="screen">
+
+.otro-campo{
+  display: flex;
+  justify-content: center;
+}
+
+/* Corresponde al campo de la edicion de comentarios para el veterinario */
+
+.campo-pregunta{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.boton-pregunta{
+    margin-top: 0;
+}
+
+/* Arreglando el boton de la entrada de datos */
+
+input[type=div] {
+  margin: 0;
+}
+
+div.sub-header{
+  display: flex;
+  justify-content: center;
+  font-size: 31px;
+  font-weight: 700;
+}
+
+figure{
+  display: flex;
+  justify-content: center;
+}
+
+textarea.form-control{
+  width: 814px;
+  height: 101px;
+}
+
+/* Eliminando el problema de los atributos de los campos */
+
+abbr[title] {
+  display: none !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  cursor: inherit !important;
+  }
+
+  /* el label resuelve problemas de diseno con respecto al atributo a ocultar */
+
+  label{
+
+    display: none;
+  }
+
+.titulo-d{
+  font-size: 23px;
+  margin-bottom: 0;
+
+}
+
+.botones{
+  display: flex;
+  flex-direction: row-reverse;
+  background: rgba(0,0,0,0);
+  color: #3a7999;
+  margin-top: 0px;
+
+}
+
+.invalid-feedback{
+  display: none;
+}
+
+  /* css por defecto, no se definio en los tag de html */
+
+.form-group.text.required.ask_answer.form-group-valid{
+  margin: 0;
+
+}
+
+.form-group.text.required.ask_answer{
+  margin: 0;
+}
+
+input.destruir, input.destruir:visited{
+  border: 0;
+  background: #0BA9F9 url(overlay.png) repeat-x;
+}
+
+#eliminar{
+    padding-left: 15px;
+}
+
+/* destruir comprende varios estilo a diferentes botones */
+/* con la finalidad de que tengan el mismo color , borde, entre otros */
+
+.destruir  {
+margin-left: 17px;
+margin-right: 0;
+margin-bottom: 0px;
+background: #0BA9F9 url(overlay.png) repeat-x;
+display: inline-block;
+padding: 5px 10px 6px;
+color: #fff;
+text-decoration: none;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-moz-box-shadow: 0 1px 3px rgba(13, 235, 228, 0.25);
+-webkit-box-shadow: 0 1px 3px rgba(13, 235, 228, 0.25);
+text-shadow: 0 -1px 1px rgba(13, 235, 228, 0.25);
+border-bottom: 1px solid rgba(13, 235, 228, 0.25);
+position: relative;
+cursor: pointer;
+font-weight: bold;
+height: 31px;
+width: 72px;
+
+}
+
+
+  .prueba-22{
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+
+
+  }
+
+  .question{
+    margin-left: 213px;
+    margin-right: 200px;
+  }
+
+  .pregunta-por-responder{
+
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 200px;
+    margin-right: 137px;
+
+
+  }
+
+  .p{
+
+    margin-left: 13px;
+    margin-top: 6px;
+    font-size: 16px;
+
+  }
+
+  a{
+    color: white;
+    text-decoration: none;
+  }
+
+p.destruir{
+
+}
+
+#destruir{
+  margin-left: 90px;
+}
+
+figure{
+    margin-top: 14px;
+}
+
+a:link
+{
+text-decoration:none;
+}
+
+footer{
+  margin-top: 24px;
+  background: #d0a779;
+  height: 86px;
+  -webkit-border-radius: 98px 98px 98px 98px;
+
+    width: 928px;
+    height: 79px;
+    margin-bottom: 28px;
+    padding-bottom: 0px;
+
+
+}
+
+.titulo-f{
+  text-align: -webkit-center;
+  font-size: large;
+  color: #1a1c27bf;
+  font-weight: bold;
+}
+
+.boton-f{
+  text-align: -webkit-center;
+  margin-top: 10px;
+  font-size: xx-large;
+  margin-right: 93px;
+
+
+}
+
+#positione{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+
+}
+
+.myfooter{
+  display: flex;
+  justify-content: center;
+}
+
+</style>
+
+<div class="contenido principal">
+  <figure><img src="https://gnwebprensalibrerootwest.s3.us-west-2.amazonaws.com/mmediafiles/pl/2f/2f3ddfe9-b614-45be-badb-412cf7201a47_749_499.jpg" alt="" width="419px" height="250px"></figure>
+  <div class="sub-header">
+
+
+<!-- El doctor ademas de editar el titulo puede ir a la seccion de gatos y de perros (faq) -->
+<!-- Si la variable tipo es igual a gatos entonces muestra diseno respectivo a gatos -->
+<!-- caso contrario diseno respectivo a perros -->
+
+    <strong class="titulo-d">El paciente necesita de su ayuda con el siguiente comentario </strong><br>
+  </div>
+  <%if @ask.tipo == "Gatos"%>
+    <div class="titulo-d" id="positione">Seccion de Gatos</div><br>
+  <%else%>
+    <div class="titulo-d" id="positione">Seccion de Perros</div><br>
+  <%end%>
+<div class="pregunta-por-responder">
+    <span><img id="cajita" src="https://image.flaticon.com/icons/svg/1243/1243540.svg" alt="" width="34px" height="34px"></span>
+  <p class="p"><%= @ask.campo %></p>
+</div>
+  <!-- <span class="title-2">Aquí encontrarás las mejores preguntas y respuesta sobre:</span> -->
+  <img src="Descargas/como_es_el_apareamiento_de_perros.jpg" alt="">
+</div>
+
+<div class="">
+
+
+<%= simple_form_for @ask, url: ask_path(@ask) do |f| %>
+
+
+  <% @ask.errors.each do |attr, msg| %>
+    <% @prueba = "#{msg}" if @ask.errors[attr].first == msg %>
+  <% end %>
+
+<div class="prueba-22">
+  <div class="preguntas-respuestas">
+
+      </div>
+      </div>
+
+  <!-- <p class="otro-campo"><%= @ask.campo %></p> -->
+  <!-- Normalmente cuando se crea una pregunta la respuesta recibe un valor por defecto... -->
+  <!-- Este valor se llama "primera vez" , y es asi debido a resolver conflictos en caso de.. -->
+  <!-- que no exista el campo o sobresalga los limites de longitud en el campo respuesta -->
+
+  <!-- Bandera se uso como prueba en caso de emergencia si no apareciese el atributo ask.user_id -->
+
+  <div class="otro-campo">
+    <div class="campo-pregunta">
+      <% if @ask.answer == 'primera vez' %>
+        <%  @ask.answer = nil%></p>
+      <% else %>
+        <% bandera = @ask.user_id %></p>
+      <% end %>
+      <%= f.input :answer, as: :text, hint:"·#{@prueba}",  placeholder: "Sus conocimientos salvaran al mundo domestico"%>
+      <div class="botones">
+        <p class="destruir" id="eliminar"><%= link_to 'Eliminar', ask_path(@ask),
+        method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+        <p><%= f.submit value:'Publicar', class:"destruir" %></p>
+      </div>
+    </div>
+  </div>
+  <div class="myfooter">
+    <footer>
+      <div class="titulo-f">Aqui encontraras las preguntas y respuesta sobre los</div>
+      <div class="boton-f">
+        <p class="destruir" id="destruir">  <%= link_to 'Perros', ask_perros_path %></p>
+        <p class="destruir" id="destruir">  <%= link_to 'Gatos', ask_gatos_path %></p>
+      </div>
+    </footer>
+  </div>
+<% end %>
+<% else %>
+
+
+<!-- Si el usuario llega a entrar en la edicion de los doctores se le desplegara esta ventana -->
+
+<h1>Querido usuario, esta sección no es para usted!!!</h1>
+
+<style media="screen">
+  body {
+    background-image: url("https://previews.123rf.com/images/monicaclick/monicaclick1710/monicaclick171000035/88532349-perro-pug-sonriente-sosteniendo-signo-de-stop-rojo-y-signo-de-exclamaci%C3%B3n-amarillo-con-luz-intermitente.jpg");
+}
+h1{
+  text-align: center;
+}
+</style>
+<% end %>

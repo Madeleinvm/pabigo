@@ -1,0 +1,32 @@
+$(document).ready(function() {
+  // alert("<%= User.first.email %>");
+  //console.log($('#states').children());
+
+  /* Itera en cada opción del select de estados */
+  $('#states > option').each(function() {
+    // console.log(this.text);
+    /* Maneja el evento de clic cuando el usuario selecciona un estado */
+    $(this).click(function() {
+      // alert(this.text);
+      /* Asigna el estado seleccionado en una variable */
+      let state = this.text
+
+      //$(`<%#= j (@cities = City.where(name: ${state})) %>`);
+      //$('#cities-div').html("<%#= j (render 'cities', cities: @cities, f: f) %>");
+      //$('#cities > option').innerHTML = ``;
+
+      $.ajax({
+        url: "/addresses/cities",
+        type: "post",
+        data: { state_name: state }
+      });
+      // alert(cities);
+    });
+  });
+
+  /*$('#cities > option').each(function() {
+    $(this).click(function() {
+      alert(this.text + " " + this.value);
+    });
+  });*/
+});

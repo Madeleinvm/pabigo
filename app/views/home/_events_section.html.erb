@@ -1,0 +1,109 @@
+
+<div class="slider">
+  <div id="about-slider">
+    <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators visible-xs">
+        <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-slider" data-slide-to="1"></li>
+        <li data-target="#carousel-slider" data-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="item active">
+          <%= image_tag "public/7_jornadas.jpg", class: "img-responsive" %>
+          <!-- <img src="img/7.jpg" class="img-responsive" alt=""> -->
+          <div class="carousel-caption">
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
+              <!-- <h2><span>Eventos & Jornadas Especiales</span></h2> -->
+              <h2>Eventos y Jornadas Especiales</h2>
+            </div>
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
+              <p>Esterilización, Adopción, Vacunación</p>
+            </div>
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">
+              <form class="form-inline" action="/journals">
+                <div class="form-group">
+                  <button type="livedemo" id="btn-id-jornadas" class="btn btn-primary btn-lg" required="required">Jornadas</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <!--<img src="img/6.jpg" class="img-responsive" alt="">-->
+          <%= image_tag "public/6_tips.jpg", class: "img-responsive" %>
+          <div class="carousel-caption">
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.0s">
+              <h2>Tips de Cuidados de tu Mascota</h2>
+            </div>
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.3s">
+              <p>Alimentación, Salud, Prevención,  Adiestramiento, Cuidados y más...</p>
+            </div>
+            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.6s">
+              <form class="form-inline"  action="#tips" >
+                <div class="form-group">
+                  <!-- <button type="livedemo" name="purchase" class="btn btn-primary btn-lg" required="required">Live Demo</button> -->
+                </div>
+                <div class="form-group">
+                  <button type="livedemo" id="btn-id-tips"  class="btn btn-primary btn-lg" required="required">Tips</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+      </a>
+
+      <a class=" right carousel-control hidden-xs" href="#carousel-slider" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+    <!--/#carousel-slider-->
+  </div>
+  <!--/#about-slider-->
+</div>
+<!--/#slider-->
+
+
+<div id="journal">
+  <div class="container">
+    <div class="text-center">
+      <h3>Eventos y Jornadas Especiales</h3> 
+      <p>Jornadas y eventos especiales para ti y tus mascotas<br>Tabla de fechas y lugares</p>
+    </div>
+    <div class="row">
+        <!-- TABLA DE FECHAS AQUI -->
+        <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+          <th scope="col">fecha</th>
+              <th scope="col">Jornada</th>
+              <th scope="col">lugar</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Descripcion</th>
+          </tr>
+        </thead>
+          <tbody>
+            <%- @journals = Journal.all %>
+            <%- @journals.each do |journal| %>
+            <tr>
+                 <td><%= journal.date_journal  %></td>
+               <td><%= journal.tipe_journal  %></td>
+               <td><%= journal.place_journal %></td>
+               <td><%= journal.time_journal.strftime('%H:%M') %></td>
+               <td><%= journal.description_journal  %></td>
+               <td>
+               </td>
+            </tr>
+            <%end%>
+          </tbody>
+  </table>
+<!-- TABLA hasta aqui -->
+    </div>
+  </div>
+</div>
+<!--/#jornadas-->

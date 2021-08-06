@@ -1,0 +1,53 @@
+<div id="blue">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Paseador</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+<div id="modificar">
+<div class="row">
+<section class="panel">
+  <header class="panel-heading">
+  <div class="col-lg-12">
+    <div class="col-lg-8"><h4>Modificar tus datos</h4></div>
+    <div class="col-lg-4"><strong><h4><%= link_to 'Dejar de ser paseador', walkerdelete_path(@walker), method: :delete, data: { confirm: "¿Seguro que quieres dejar de ser paseador?"}  %></h4></strong></div>
+  </div>
+  </header>
+  <%= simple_form_for [@walker], url: walkerupdate_path(@walker) do |f| %>
+  <div class="panel-body">
+  <div class="row">
+            
+        <div class="row ">
+          <div class="form-group"> 
+            <p>
+              <%= f.input :city,
+                                    required: true,
+                                    class: 'form-control'%>
+            </p>
+          </div>
+          <%= f.label :descripcion %>
+          <div class="form-group">
+          <%= f.cktext_area :description %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-offset-2 col-lg-10">
+            <%= f.submit 'Actualizar', :class => 'btn btn-info'%>
+            <%= link_to 'Cancelar', url_for(:back), :class => 'btn btn-default' %>
+          </div>
+        </div>
+        <% end %>
+  </div>
+  </div>
+</section>
+</div>
+</div>  
+</div>
+</div>
+</div>
+</div>

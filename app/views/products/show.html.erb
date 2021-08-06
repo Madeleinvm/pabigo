@@ -1,0 +1,243 @@
+<style>
+
+  #wrapper {
+    display: flex;
+    padding-left: 100px;
+    padding-right: 100px;
+    /*padding-bottom: 50px;*/
+  }
+
+  .div_left {
+    flex: 2;
+    margin: 0px;
+    width: 40%;
+  }
+
+  .div_right {
+    background: #0BA9F924;
+    color: white;
+    flex: 2;
+    margin: 0px;
+  }
+
+  .product_img {
+    display: block;
+    border-radius: 15px 0px 0px 50px;
+    width: 100%;
+    height: auto;
+    background-color: rgba(54, 84, 99, 0.7);
+    padding: 5px;
+    vertical-align: middle;
+  }
+
+  .button_align_center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .test_border_area_1 {
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: black;
+  }
+
+  .text_align_center {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  table, th, td {
+    /*border: 2px solid black;*/
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
+  tr {
+    height: 50px;
+  }
+
+  .row_label {
+    text-align: right;
+    padding-right: 10px;
+    width: 40%;
+  }
+
+
+</style>
+
+
+<head>
+  <%= stylesheet_link_tag "products" %>
+</head>
+<!--===============================================================================================-->
+
+<body>
+
+<div>
+  <p id="notice"><%= notice %></p>
+
+  <div class="limiter container-login100">
+    <div id="wrapper" class="test_border">
+
+
+      <div id="" class="div_left test_border">
+        <!--Carga la Primera imagen de todas-->
+        <% unless @product.images.first == nil %>
+          <!--          <div class="login100-form-title" style="background-image: url(<%#= @product.images.first.picture.url %>);">-->
+          <div>
+
+            <img class="product_img" src="<%= @product.images.first.picture.url %>">
+          </div>
+        <% else %>
+          <div class="login100-form-title" style="background-image: url('/images/productomascota.jpg');">
+          </div>
+        <% end %>
+        <!--Fin de carga de imagenes-->
+      </div>
+
+
+      <div id="" class="div_right">
+
+        <div class="right_upper_wrapper test_border_area" data-validate="Username is required">
+
+
+          <table style="vertical-align: middle;  color: #666666; font-family: 'Helvetica Neue'; ">
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Nombre:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <p><%= @product.name %></p>
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Descripción:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <%= @product.description.html_safe %>
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Tipo:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <%= @product.product_type %>
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Cantidad:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <%= @product.qty %>
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Información de Contacto:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <% @dato_usuario = User.find_by_id(@product.users_id) %>
+                  <%= @dato_usuario.email %>"
+
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Dirección para Retiro:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <%= @product.address.html_safe %>
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <td class="row_label">
+                <p class=" ">Número de Contacto:</p>
+              </td>
+
+              <td class="">
+                <div class="wrap-input100">
+                  <!--                  <p class="label-input100 span_label">Nombre</p>-->
+                  <%= @product.phone_number %>
+                  <!--                  <p class="focus-input100 span_focus"></p>-->
+                </div>
+              </td>
+
+            </tr>
+
+          </table>
+
+
+        </div>
+        <div>
+          <div class="container-login100-form-btn text_align_center button_align_center">
+            <%= link_to 'Regresar', products_path, class: "login100-form-btn button_align_center", style: "width: 40px; vertical-align:middle; padding-top:10px;" %>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+</body>

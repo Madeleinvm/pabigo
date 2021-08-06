@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    h1 {
+      text-align:center;
+    }
+    .row {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    p.resumen{
+        color:grey;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 2000px;
+    }
+    .iconet{
+        margin-left: 10%;
+        margin-top: 15%;
+    }
+    .photo {
+      border-radius: 45px;
+      margin-right: 20px;
+      width: 100px;
+      height:100px
+    }
+    .form-control { 
+      width:100%;
+      display: inline-block;
+      margin-right:10px;
+    }
+    .name {
+      font-weight: 700;
+    }
+    .expertise-label {
+      display:block;
+      font-weight: 700;
+      margin-top:10px;
+    }
+    .btn-more {
+      margin-top:10px;
+      width: 100%
+    }
+    .label {
+      font-weight: normal;
+    }
+
+    a.name{
+      color: #595959;
+    }
+    
+    </style>
+    <title>PABIGO</title>
+
+</head>
+
+<body>
+  <div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 page-header">
+          <h1 class="">Razas</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <%= form_tag(races_path, method: :get) do %>
+            <div class="col-lg-6">
+              <%= text_field_tag :term,'' ,class:"search form-control" %>
+            </div>
+            <div class="col-lg-3">
+              <%= select_tag :term2, options_for_select([ "Perro", "Gato" ]), prompt: "Filtrar por:", class:"btn"%>
+            </div> 
+            <div class="col-lg-3">
+              <%= submit_tag 'Search',class:'btn ' %>
+            </div> 
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="list-group">
+            <% undefined = "No definido" %>
+            <% if @races.size == 0  %>
+              <h4 class="list-group-item-heading name">No se encontraron razas</h4>
+            <% end %>
+            <% @races.each do |race| %>
+              <div class="list-group-item col-lg-12">
+                <img src="<%= race.image.picture.url %>" class="pull-left photo">
+                <div class="col-lg-8">
+                  <h4 class="list-group-item-heading name">
+                    <a class="name" href="<%= race_path(race)%>"><%= race.name %></a>
+                  </h4>
+                  <p class="list-group-item-text resumen ">CUIDADO: <%= raw(race.care)%></p>
+                </div>
+              </div>
+            <%end%>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div>
+        <%= will_paginate @race, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
+  </div>
+</body>

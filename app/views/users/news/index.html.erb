@@ -1,0 +1,87 @@
+<html lang="en">
+	<head>
+		<%= stylesheet_link_tag "users/news" %>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">		 
+    </head>
+	<body>
+		<!-- section -->
+		<div class="section ex1">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">	
+					<!-- post -->
+					<% @news.order(id: :desc).limit(2).each do |new| %>
+					<div class="col-md-6">
+						<div class="post post-thumb">
+							<a class="post-top" href="<%= users_news_path("id":new.id)%>" ><img src="<%= new.image.picture.url %>" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<span class="post-date"><%= new.created_at.strftime("%B %d, %Y") %></span>
+								</div>
+								<h3 class="post-title"><a href="<%= users_news_path("id":new.id)%>"><%= new.title %></a></h3>
+							</div>
+						</div>
+					</div>
+					<!-- /post -->
+					<% end %>					
+				</div>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="section-title">
+								<h2>Noticias Recientes</h2>
+							</div>
+							<% @news.order(id: :desc).each do |new| %>
+							<!-- post -->
+							<div class="col-md-6">
+								<div class="post">
+									<a class="post-new" href="<%= users_news_path("id":new.id)%>"><img src="<%= new.image.picture.url %>" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<span class="post-date"><%= new.created_at.strftime("%B %d, %Y") %></span>
+										</div>
+										<h3 class="post-title"><a href="<%= users_news_path("id":new.id)%>"><%= new.title %></a></h3>
+									</div>
+								</div>
+							</div>
+							<% end %>
+						</div>
+						<div>
+							<%= will_paginate @news, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<!-- post widget -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Mas leidos</h2>
+							</div>
+							<% @news.order(visits: :desc, id: :desc).limit(4).each do |new| %>
+								<div class="post post-widget">
+									<a class="post-img" href="<%= users_news_path("id":new.id)%>"><img src="<%= new.image.picture.url %>" alt=""></a>
+									<div class="post-body">
+										<h3 class="post-title"><a href="<%= users_news_path("id":new.id)%>"><%= new.title %></a></h3>
+										<p class="list-group-item-text resumen "><%= new.content1 %></p>
+                                		<h3 ><%= new.created_at.strftime("%B %d, %Y") %></h3>									
+									</div>
+								</div>
+
+							<% end %>
+						</div>
+						<!-- /post widget -->			
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+		
+
+		
+		

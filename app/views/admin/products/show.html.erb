@@ -1,0 +1,103 @@
+
+<head>
+    <%= stylesheet_link_tag "products" %>
+</head>
+<div class="container-fluid  dashboard-content">
+                <!-- Inicio PageHeader -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Donaciones de producto</h2>
+                            <p class="pageheader-text">Descripción detallada de las solicitudes de donaciones realizadas por el administrador.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="javascript:history.back()" >Donaciones de Producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Detalle de la donación de Producto</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fina del headerPages -->
+                    <div class="row">
+
+                        <!-- Tabla Basica -->
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <center>
+                                    <h4 class="card-header">Detalles De Producto</h4>
+                                    </center>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <th scope="row">Nombre: </th>
+                                                    <td><%= @product.name %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <th scope="row">Descripcion: </th>
+                                                    <td><%= @product.description.html_safe %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <th scope="row">Direccion de Retiro: </th>
+                                                    <td><%= @product.address.html_safe %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <th scope="row">Telefono: </th>
+                                                    <td><%= @product.phone_number %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <th scope="row">Tipo de Producto: </th>
+                                                    <td><%= @product.product_type%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <th scope="row">Cantidad: </th>
+                                                    <td><%= @product.qty%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <th scope="row">Quien Dono: </th>
+                                                    <% @dato_usuario = User.find_by_id(@product.users_id) %>
+                                                    <td><%= @dato_usuario.email %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Fin de la tabla basica -->
+
+                        <!-- Inicio de la imagen-->
+                            <center>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="card">
+                                            <% unless @product.images.first == nil %>
+                                                        <div class="card-body">
+                                                            <table class="table table-hover">
+                                                                <img  class="img-thumbnail" src="<%= @product.images.first.picture.url %>" width="400"  ></a>
+                                                            </table>
+                                                        </div>
+                                            <% else %>
+                                                        <div class="card-body">
+                                                            <table class="table table-hover">
+                                                                <img  class="img-thumbnail" src="/images/productomascota.jpg" width="400"  ></a>
+                                                            </table>
+                                                        </div>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                            </center>
+                        <!-- Fin de la imagen-->
+                        <div class="container-login100-form-btn">
+						 <%= link_to 'Regresar',  admin_products_path, class:"login100-form-btn"  %>
+						</div>
+                    </div>
+            </div>

@@ -1,0 +1,27 @@
+<div class="thumbnail" style="max-width: 252px;">
+  <% if current_user.profile.image && current_user.profile.image.picture? %>
+    <%= link_to image_tag(current_user.profile.image.picture.url, size: "242x200"), current_user.profile.image.picture.url, target: :_blank %>
+  <% end %>
+
+  <div class="caption">
+    <h4 align="center">
+      <% if current_user.profile.image %>
+        <% if current_user.profile.image.name == "" || current_user.profile.image.name == nil %>
+          <%= current_user.profile.full_name || current_user.email %>
+        <% else %>
+          <%= current_user.profile.image.name %>
+        <% end %>
+      <% end %>
+    </h4>
+    <p></p>
+    <p>
+      <%= link_to "Modificar Perfil", edit_user_registration_path, class: "btn btn-primary btn-block", role: "button" %>
+      <% unless current_user.profile.image %>
+        <%= link_to "Agregar Foto de Perfil", new_image_path, class: "btn btn-default btn-block" %>
+      <% else %>
+        <%= link_to "Cambiar Foto de Perfil", edit_image_path(current_user.profile.image), class: "btn btn-default btn-block" %>
+        <%= link_to "Eliminar Foto de Perfil", image_path(current_user.profile.image), method: :delete, data: { confirm: "¿Seguro que quiere eliminar su foto de perfil?" }, class: "btn btn-danger btn-block" %>
+      <% end %>
+    </p>
+  </div>
+</div>

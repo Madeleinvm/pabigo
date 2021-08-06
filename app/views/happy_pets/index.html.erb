@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div.imageback{
+            background-image: url(/assets/a1.png);
+            margin-top: -70px;
+        }
+        #gallery {
+	        padding-top:70px;
+	        padding-bottom:70px;
+	        background:#f4f4f4;
+        }
+        #gallery img {
+            border-radius:8px;
+            height:200px;
+            width:250px;
+        }
+
+        .gallery {
+            margin-top:60px;
+            margin-bottom:30px;
+        }
+
+        #gallery .text-center {
+            padding-top:20px;
+            margin-bottom:50px;
+            padding-bottom:20px;
+        }
+
+    </style> 
+</head>    
+    <body>
+        <div id="gallery">
+            <div class="text-center imageback">
+                <h3>Mascotas Felices</h3>
+                <p>Seccion de mascotas que han sido adoptadas :D</p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <% @pets.each do |pet| %>
+                        <figure class="effect-chico">
+                        <div class="col-md-3 wow post" data-wow-offset="0" data-wow-delay="0.3s">
+                            <a href="<%= happy_pet_path("id":pet.id)%>" >
+                                <% pet.images.limit(1).each do |image| %>
+                                    <img src=<%= image.picture.url %> class="img-responsive imglist" alt="">
+                                <% end %>
+                            </a>
+                            <div class="post-body">
+                                <div class="post-meta">
+                                    <a class="post-category cat-1" href="<%= happy_pet_path("id":pet.id)%>"><%= pet.name %></a>
+                                    <span class="">Edad: <%= pet.aprox_age %> año</span>
+                                </div>   
+                            </div>
+                        </div>
+                        </figure>
+                    <% end %>
+                     
+                </div>
+                <div>
+					<%= will_paginate @pets, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+				</div> 
+            </div>
+        </div>
+    </body>
+</html>

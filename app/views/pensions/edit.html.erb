@@ -1,0 +1,75 @@
+<div id="blue">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Pensión</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+<div id="modificar">
+<div class="row">
+<section class="panel">
+  <header class="panel-heading">
+<h4>Modificar pensión</h4>
+  </header>
+  <%= simple_form_for [@pension], url: pensionupdates_path(@pension) do |f| %>
+  <div class="panel-body">
+    <div class="row">
+          <div class="row ">
+            <label  class="control-label col-lg-2">Nombre </label>
+            <div class="col-lg-10">
+            <%= f.text_field :nombre %>
+            </div>
+          </div>
+          <br>
+                    
+          <div class="row ">
+            <label  class="control-label col-lg-2">Red Social</label>
+            <div class="col-lg-10">
+            <%= f.text_field :red_social %>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <label class="control-label col-lg-2">Correo</label>
+            <div class="col-lg-10">
+            <%= f.text_field :correo %>
+            </div>
+          </div>
+
+          <br>
+           <div class="row ">
+            <label class="control-label col-lg-2"> Descripción</label>
+            <div class="col-lg-10">
+            <%= f.text_area :description %>
+            </div>
+          </div> 
+
+          <br>     
+          <div class="row ">
+            <label  class="control-label col-lg-2">Status </label>
+            <div class="col-lg-10">
+            <%= f.text_field :status%>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-offset-2 col-lg-10">
+              <%= f.submit 'Actualizar', :class => 'btn btn-info'%>
+              <%= link_to 'Cancelar', url_for(:back), :class => 'btn btn-default' %>
+            </div>
+          </div>
+          <% end %>
+    </div>
+  </div>
+</section>
+</div>
+</div>  
+</div>
+</div>
+</div>
+</div>
+

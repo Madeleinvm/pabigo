@@ -1,0 +1,51 @@
+<div class="row">
+<div class="col-md-12">
+  <h4>
+  <center>
+      <strong>Fotos</strong>     
+      <% unless @trainer_details.images.empty? %>
+                 
+                   <ul class="list-inline">
+                      <% @trainer_details.images.each_with_index do |image, index| %>
+                         <% if image.picture_url %>
+                           <% if index == 0 %>
+                             <li data-toggle="modal" data-target="#myModal"><a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="400" height="400"><br><%= index + 1 %></a>
+                             </li>
+                           <% else %>
+                              <li data-toggle="modal" data-target="#myModal"><a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="400" height="400"><br><%= index + 1 %></a>
+                             </li>
+                           <% end %>
+                         <% end %>
+                       <% end %>
+                     <!--end of thumbnails-->
+                   </ul>
+                 </center>
+             <%else %>
+               <h4>No hay imágenes del entrenador </h4>
+             <% end %>
+ 
+  </h4>
+</div>
+</div>
+<center>
+<div class="row">
+<div class="col-md-12 ">
+  <h4>
+      <strong>Status: <%= @trainer_details.status %></strong>
+  </h4>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12 ">
+  <h4>
+      <strong>Descripción: <%= @trainer_details.description %></strong>
+  </h4>
+</div>
+</div>
+</center>
+
+
+
+
+

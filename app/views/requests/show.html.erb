@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag "requests-index"%>
+    <title></title>
+  </head>
+  <body class="show-body">
+
+  <!-- Si la persona se registro y tiene un rol podra ver las solicitudes de los demas -->
+
+
+     <!-- titulo del Show -->
+      <h2 class="titulo-show tishow">Su solicitud en detalle</h2>
+
+     <!-- Mostrando imagenes en show -->
+     <div class="milagro">
+
+
+
+        <section class="event-list">
+          <div class="contenedor">
+            <article class="event" id="event-show">
+              <figure class="event-imageContainer">
+                <div class="imagen-show">
+                   <% unless @request.images.empty? %>
+                     <% @request.images.each_with_index do |image, index| %>
+                       <% if image.picture_url %>
+                         <a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="event-image show" div="imagen-mostrar" src="<%= image.picture.url %>" width ="500px" height="500px"></a>
+                         <% break %>
+                       <% end %>
+                     <% end %>
+                   <%else %>
+                   <a><img class="event-image no-available" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMS0U84PRinPr5VuDBwd-nmkU-x9E5suEssBJeumNR5i0oWC2vGg" width ="60px" height="100px"></a>
+                   <% end %>
+                 </div>
+                <!-- <img class="event-image" src="https://www.lawebdelprogramador.com/usr/36000/36045/55dd4d0377eee-php-texto-sobre-imagen.jpg" width="500" /> -->
+              </figure>
+              <div class="event-detail" id="justify">
+                <h3 class="event-title title-show">Tipo de solicitud: <%= @request.tipo %></h3>
+                <% if @request.user_id == 1 %>
+                  <p class=""><strong class="fuerte">Nombre y apellido: </strong>Administrador</p>
+                <% else %>
+                  <p class=""><strong class="fuerte">Nombre y apellido: </strong><%= @request.name %> <%= @request.last_name %></p>
+                <% end %>
+                <% prueba = Request.find(@request.id) %>
+                <p class=""><strong class="fuerte">Descripción de la solicitud: </strong><%= @request.descripcion%></p>
+                <p class=""><strong class="fuerte">Dirección del solicitante: </strong><%= @request.direccion%></p>
+                <p class=""><strong class="fuerte">Correo del solicitante: </strong><%= @request.email%></p>
+                <p class=""><strong class="fuerte">Fecha y hora de la publicación: </strong><%= prueba%></p>
+                <% if @request.user_id % 3 != 0 && @request.user_id % 2 == 1%>
+                  <p class="cas"><strong class="fuerte">Calificación: </strong> <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                    <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                    <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                    <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                    <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  </p>
+                <% elsif @request.user_id % 4 != 0 && @request.user_id % 2 == 0 %>
+                <p class="cas"><strong class="fuerte">Calificación: </strong> <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                </p>
+                <% elsif @request.user_id % 3 == 0 && @request.user_id % 2 == 1%>
+                <p class="cas"><strong class="fuerte">Calificación: </strong> <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                </p>
+                <% else  %>
+                <p class="cas"><strong class="fuerte">Calificación: </strong> <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                  <img src="https://image.flaticon.com/icons/svg/1353/1353965.svg" class="calificacion" width="15" height="15"  alt="Hueso">
+                </p>
+                <% end  %>
+                <hr class="solili">
+
+                <% if current_user != nil %>
+                  <% if @request.user_id == current_user.id %>
+                    <div class="acomodar">
+                      <p class="acomo2"><%= link_to "Modificar", edit_request_path(@request), class: "acomo3" %></p>
+                      <p class="acomo2"><%= link_to "Eliminar", request_path(@request), method: :delete, data: { confirm: 'Are you sure?' }, class: "acomo3" %></p>
+                    </div>
+                  <% end %>
+                <% else %>
+                 <h1>devieñve</h1>
+                <%end%>
+                <footer class="nana">
+                  <div class="titulo-f sasa"> Menu Principal </div>
+                    <div class="boton-f">
+                    <a class="pe-ga" href="../requests"><img src="https://image.flaticon.com/icons/svg/489/489399.svg" width="52" height="56"  alt="Gato" class="gatocorazon"></a>
+                  </div>
+                </footer>
+              </div>
+            </article>
+        </section>
+
+
+     </div>
+     </div>
+
+
+
+
+
+  </body>
+
+</html>

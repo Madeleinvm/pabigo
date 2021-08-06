@@ -1,0 +1,16 @@
+//= require jquery3
+//  require jquery
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require popper
+//  require admin/bootstrap
+//= require bootstrap
+//= require admin/metisMenu
+//= require admin/raphael
+//= require admin/morris
+//  require admin/morris-data
+//= require admin/sb-admin-2
+//= require ckeditor/init
+//= require profile
+//= require addresses

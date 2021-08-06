@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container">
+
+    <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Agregar Tip de Salud</div>
+            </div>
+
+            <div class="panel-body" >
+                <form method="post" action=".">
+
+
+
+                    <form  class="form-horizontal" method="post" >
+
+
+
+                        <div id="div_id_username" class="form-group required">
+                            <label for="name" class="control-label col-md-4  requiredField">Nombre<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @tipe.name %>
+                            </div>
+                        </div> <br><br>
+                        <div id="div_id_email" class="form-group required">
+                            <label for="id_email" class="control-label col-md-4  requiredField">Descripción<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @tipe.description %>
+                            </div>
+                        </div><br><br>
+                        <div id="div_id_email" class="form-group required">
+                            <label for="id_email" class="control-label col-md-4  requiredField">Categoria<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @tipe.category.name %>
+                            </div>
+                        </div><br><br>
+
+                        <div class="form-group">
+                            <div class="aab controls col-md-4 "></div>
+                            <div class="controls col-md-8 ">
+                                <%= link_to 'Volver', tipes_path, class: 'btn btn-info' %>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

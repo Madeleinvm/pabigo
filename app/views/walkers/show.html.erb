@@ -1,0 +1,89 @@
+<div class="row">
+<div class="col-md-12">
+  <h4>
+  <center>
+      <strong>Fotos</strong>     
+      <% unless @walkers.images.empty? %>
+                 
+                   <ul class="list-inline">
+                      <% @walkers.images.each_with_index do |image, index| %>
+                         <% if image.picture_url %>
+                           <% if index == 0 %>
+                             <li data-toggle="modal" data-target="#myModal"><a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="400" height="400"><br><%= index + 1 %></a>
+                             </li>
+                           <% else %>
+                              <li data-toggle="modal" data-target="#myModal"><a href="<%= image.picture.url %>" data-slide-to="<%= image.picture.url.split('picture/')[1].split('/')[0] %>" target="_blank"><img class="img-thumbnail" src="<%= image.picture.url %>" width ="400" height="400"><br><%= index + 1 %></a>
+                             </li>
+                           <% end %>
+                         <% end %>
+                       <% end %>
+                     <!--end of thumbnails-->
+                   </ul>
+                 </center>
+             <%else %>
+               <h4>No hay imágenes del paseador </h4>
+             <% end %>
+  </h4>
+</div>
+</div>
+<center>
+   <% @usuario = User.find(@walkers.user_id) %>
+   <% @perfil = Profile.find(@usuario.id) %>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Nombre:</strong> 
+        <%= @perfil.name %>
+        <%= @perfil.last_name %>
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Correo:</strong>
+        <%= raw(@walkers.user.email) %>
+      </h4>
+    </div>
+  </div>
+  <div class="col-md-12 ">
+    <h4>
+        <strong>Status: </strong><%= @walkers.status %>
+    </h4>
+  </div>
+  <div class="col-md-12 ">
+    <h4>
+        <strong>Ciudad: </strong><%= @walkers.city %>
+    </h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 ">
+    <h4>
+        <strong>Descripción:</strong> <%= raw(@walkers.description) %>
+    </h4>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-12 ">
+      <h4>
+        <strong>Calificación:</strong> 
+        <% (0..@walkers.calification.to_i-1).each do |i| %>
+          <img src="/images/dog-bone2.png" alt="">
+        <% end %>
+        <a href="<%= feedbacks_path("id_walker": @walkers.id) %>">
+        <%= @walkers.calification %></a>
+      </h4>
+  </div>
+
+  <div class="row">
+      <div class="col-md-12 ">
+        <h4>
+          <%= link_to 'Calificar', new_feedback_path( "id_walker": @walkers.id ), :class => 'btn btn-default' %>
+          <%= link_to 'Atras', walkers_path, :class => 'btn btn-default' %>
+        </h4>
+      </div>
+    </div>
+</center>
+

@@ -1,0 +1,43 @@
+<div id="blue">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Entrenador</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+<div id="modificar">
+<div class="row">
+<section class="panel">
+  <header class="panel-heading">
+<h4>Modificar tus datos</h4>
+  </header>
+  <%= simple_form_for [@trainer_detail], url: traineruupdate_path(@trainer_detail) do |f| %>
+  <div class="panel-body">
+  <div class="row">
+                  
+        <div class="row ">
+          <label  class="control-label col-lg-2">Descripción</label>
+          <div class="col-lg-10">
+          <%= f.text_field :description %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-offset-2 col-lg-10">
+            <%= f.submit 'Actualizar', :class => 'btn btn-info'%>
+            <%= link_to 'Cancelar', url_for(:back), :class => 'btn btn-default' %>
+          </div>
+        </div>
+        <% end %>
+  </div>
+  </div>
+</section>
+</div>
+</div>  
+</div>
+</div>
+</div>
+</div>

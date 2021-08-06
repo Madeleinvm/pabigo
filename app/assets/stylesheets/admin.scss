@@ -1,0 +1,24 @@
+// @import "admin/bootstrap";
+@import "bootstrap";
+@import "font-awesome";
+@import "admin/metisMenu";
+@import "admin/morris";
+@import "admin/sb-admin-2";
+// @import "public/style.css";
+
+@import "admin/profiles";
+@import "admin/header";
+@import "admin/pensions.scss";
+@import "admin/roles.scss";
+
+/* Custom (Admin) Fonts */
+
+@font-face {
+  font-family: 'QuicksandBold';
+  src: font-url('QuicksandBold.otf') format('opentype');
+}
+
+body {
+	font-family: QuicksandBold !important;
+	font-size: 15px;
+}

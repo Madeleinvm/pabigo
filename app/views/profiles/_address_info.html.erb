@@ -1,0 +1,44 @@
+<div align="center" class="row">
+  <div class="col-xs-3">
+    <% if current_user.address %>
+      <div class="btn-group" role="group" aria-label="...">
+        <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Dirección
+        </a>
+      </div>
+    <% else %>
+      <%= link_to "Agregar Dirección", new_address_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="col-xs-9">
+    <% if current_user.address %>
+      <div class="alert alert-info row">
+        <div class="col-xs-6">
+          Ciudad: <%= current_user.address.city.name %>
+        </div>
+        <div class="col-xs-6">
+          Estado: <%= current_user.address.city.state.name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% if current_user.address %>
+  <div class="collapse" id="collapseExample">
+    <div class="well">
+      <div class="row">
+        <div class="col-xs-9">
+          <%= current_user.address.line1 %>
+          <br>
+          <%= current_user.address.line2 %>
+        </div>
+        <div align="right" class="col-xs-3">
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to (tag.i class: "fa fa-pencil"), edit_address_path(current_user.address), class: "btn btn-warning" %>
+            <%= link_to (tag.i class: "fa fa-trash"), current_user.address, method: :delete, data: { confirm: "¿Seguro que quieres eliminar esta dirección?" }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

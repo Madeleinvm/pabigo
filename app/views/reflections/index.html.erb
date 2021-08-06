@@ -1,0 +1,12 @@
+<% @reflections.each do |reflection| %>
+  <div class="row">
+    <div align="center" class="col-xs-12">
+      <p style="font-size: 30px;">
+        <%= reflection.image.name %>
+      </p>
+      
+      <br>
+      <%= link_to image_tag(reflection.image.picture.url, size: "500x350"), reflection.image.picture.url, target: :_blank %>
+    </div>
+  </div>
+<% end %> 

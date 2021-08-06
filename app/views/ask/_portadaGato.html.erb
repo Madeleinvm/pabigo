@@ -1,0 +1,30 @@
+<div class="contenido principal">
+  <!-- <figure><img src="http://skogaras.leikskolinn.is/heilsuleiksk%C3%B3linn+h%C3%A1aleiti/fr%C3%A9ttamyndir/gamlar/obodinn-gestur.png" alt="" width="250px" height="250px"></figure> -->
+  <div class="sub-header">
+    <!-- <a href="../html-link.htm"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ihEo3KvvbZlubtj1T9Vwl9iwPnevwQ6Aka_WrA99lwrFH2Vd" width="82" height="86" title="White flower" alt="Flower"></a> -->
+    <strong>Pregúntale al veterinario</strong><br>
+
+
+
+    <!-- Vista parcial renderizada en view -> ask -> gatos.html.erb -->
+    <!-- Muestra un simple mensaje y un logo del otro faq -->
+
+  </div>
+  <img src="Descargas/como_es_el_apareamiento_de_perros.jpg" alt="">
+  <h4 class="subtitle" >Aquí encontrarás las mejores preguntas y respuestas sobre los Gatos</h4>
+  <div class="logo-master">
+    <div class="logo">
+      <a href="../ask/perros"><img src="https://image.flaticon.com/icons/svg/1076/1076928.svg" width="82" height="86"  alt="Perro"></a>
+      <p>Click para ir a la seccion de Perros</p>
+    </div>
+    <div class="logo">
+      <a><img src="https://image.flaticon.com/icons/svg/1303/1303437.svg" width="82" height="86"  alt="Gato"></a>
+    </div>
+    <% if can? :create, Ask %>
+      <div class="logo">
+        <a href="../ask/new"><img src="https://image.flaticon.com/icons/svg/65/65827.svg" width="82" height="86"  alt="Crear"></a>
+        <p>Crea tu pregunta</p>
+      </div>
+    <% end %>
+  </div>
+</div>

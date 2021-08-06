@@ -1,0 +1,34 @@
+<% provide(:title, "Editar Usuario") %>
+<%= render "shared/admin/page_title" %>
+
+<%= simple_form_for [:admin, @user] do |f| %>
+  <div class="row">
+    <div class="col-xs-5">
+      <%= f.input :email, label: "Correo", required: true, autofocus: true %>
+      
+      <%= f.simple_fields_for :profile do |profile_form| %>
+        <%= profile_form.input :name,
+                               label: "Nombre",
+                               required: true %>
+        <%= profile_form.input :last_name,
+                               label: "Apellido",
+                               required: true %>
+        <%= profile_form.input :male,
+                               label: "Género",
+                               as: :select,
+                               collection: [["Masculino", true], ["Femenino", false]],
+                               required: true %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1">
+      <%= render 'roles', f: f %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.button :submit, yield(:title) %>
+    </div>
+  </div>
+<% end %>

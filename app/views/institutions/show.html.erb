@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+    <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Agregar Institución</div>
+            </div>
+
+            <div class="panel-body" >
+                <form method="post" action=".">
+
+
+
+                    <form  class="form-horizontal" method="post" >
+
+
+
+                        <div id="div_id_username" class="form-group required">
+                            <label for="name" class="control-label col-md-4  requiredField">Nombre<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @institution.name %>
+                            </div>
+                        </div> <br><br>
+                        <div id="div_id_email" class="form-group required">
+                            <label for="id_email" class="control-label col-md-4  requiredField">Dirección<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @institution.address %>
+                            </div>
+                        </div><br><br>
+                        <div id="div_id_username" class="form-group required">
+                            <label for="name" class="control-label col-md-4  requiredField">Númeroo de Contacto<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @institution.phone %>
+                            </div>
+                        </div> <br><br>
+                        <div id="div_id_password1" class="form-group required">
+                            <label for="id_password1" class="control-label col-md-4  requiredField">Email<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @institution.email %>
+                            </div>
+                        </div><br><br>
+                        <div id="div_id_password1" class="form-group required">
+                            <label for="id_password1" class="control-label col-md-4  requiredField">Sitio Web<span class="asteriskField">:</span> </label>
+                            <div class="controls col-md-8 ">
+                                <%= @institution.web %>
+                            </div>
+                        </div><br><br>
+                        <div class="form-group">
+                            <div class="aab controls col-md-4 "></div>
+                            <div class="controls col-md-8 ">
+                                <%= link_to 'Volver', institutions_path, class: 'btn btn-info' %>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<style>
+
+  .form-container-top_space {
+    padding-top: 40px;
+  }
+
+
+</style>
+<% if current_user %>
+  <div class='text-center' style="padding-top: 30px">
+    <h1>Mascota en Adopción</h1>
+  </div>
+
+
+
+  <%= simple_form_for(@pet) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="container form-container-top_space">
+
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="login-panel panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-12">
+
+                  <div class="col-md-12">
+                    <div class="nombre-input">
+                      <%= f.input :name, label: 'Nombre o apodo' %>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                  <div class="col-md-3">
+                    <div clas="peso">
+                      <%= f.input :weight, label: 'Peso (kg)', input_html: {min: '0', step: 'any'} %>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div clas="peso">
+                      <%= f.input :aprox_age, label: 'Edad (meses)', input_html: {min: '0', step: 'any'}, class: "body" %>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-3">
+                    <div class="raza">
+                      <%= f.input :races_id, collection: @races, label: 'Raza' %>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <%= f.input :species, collection: [['Perro', 'Perro'], ['Gato', 'Gato']], label_method: :second, value_method: :first, label: 'Especie' %>
+                  </div>
+                </div>
+
+                <div class="col-xs-12">
+                  <div class="col-md-3">
+                    <%= f.input :dewormed, label: '. Desparasitado' %>
+                  </div>
+                  <div class="col-md-3">
+                    <%= f.input :neutered, label: '. Esterilizado' %>
+                  </div>
+                  <div class="col-md-5">
+                    <%= f.input :special_needs, label: '. Posee necesidades especiales' %>
+                  </div>
+                </div>
+                <div class="col-xs-12 ">
+                  <div class="col-md-12">
+                    <p>Descripción</p>
+                    <%= f.text_area :description, label: 'Descripción', size: "95x10" %>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Para cargar una imagen -->
+              <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="control-group">
+                  <div class="col-lg-12 col-md-12 col-xs-12">
+
+                    <%= f.fields_for :images_attributes do |images_fields| %>
+                      Image: <%= images_fields.file_field :image, :multiple => true, name: "images_attributes[image][]" %>
+
+                    <% end %>
+
+                    <%# f.attachment_field :images_files, multiple: true, presigned: true, direct: true %>
+
+                  </div>
+                </div>
+              </div>
+              <!-- Aqui termina la carga de imagen-->
+
+              <div class="col-xs-12 ">
+                <div class="col-md-8 form-container-top_space">
+                  <div class="form-actions col-xs-8 col-xs-offset-3 ">
+                    <%= f.button :submit, 'Generar Adopción' %>
+                  </div>
+                </div>
+                <div class="col-md-4 offset-md-2 regresar form-container-top_space">
+                  <button type="button" class="btn btn-info"><a href="/pets">Regresar</a></button>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  <% end %>
+
+  <%= simple_form_for(@pet) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+  <% end %>
+<% end %>

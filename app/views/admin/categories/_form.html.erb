@@ -1,0 +1,23 @@
+<%= simple_form_for [:admin, @category] do |f| %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.input :name, 
+                  label: "Nombre", 
+                  required: true, 
+                  autofocus: true %>
+      <%= f.input :description,
+                  label: "Description",
+                  required: true%>
+      <br><br>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.button :submit, yield(:title) %>
+    </div>
+  </div>
+<% end %>
+
+

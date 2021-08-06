@@ -1,0 +1,60 @@
+// Place all the styles related to the Pensions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/*css para  show*/
+.linea{background:#F38630;
+    margin:auto;
+    height: 2px;
+    width:150px;
+    display:block;
+    margin-bottom:20px;
+    margin-top: 3px;
+
+}
+
+.info
+{
+	width: 100%;
+	background: #FFFFFF;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.info_box
+{
+	width: 100%;
+	background: #f4f8fb;
+}
+.info_image
+{
+	width: 100%;
+}
+.info_image img
+{
+	max-width: 100%;
+}
+.info_content
+{
+	padding-left: 38px;
+	padding-top: 46px;
+	padding-right: 20px;
+	padding-bottom: 31px;
+    /*background-color:aliceblue;*/
+}
+.info_title
+{
+	font-size: 20px;
+	font-weight: 600;
+	color: #404040;
+}
+.info_text
+{
+	font-size: 14px;
+	font-weight: 500;
+	color: #838383;
+	line-height: 1.95;
+	margin-top: 14px;
+}
+
+.orange{color:#F38630;}
+#blue h4{ color:#69D2E7;}
+/*fin css para show*/

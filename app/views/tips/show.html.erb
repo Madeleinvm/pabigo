@@ -1,0 +1,93 @@
+<style>
+
+  .center {
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .top-distance {
+    padding-top: 30px;
+  }
+
+  .container-top-distance {
+    padding-top: 60px;
+  }
+
+  .bottom-distance {
+    padding-bottom: 40px;
+  }
+
+  .font_white {
+    color: white;
+  }
+
+  .btn_width {
+    width: 80px;
+  }
+
+  .border-element {
+    border-style: solid;
+    border-color: #0f0f0f;
+    border-radius: 10px;
+  }
+
+  .container_detalle {
+    width: 600px;
+  }
+
+  .descripcion-box {
+    overflow: auto;
+    width: auto;
+    text-overflow: ellipsis;
+  }
+
+</style>
+
+
+<p id="notice"><%= notice %></p>
+
+<div class="container container_detalle container-top-distance">
+
+
+  <div class=" bottom-distance top-distance ">
+    <div class="list-title-container center border-element">
+      <h1>Detalle de Tip</h1>
+    </div>
+
+    <div class="top-distance">
+      <h2>
+        <strong>Name:</strong>
+        <%= @tip.name %>
+      </h2>
+      <div class="descripcion-box">
+        <h2>
+          <strong>Description:</strong>
+          <%= @tip.description %>
+        </h2>
+      </div>
+
+      <!--      <h3>-->
+      <!--        <strong>Tipo de tip:</strong>-->
+      <%#= @tip.tip_types_id %>
+      <!--      </h3>-->
+
+    </div>
+  </div>
+
+  <div class="top-distance center">
+
+    <%= link_to 'Editar', edit_tip_path(@tip), class: "btn font_white btn_width" %> |
+
+    <%=
+      case @tip.tip_types_id
+      when 3
+        link_to 'Volver', listadotips_cuidado_url, class: "btn font_white btn_width"
+      when 4
+        link_to 'Volver', listadotips_adiestramiento_url, class: "btn font_white btn_width"
+      when 5
+        link_to 'Volver', listadotips_cuidado_cachorros_url, class: "btn font_white btn_width"
+      end
+    %>
+  </div>
+
+</div>

@@ -1,0 +1,5 @@
+<%= simple_form_for [@adopcion], url: adoption_path(@adopcion) do |f| %> 
+	<%= f.input :adopter_id, :as => :hidden, :input_html => { :value => current_user.id }%>
+	<%=f.button :submit, "Adoptar", class: "btn" %>
+<% end %> 
+	

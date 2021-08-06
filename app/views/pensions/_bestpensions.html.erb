@@ -1,0 +1,45 @@
+<pensions>
+  <div id="pensiones">
+    <div class="container">
+      <div class="text-center">
+        <h3>Pensiones</h3>
+        <p>Lista de Mejores Pensiones de PABIGO<br></p>
+      </div>
+      <div class="row">
+          <% @bestpension = 0 %>        
+          <% @pensions.each do |pension1| %>
+            <% if (@prueba = pension1.qualification) >= 0 &&  (@prueba = pension1.qualification) >= @bestpension %>
+              <%@bestpension = @prueba%> 
+            <% end %> 
+          <% end %>
+          <!-- TABLA DE MEJORES PENSIONES AQUI -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombre de la Pensión</th>
+              <th scope="col">Descripcion de la Pensión</th>
+              <th scope="col">Red social de la Pensión</th>
+              <th scope="col">Status de la Pensión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tbody>
+              <% @pensions.each do |pension| %>
+                <tr>
+                  <% if (@a = pension.qualification) == @bestpension %>
+                    <td style="color:#000000 "><%= pension.nombre %></td>
+                    <td style="color:#000000 "><%= pension.description %></td>
+                    <td style="color:#000000 "><%= pension.red_social %></td>
+                    <td style="color:#000000 "><%= pension.status %></td>
+                    <td style="color:#000000 "><%= link_to "Ver Pension", pension, :class => 'btn btn-info' %></td>
+                  <% end %> 
+                </tr>
+              <% end %>
+            </tbody>
+          </tbody>
+        </table>
+        <!-- TABLA hasta aqui -->
+      </div>
+    </div>
+  </div>
+</pensions>

@@ -1,0 +1,40 @@
+.nombre-input {
+        border-bottom: 2px solid #C1C1C1;
+        /* border-bottom-color: #000; */
+        border-top: 0px;
+        border-right: 0px;
+        border-left: 0px;
+        border-radius: 0rem;
+}
+.peso {
+        border-radius: 0.5rem;
+}
+.edad {
+        /* max-width: 49px; */
+        /* max-height: 40px; */
+        border-radius: 0.5rem;
+}
+.raza {
+        display: block;
+        height: 31.988636px;
+}
+.especie{
+        display: block;
+        height: 31.988636px;
+}
+.descripcion {
+        width: 484px;
+        border-bottom: 2px solid #C1C1C1;
+        /* border-bottom-color: #000; */
+        border-top: 0px;
+        border-right: 0px;
+        border-left: 0px;
+        border-radius: 0rem;
+}
+
+.centrar{
+
+            margin-left: 229px;
+            margin-right: -267px;
+}
+

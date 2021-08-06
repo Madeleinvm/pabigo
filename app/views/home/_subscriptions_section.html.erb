@@ -1,0 +1,106 @@
+<div id="subscription">
+  <div class="container">
+    <div class="text-center">
+      <h3>Suscripción</h3>
+        <p class="text-center">Si quieres recibir información sobre las diferentes categorías que ofrece PABIGO a través de tu correo electronico, puedes registrar tu suscripción aqui mismo.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <%= render 'shared/category' %>
+      <div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.4s">
+        <h2 class="center">Categorías</h2>
+          <p class="text-center">Marqué las categorías de las que desea recibir información a través de su correo.</p>
+
+          <div class="input-group p-3 mb-2 bg-success text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-gift fa-2x"></i>&nbsp;&nbsp;Anuncio de donaciones</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-info text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="glyphicon glyphicon-apple fa-2x"></i>&nbsp;&nbsp;Tips de Alimentación</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-success text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-heartbeat fa-2x"></i>&nbsp;&nbsp;Tips de Salud</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-info text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-eye fa-2x"></i>&nbsp;&nbsp;Tips de Cuidado</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-success text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-file-text fa-2x"></i>&nbsp;&nbsp;Tips de Adiestramiento</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-info text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-paw fa-2x"></i>&nbsp;&nbsp;Tips de Cuidado de Cachorros</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-success text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-check-circle fa-2x"></i>&nbsp;&nbsp;Tips de Prevención</p>
+          </div><!-- /input-group -->
+          <br/>
+          <div class="input-group p-3 mb-2 bg-info text-white">
+            <span class="input-group-addon">                          
+              <input type="checkbox" aria-label="...">                          
+            </span>
+            <p><i class="fa fa-calendar fa-2x"></i>&nbsp;&nbsp;Jornadas</p>
+          </div><!-- /input-group -->
+
+      </div>
+
+      <div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
+        <h2>Datos de confirmación</h2>
+          <p class="text-center">Escriba el correo electronico al que desea que le lleguen las notificaciones de las categorías seleccionadas.</p>
+          <!--%= render 'subscriptions/form' %-->
+          <form action="" method="post" role="form" class="contactForm">
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Tu email" data-rule="minlen:4" data-msg="Please enter a valid email" required />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="confimemail" id="email" placeholder="Confirmación de tu Email" data-rule="email" data-msg="Please enter a valid email" required />
+              <div class="validation"></div>
+            </div>
+
+
+             <div class="form-group">
+              <label for="sel1">Seleccione cada cuanto desea las notificaciones:</label>
+              <select class="form-control" id="sel1">
+                <option>Diariamente</option>
+                <option>Semanalmente</option>
+                <option>Mensualmente</option>
+                <option>Anualmente</option>
+              </select>
+            </div> 
+
+            <div>
+              <button type="submit" class="btn btn-theme pull-left" style="text-align: center;">Suscribirme</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/#our-team-->

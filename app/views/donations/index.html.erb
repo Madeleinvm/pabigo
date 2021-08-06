@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div.imageback{
+            background-image: url(/assets/a1.jpg);
+            margin-top: -70px;
+        }
+        
+
+    </style> 
+<!-- /services -->
+
+<div class="text-center imageback">
+	<div class="agile_secives " id="services">
+		<div class="container">
+			<h3 class="agileits-title two">Donaciones Solicitadas</h3>
+			
+			<div class="markets-grids">
+			<% @donations.each do |don| %>
+						
+				<div class="col-md-4 w3ls-markets-grid">
+					<div class="agileits-icon-grid">
+						<figure class="effect-amp">
+						<div class="icon-left">
+                            <a href="<%= donationpshow_path(don) %>"><img  src="/images/don.png" width="75" height="75"></a>
+						</div>
+						</figure>
+						<div class="icon-right">
+							<h5><%= don.dontype %></h5>
+							<p>Beneficiado: <%= don.benefited %></p>
+							<p>Cantidad: <%= don.quantity %></p>
+						</div>
+						<div class="clearfix"> </div>
+					
+					</div>
+					
+				</div>
+			
+		<% end %>
+				<div class="clearfix"> </div>
+				
+			</div>
+		</div>
+	<div>
+		<%= will_paginate @donations, previous_label: "Anterior", next_label: "Siguiente", renderer: BootstrapPagination::Rails %>
+	</div>
+	</div>
+	<!-- //services -->
+
+</div>
+    

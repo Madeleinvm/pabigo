@@ -1,0 +1,45 @@
+<style>
+  .rojo{color: red;}
+</style>
+
+<div id="blue">
+  <div class="container">
+  <h2 class="page-header ">Cuentanos como se encuentra tu mascota <img src ="/images/pets2.png"></h2>
+    <div class="row justify-content-center">
+    <%= simple_form_for :follow_up, :url => { :action => :create } do |f| %>
+    <div class="col-sm-5">
+    <h4 class="naranja1 text-justify">Descripción: </h4>          
+    <%= f.text_area :description, label: "Descripción", :placeholder => "Hablanos acerca del estado de tu mascota", style: 'width:455px; height:133px;'%>
+
+    <div id="error_explanation">
+      <ul>
+        <% @follow_up.errors.full_messages.each do |msg| %>
+          <h5 class= "rojo"><%= msg %></h5>
+        <% end %>
+      </ul>
+    </div>
+
+    <h4 class="naranja1 ">Fotos: </h4>
+          <%= f.fields_for :images_attributes do |images_fields| %>
+              <%= images_fields.file_field :image, :multiple => true,name: "images_attributes[image][]" %>
+          <% end %> 
+        <%= f.submit 'Salvar', :class => 'btn btn-success btn-block', style: 'margin-bottom:10px; margin-top:30px;' %>
+        <%= link_to profile_path do %>
+          <%= button_tag t('buttons.cancelar'), name: "Cancelar", class:"btn btn-default btn-block", value: true %>
+        <%end%>
+   
+
+    </div>
+
+      <div class="col-sm-3">           
+      </div>
+
+      <div class="col-sm-4">
+      </div>
+
+      <% end %>  
+      </div>
+  </div>
+</div>
+
+

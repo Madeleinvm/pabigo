@@ -1,0 +1,89 @@
+<head>
+    <%= stylesheet_link_tag "users/news" %>
+</head>
+<body>
+    <div class="section ex1">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- Post content -->
+                <div class="col-md-8">
+                    <div class="section-row sticky-container">
+                        <div class="main-post">
+                            <h3><%= @new.title %></h3>
+                            <p><%= @new.content1 %></p>
+                            <figure class="figure-img">
+                                <img class="img-responsive" src="<%= @new.image.picture.url %>" alt="">
+                            </figure>
+                            <p><%= @new.content2 %></p>
+                        </div>
+                        <div class="post-shares sticky-shares">
+                            <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
+                            <a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                  <!-- author -->
+                  <div class="section-row">
+                    <div class="post-author">
+                      <div class="media">
+                        <div class="media-left">
+                          <img class="media-object" src="./img/author.png" alt="">
+                        </div>
+                        <div class="media-body">
+                          <div class="media-heading">
+                            <h3><%= @new.user.email %></h3>
+                          </div>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                          <ul class="author-social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                          
+                </div>
+                <!-- /Post content -->
+
+                <!-- aside -->
+                <div class="col-md-4">
+                    
+                    <!-- post widget -->
+                    <div class="aside-widget">
+                        <div class="section-title">
+                            <h2>Most Read</h2>
+                        </div>
+                        <% @news.order(visits: :desc).limit(3).each do |new| %>
+
+                        <div class="post post-widget">
+                            <a class="post-img" href="blog-post.html"><img src="<%= new.image.picture.url %>" alt=""></a>
+                            <div class="post-body">
+                                <h3 class="post-title"><a href="blog-post.html"><%= new.title %></a></h3>
+                                <p class="list-group-item-text resumen "><%= new.content1 %></p>
+                                <h3 ><%= new.created_at.strftime("%B %d, %Y") %></h3>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                    <!-- /post widget -->
+                   
+                    
+                </div>
+                <!-- /aside -->
+                
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+        
+    </div>
+</body>

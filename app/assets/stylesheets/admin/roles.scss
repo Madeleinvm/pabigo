@@ -1,0 +1,11 @@
+$warning: #f0ad4e;
+
+.list-group-item-heading > i.fa-pencil {
+	display: none;
+	float: right;
+}
+
+.list-group-item:hover i.fa-pencil {
+	color: $warning;
+	display: block;
+}

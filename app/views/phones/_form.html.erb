@@ -1,0 +1,23 @@
+<br>
+<%= simple_form_for @phone, remote: true do |f| %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :number,
+                  label: "Número" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :phone_type_id,
+                  label: "Tipo",
+                  collection: PhoneType.all %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <a class="btn btn-sm btn-default" id="hide-form-btn">Ocultar</a>
+    </div>
+    <div align="right" class="col-xs-6">
+      <%= f.button :submit, @phone.new_record? ? "Agregar" : "Editar", class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+<% end %>
